@@ -14,16 +14,22 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI descriptionText = default;
 
         private const string modalId = "InfoModal";
+        private AppManager appMan = default;
 
         public void Setup()
         {
+            appMan = AppManager.Instance;
             descriptionText.text = "This is some text";
             closeButton.onClick.AddListener(Shutdown);
+
+            // Add to the modal layer list
+            appMan.AddToModalLayerList(this as IModalLayer);
         }
 
         public void Shutdown()
         {
             closeButton.onClick.RemoveAllListeners();
+            appMan.RemoveFromModalLayerList(this as IModalLayer);
         }
 
         #region ModalLayer Functions
