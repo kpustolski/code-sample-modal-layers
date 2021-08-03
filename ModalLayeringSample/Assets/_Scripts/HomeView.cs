@@ -10,14 +10,23 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private Button button;
 
+        private AppManager appMan = default;
 
         public void Setup()
         {
-            // Set up this view
+            appMan = AppManager.Instance;
+            button.onClick.AddListener(CreateInfoModal);
+        }
+
+        public void CreateInfoModal()
+        {
+            InfoModalTemplate m = Instantiate(appMan.InfoModalTemplatePrefab, appMan.DialogParent);
+            m.Setup(descText: "This is some text");
         }
 
         public void Shutdown()
         {
+            button.onClick.RemoveAllListeners();
             // shutdown this view
         }
     }
