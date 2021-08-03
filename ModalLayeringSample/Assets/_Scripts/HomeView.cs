@@ -21,7 +21,7 @@ namespace CodeSampleModalLayer
         public void CreateInfoModal()
         {
             InfoModalTemplate m = Instantiate(appMan.InfoModalTemplatePrefab, appMan.DialogParent);
-            m.Setup(descText: "This is some text");
+            m.Setup(descText: "This is modal layer: {0}");
         }
 
         public void Shutdown()

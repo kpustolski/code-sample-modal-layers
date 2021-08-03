@@ -19,11 +19,12 @@ namespace CodeSampleModalLayer
         public void Setup(string descText)
         {
             appMan = AppManager.Instance;
-            descriptionText.text = descText;
-            closeButton.onClick.AddListener(Shutdown);
-
             // Add to the modal layer list
             appMan.AddToModalLayerList(this as IModalLayer);
+
+            descriptionText.text = string.Format(descText, modalId);
+            closeButton.onClick.AddListener(Shutdown);
+
         }
 
         public void Shutdown()
