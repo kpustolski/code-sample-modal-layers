@@ -13,7 +13,7 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private TextMeshProUGUI descriptionText = default;
 
-        private const string modalId = "InfoModal";
+        private string modalId = default;
         private AppManager appMan = default;
 
         public void Setup()
@@ -45,6 +45,11 @@ namespace CodeSampleModalLayer
         public string GetId()
         {
             return modalId;
+        }
+
+        public void AssignId(int layerIndex)
+        {
+            modalId = $"InfoModal_{layerIndex}";
         }
 
         #endregion

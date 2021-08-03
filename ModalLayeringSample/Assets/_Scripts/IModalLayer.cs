@@ -9,5 +9,6 @@ namespace CodeSampleModalLayer
         public void ShowLayer();
         public void HideLayer();
         public string GetId();
+        public void AssignId(int layerIndex);
     }
 }
