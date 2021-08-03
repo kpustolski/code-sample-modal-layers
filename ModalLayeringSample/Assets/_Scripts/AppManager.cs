@@ -36,17 +36,21 @@ namespace CodeSampleModalLayer
                 return;
             }
 
-            if (modalLayerList.Count > 1)
+            // If a modal is already in the list, hide that one before showing the new one.
+            if (modalLayerList.Count >= 1)
             {
-
-                // Current modal layer on the UI must hide
-                // The new layer must show and be added to the list
+                modalLayerList[modalLayerList.Count - 1].HideLayer();
             }
 
+            layer.ShowLayer();
             if (!modalLayerList.Contains(layer))
             {
                 modalLayerList.Add(layer);
+                int layerIndex = modalLayerList.IndexOf(layer);
+                layer.AssignId(layerIndex);
             }
+
+            PrintModalLayerList();
         }
 
         public void RemoveFromModalLayerList(IModalLayer layer)
@@ -58,22 +62,27 @@ namespace CodeSampleModalLayer
                 return;
             }
 
-            // Need to check if the layer is the current one on the screen
-            // If so, hide that modal and remove it from the list.
-            // If it's not on the screen, "quietly" remove it from the list
-
+            layer.HideLayer();
             if (modalLayerList.Contains(layer))
             {
                 modalLayerList.Remove(layer);
             }
+
+            // Show the next modal in the list (ie. the last element) if there are anymore in the list
+            if (modalLayerList.Count > 1)
+            {
+                modalLayerList[modalLayerList.Count - 1].ShowLayer();
+            }
+
+            PrintModalLayerList("cyan");
         }
 
         //DEBUG
-        private void PrintModalLayerList()
+        private void PrintModalLayerList(string color = "red")
         {
             for (int i = 0; i < modalLayerList.Count; i++)
             {
-                Debug.Log($"<color=white>{modalLayerList[i].GetId()}_{i}</color>");
+                Debug.Log($"<color={color}>{modalLayerList[i].GetId()}_{i}</color>");
             }
         }
     }
