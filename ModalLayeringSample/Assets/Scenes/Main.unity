@@ -765,6 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homeView: {fileID: 1856768137}
+  dialogParent: {fileID: 1952737680}
   infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
     type: 3}
 --- !u!1 &1952737679

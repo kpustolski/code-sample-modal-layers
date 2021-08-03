@@ -13,6 +13,7 @@ namespace CodeSampleModalLayer
 
         [Header("RectTransform")]
         [Space(5)]
+        [SerializeField]
         private RectTransform dialogParent = default;
 
         [Header("Prefabs")]
