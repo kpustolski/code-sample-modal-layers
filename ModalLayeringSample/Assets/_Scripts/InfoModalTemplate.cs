@@ -31,6 +31,7 @@ namespace CodeSampleModalLayer
         {
             closeButton.onClick.RemoveAllListeners();
             appMan.RemoveFromModalLayerList(this as IModalLayer);
+            Destroy(gameObject);
         }
 
         #region ModalLayer Functions

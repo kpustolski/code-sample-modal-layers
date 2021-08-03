@@ -87,10 +87,12 @@ namespace CodeSampleModalLayer
         #region Debug Methods
         private void PrintModalLayerList(string color = "red")
         {
+            Debug.Log("------");
             for (int i = 0; i < modalLayerList.Count; i++)
             {
                 Debug.Log($"<color={color}>{modalLayerList[i].GetId()}_{i}</color>");
             }
+            Debug.Log("------");
         }
 
         private IModalLayer GetModalLayerById(string id)
