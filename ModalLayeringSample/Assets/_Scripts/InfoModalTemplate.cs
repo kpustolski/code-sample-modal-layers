@@ -16,10 +16,10 @@ namespace CodeSampleModalLayer
         private string modalId = default;
         private AppManager appMan = default;
 
-        public void Setup()
+        public void Setup(string descText)
         {
             appMan = AppManager.Instance;
-            descriptionText.text = "This is some text";
+            descriptionText.text = descText;
             closeButton.onClick.AddListener(Shutdown);
 
             // Add to the modal layer list
