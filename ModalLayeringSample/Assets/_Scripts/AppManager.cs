@@ -11,10 +11,16 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private HomeView homeView = default;
 
-        // [Header("Prefabs")]
-        // [Space(5)]
-        // [SerializeField]
-        // private 
+        [Header("RectTransform")]
+        [Space(5)]
+        private RectTransform dialogParent = default;
+
+        [Header("Prefabs")]
+        [Space(5)]
+        [SerializeField]
+        private InfoModalTemplate infoModalTemplatePrefab = default;
+        public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
+        public RectTransform DialogParent { get { return dialogParent; } }
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
         // Global Static Variable
