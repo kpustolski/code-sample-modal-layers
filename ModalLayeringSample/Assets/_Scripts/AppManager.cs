@@ -84,7 +84,7 @@ namespace CodeSampleModalLayer
             PrintModalLayerList("cyan");
         }
 
-        //DEBUG
+        #region Debug Methods
         private void PrintModalLayerList(string color = "red")
         {
             for (int i = 0; i < modalLayerList.Count; i++)
@@ -92,5 +92,18 @@ namespace CodeSampleModalLayer
                 Debug.Log($"<color={color}>{modalLayerList[i].GetId()}_{i}</color>");
             }
         }
+
+        private IModalLayer GetModalLayerById(string id)
+        {
+            foreach (IModalLayer modal in modalLayerList)
+            {
+                if (modal.GetId().Equals(id))
+                {
+                    return modal;
+                }
+            }
+            return null; // Modal not found
+        }
     }
+    #endregion
 }
