@@ -770,6 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 1604166430}
+  scrollDirection: 6
   duration: 15000
 --- !u!1 &1949006414
 GameObject:
