@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace CodeSampleModalLayer
 {
-    
+    [RequireComponent(typeof(ScrollingBackground))]
     public class HomeView : MonoBehaviour
     {
         [SerializeField]
