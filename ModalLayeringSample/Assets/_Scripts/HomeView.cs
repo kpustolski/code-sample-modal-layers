@@ -11,10 +11,14 @@ namespace CodeSampleModalLayer
         private Button button;
 
         private AppManager appMan = default;
+        private ScrollingBackground scrollBackground = default;
 
         public void Setup()
         {
             appMan = AppManager.Instance;
+            scrollBackground = new ScrollingBackground();
+            scrollBackground.Initialize();
+
             button.onClick.AddListener(CreateInfoModal);
         }
 
