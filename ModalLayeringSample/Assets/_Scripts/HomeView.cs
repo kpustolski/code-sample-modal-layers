@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace CodeSampleModalLayer
 {
+    
     public class HomeView : MonoBehaviour
     {
         [SerializeField]
@@ -35,7 +36,7 @@ namespace CodeSampleModalLayer
         public void Shutdown()
         {
             button.onClick.RemoveAllListeners();
-            // shutdown this view
+            scrollBackground.Shutdown();
         }
     }
 }

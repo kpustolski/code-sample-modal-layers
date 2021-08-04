@@ -86,5 +86,12 @@ namespace CodeSampleModalLayer
                     return (0,0);
             }
         }
+
+        
+        public void Shutdown()
+        {
+            // Stops the animation
+            backgroundImage.material.DOKill();
+        }
     }
 }
