@@ -16,8 +16,12 @@ namespace CodeSampleModalLayer
         public void Setup()
         {
             appMan = AppManager.Instance;
-            scrollBackground = new ScrollingBackground();
-            scrollBackground.Initialize();
+            scrollBackground = GetComponent<ScrollingBackground>();
+
+            if(scrollBackground != null)
+            {
+                scrollBackground.Initialize();
+            }
 
             button.onClick.AddListener(CreateInfoModal);
         }
