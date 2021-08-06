@@ -46,7 +46,7 @@ namespace CodeSampleModalLayer
             }
 
 
-            // Offset is determined by the width of the background container
+            // Offset is determined by the width/height of the background container
             var offsetValues = GetOffsetBasedOnDirection();
             offset = new Vector2(offsetValues.X, offsetValues.Y);
             
