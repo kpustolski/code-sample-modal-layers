@@ -26,7 +26,11 @@ namespace CodeSampleModalLayer
         [Space(5)]
         [SerializeField]
         private InfoModalTemplate infoModalTemplatePrefab = default;
+        [SerializeField]
+        private SquareItem squareItemPrefab = default;
+
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
+        public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
         public AppData AppDataObject { get { return appDataObject; } }
 

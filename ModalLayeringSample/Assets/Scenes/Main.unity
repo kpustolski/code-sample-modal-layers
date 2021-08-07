@@ -3358,6 +3358,8 @@ MonoBehaviour:
   appDataObject: {fileID: 11400000, guid: 8b4846abe933c4bf186e287be46e71c5, type: 2}
   infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
     type: 3}
+  squareItemPrefab: {fileID: 8940217089743169231, guid: b47af2a9aa95145eaae23c24919efd6b,
+    type: 3}
 --- !u!1 &1952737679
 GameObject:
   m_ObjectHideFlags: 0
