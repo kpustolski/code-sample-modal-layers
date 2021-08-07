@@ -3355,6 +3355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeView: {fileID: 1856768137}
   dialogParent: {fileID: 1952737680}
+  appDataObject: {fileID: 11400000, guid: 8b4846abe933c4bf186e287be46e71c5, type: 2}
   infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
     type: 3}
 --- !u!1 &1952737679
@@ -3547,7 +3548,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 817907447}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

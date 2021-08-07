@@ -16,12 +16,18 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private RectTransform dialogParent = default;
 
+        [Header("Data")]
+        [Space(5)]
+        [SerializeField]
+        private AppData appDataObject = default;
+
         [Header("Prefabs")]
         [Space(5)]
         [SerializeField]
         private InfoModalTemplate infoModalTemplatePrefab = default;
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
+        public AppData AppDataObject { get { return appDataObject; } }
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
         // Global Static Variable
