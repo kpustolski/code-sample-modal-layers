@@ -21,6 +21,7 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private AppData appDataObject = default;
 
+        //TODO: May place these in a UIManager.cs class
         [Header("Prefabs")]
         [Space(5)]
         [SerializeField]

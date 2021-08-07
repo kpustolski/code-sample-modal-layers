@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3573657805557380068}
+  - component: {fileID: 8940217089743169231}
   m_Layer: 5
   m_Name: SquareItem
   m_TagString: Untagged
@@ -190,6 +191,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8940217089743169231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3576191775494026709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0efba9f29ff4ec88f6fd25359ae2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 8997645316733491500}
+  amountPanel: {fileID: 5789740648000581214}
+  amountText: {fileID: 3280238231961309698}
 --- !u!1 &3578287635717259381
 GameObject:
   m_ObjectHideFlags: 0
