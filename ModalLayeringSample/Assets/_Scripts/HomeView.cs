@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace CodeSampleModalLayer
 {
@@ -19,6 +20,8 @@ namespace CodeSampleModalLayer
         private ScrollingBackground scrollBackground = default;
 
         private List<SquareItem> squareItemList = new List<SquareItem>();
+        private List<Button> navButtonList = new List<Button>();
+
 
         public void Setup()
         {
@@ -33,6 +36,7 @@ namespace CodeSampleModalLayer
             button.onClick.AddListener(CreateInfoModal);
 
             CreateItemGrid();
+            CreateNavButtons();
         }
 
         public void CreateItemGrid()
@@ -47,7 +51,20 @@ namespace CodeSampleModalLayer
 
         public void CreateNavButtons()
         {
+            //TODO: Add 'All' button
+            //TODO: When a category is selected, store instantiated squares in a parent prefab and enable / disable when the player
+            //TODO: goes back and forth between categories. This way we can avoid continuously destroying and instantiating objects.
+            foreach (Utilities.InventoryCategories category in Enum.GetValues(typeof(Utilities.InventoryCategories)))
+            {
+                // if (category.Equals(Utilities.InventoryCategories.None))
+                // {
+                //     continue;
+                // }
 
+                Button navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
+                // navBtn.Setup() //TODO: Button Callback
+                navButtonList.Add(navBtn);
+            }
         }
 
         public void CreateInfoModal()
@@ -66,6 +83,13 @@ namespace CodeSampleModalLayer
                 i.Shutdown();
             }
             squareItemList.Clear();
+
+            foreach (Button i in navButtonList)
+            {
+                // i.Shutdown();
+                Destroy(i.gameObject);
+            }
+            navButtonList.Clear();
         }
     }
 }

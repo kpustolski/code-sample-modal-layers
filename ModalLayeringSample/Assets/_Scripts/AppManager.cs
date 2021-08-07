@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeSampleModalLayer
 {
@@ -28,9 +29,12 @@ namespace CodeSampleModalLayer
         private InfoModalTemplate infoModalTemplatePrefab = default;
         [SerializeField]
         private SquareItem squareItemPrefab = default;
+        [SerializeField]
+        private Button navButtonPrefab = default;
 
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
+        public Button NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
         public AppData AppDataObject { get { return appDataObject; } }
 
