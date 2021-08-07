@@ -28,7 +28,7 @@ namespace CodeSampleModalLayer
             amountPanel.gameObject.SetActive(item.totalOwned > 1);
             if (amountPanel.gameObject.activeSelf)
             {
-                amountText.text = item.ToString();
+                amountText.text = item.totalOwned.ToString();
             }
 
             // button.onClick.AddListener(OpenInfoPopupCallback);

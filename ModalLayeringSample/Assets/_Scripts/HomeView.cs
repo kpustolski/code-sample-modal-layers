@@ -10,21 +10,44 @@ namespace CodeSampleModalLayer
     {
         [SerializeField]
         private Button button;
+        [SerializeField]
+        private RectTransform itemParentRectTransform;
+        [SerializeField]
+        private RectTransform buttonParentRectTransform;
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
+
+        private List<SquareItem> squareItemList = new List<SquareItem>();
 
         public void Setup()
         {
             appMan = AppManager.Instance;
             scrollBackground = GetComponent<ScrollingBackground>();
 
-            if(scrollBackground != null)
+            if (scrollBackground != null)
             {
                 scrollBackground.Initialize();
             }
 
             button.onClick.AddListener(CreateInfoModal);
+
+            CreateItemGrid();
+        }
+
+        public void CreateItemGrid()
+        {
+            foreach (Item i in appMan.ItemDataList.data)
+            {
+                SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentRectTransform);
+                si.Setup(item: i);
+                squareItemList.Add(si);
+            }
+        }
+
+        public void CreateNavButtons()
+        {
+
         }
 
         public void CreateInfoModal()
@@ -37,6 +60,12 @@ namespace CodeSampleModalLayer
         {
             button.onClick.RemoveAllListeners();
             scrollBackground.Shutdown();
+
+            foreach (SquareItem i in squareItemList)
+            {
+                i.Shutdown();
+            }
+            squareItemList.Clear();
         }
     }
 }

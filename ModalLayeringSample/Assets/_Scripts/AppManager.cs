@@ -38,11 +38,30 @@ namespace CodeSampleModalLayer
         // Global Static Variable
         public static AppManager Instance { get; private set; }
 
+        private ItemData itemData = default;
+        public ItemData ItemDataList => itemData;
         // App Starts here. Ie. the "main" function
         void Start()
         {
+            itemData = new ItemData();
             Instance = this;
+            GetItemData();
             homeView.Setup();
+        }
+
+        public void GetItemData()
+        {
+            TextAsset file = AppDataObject.ItemJSONFile;
+            if (file == null)
+            {
+                Debug.LogError($"AppManager.cs GetItemData() :: Unable to load the Item Data File.");
+                return;
+            }
+
+            // Deserialize the JSON from ItemData.JSON and store it in ItemData
+            Debug.Log($"File text: {file.text}");
+            JsonUtility.FromJsonOverwrite(file.text, itemData);
+            Debug.Log($"ItemData: {itemData.data.Count}");
         }
 
         public void AddToModalLayerList(IModalLayer layer)

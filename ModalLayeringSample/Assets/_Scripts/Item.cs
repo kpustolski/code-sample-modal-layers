@@ -21,4 +21,20 @@ namespace CodeSampleModalLayer
             totalOwned = numOwned;
         }
     }
+
+    // This class helps store the deserialized JSON data.
+    [Serializable]
+    public class ItemData
+    {
+        public List<Item> data = new List<Item>();
+
+        public override string ToString()
+        {
+            foreach (var d in data)
+            {
+                return $"{d.ToString()}";
+            }
+            return "";
+        }
+    }
 }
