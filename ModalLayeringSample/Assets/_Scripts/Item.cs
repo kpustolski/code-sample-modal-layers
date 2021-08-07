@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace CodeSampleModalLayer
 {
-    public class Item : MonoBehaviour
+    [Serializable]
+    public class Item
     {
         public string id;
         public Utilities.ItemType type;

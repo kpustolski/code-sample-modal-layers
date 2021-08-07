@@ -16,8 +16,15 @@ namespace CodeSampleModalLayer
     public class AppData : ScriptableObject
     {
         [Header("ItemIcons")]
+        [Space(5)]
         [SerializeField]
         private ItemIcon[] itemIcons = default;
+
+        [Header("JSON Files")]
+        [SerializeField]
+        private TextAsset itemJSONFile = default;
+
+        public TextAsset ItemJSONFile { get { return itemJSONFile; } }
 
         public Sprite GetItemIconByItemType(Utilities.ItemType type)
         {

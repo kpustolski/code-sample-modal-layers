@@ -35,3 +35,4 @@ MonoBehaviour:
     iconSprite: {fileID: 21300000, guid: d189a011a8ae7468cb004e7ce0dfd474, type: 3}
   - itemName: 11
     iconSprite: {fileID: 21300000, guid: f18cdf78ce0cc46f1b82266165adfe25, type: 3}
+  itemJSONFile: {fileID: 4900000, guid: 03f61819b06b54445ba9dda570118b17, type: 3}
