@@ -91,7 +91,7 @@ namespace CodeSampleModalLayer
                 layer.AssignId(layerIndex);
             }
 
-            PrintModalLayerList();
+            // PrintModalLayerList();
         }
 
         public void RemoveFromModalLayerList(IModalLayer layer)
@@ -115,7 +115,7 @@ namespace CodeSampleModalLayer
                 modalLayerList[modalLayerList.Count - 1].ShowLayer();
             }
 
-            PrintModalLayerList("cyan");
+            // PrintModalLayerList("cyan");
         }
 
         #region Debug Methods
