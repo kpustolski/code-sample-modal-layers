@@ -11,6 +11,8 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private Button closeButton = default;
         [SerializeField]
+        private Button addToBagButton = default;
+        [SerializeField]
         private TextMeshProUGUI descriptionText = default;
 
         private string modalId = default;
@@ -24,14 +26,24 @@ namespace CodeSampleModalLayer
 
             descriptionText.text = string.Format(descText, modalId);
             closeButton.onClick.AddListener(Shutdown);
+            addToBagButton.onClick.AddListener(AddToBagCallback);
 
         }
 
         public void Shutdown()
         {
             closeButton.onClick.RemoveAllListeners();
+            addToBagButton.onClick.RemoveAllListeners();
+
+            // Remove from modal layer list
             appMan.RemoveFromModalLayerList(this as IModalLayer);
             Destroy(gameObject);
+        }
+
+        public void AddToBagCallback()
+        {
+            Debug.Log("<color= \"white\">Added to bag!</color>");
+            Shutdown();
         }
 
         #region ModalLayer Functions

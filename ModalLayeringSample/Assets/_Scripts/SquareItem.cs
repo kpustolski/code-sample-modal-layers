@@ -8,8 +8,8 @@ namespace CodeSampleModalLayer
 {
     public class SquareItem : MonoBehaviour
     {
-        // [SerializeField]
-        // private Button button = default;
+        [SerializeField]
+        private Button button = default;
         [SerializeField]
         private Image itemImage = default;
         [SerializeField]
@@ -18,30 +18,34 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI amountText = default; // Amount owned
 
         private AppManager appMan = default;
+        private Item mItem = default;
 
         public void Setup(Item item)
         {
             appMan = AppManager.Instance;
+            mItem = item;
 
-            itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(item.type);
+            itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 
-            amountPanel.gameObject.SetActive(item.totalOwned > 1);
+            amountPanel.gameObject.SetActive(mItem.totalOwned > 1);
             if (amountPanel.gameObject.activeSelf)
             {
-                amountText.text = item.totalOwned.ToString();
+                amountText.text = mItem.totalOwned.ToString();
             }
 
-            // button.onClick.AddListener(OpenInfoPopupCallback);
+            button.onClick.AddListener(OpenInfoPopupCallback);
         }
 
         public void OpenInfoPopupCallback()
         {
-            // Do something!
+            //Create an info modal for the item
+            MessageBox.CreateInfoModal(description: mItem.id);
         }
 
         public void Shutdown()
         {
-            // button.onClick.RemoveAllListeners();
+            button.onClick.RemoveAllListeners();
+            Destroy(gameObject);
         }
     }
 }

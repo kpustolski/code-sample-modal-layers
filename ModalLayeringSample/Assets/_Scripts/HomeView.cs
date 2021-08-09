@@ -9,8 +9,8 @@ namespace CodeSampleModalLayer
     [RequireComponent(typeof(ScrollingBackground))]
     public class HomeView : MonoBehaviour
     {
-        [SerializeField]
-        private Button button;
+        // [SerializeField]
+        // private Button button;
         [SerializeField]
         private RectTransform itemParentRectTransform;
         [SerializeField]
@@ -33,7 +33,7 @@ namespace CodeSampleModalLayer
                 scrollBackground.Initialize();
             }
 
-            button.onClick.AddListener(CreateInfoModal);
+            // button.onClick.AddListener(CreateInfoModal);
 
             CreateItemGrid();
             CreateNavButtons();
@@ -72,15 +72,9 @@ namespace CodeSampleModalLayer
             }
         }
 
-        public void CreateInfoModal()
-        {
-            InfoModalTemplate m = Instantiate(appMan.InfoModalTemplatePrefab, appMan.DialogParent);
-            m.Setup(descText: "This is modal layer: {0}");
-        }
-
         public void Shutdown()
         {
-            button.onClick.RemoveAllListeners();
+            //button.onClick.RemoveAllListeners();
             scrollBackground.Shutdown();
 
             foreach (SquareItem i in squareItemList)
