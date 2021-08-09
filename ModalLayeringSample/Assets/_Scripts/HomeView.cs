@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 namespace CodeSampleModalLayer
 {
@@ -15,13 +16,15 @@ namespace CodeSampleModalLayer
         private RectTransform itemParentRectTransform;
         [SerializeField]
         private RectTransform buttonParentRectTransform;
+        [SerializeField]
+        private TextMeshProUGUI backpackCountText; //TODO: Create backpack button class and put this in there.
+
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
         private List<SquareItem> squareItemList = new List<SquareItem>();
         private List<Button> navButtonList = new List<Button>();
-
 
         public void Setup()
         {
@@ -70,6 +73,11 @@ namespace CodeSampleModalLayer
                 // navBtn.Setup() //TODO: Button Callback
                 navButtonList.Add(navBtn);
             }
+        }
+
+        public void UpdateBackpackItemCount(int count, int maxNumber)
+        {
+            backpackCountText.text = $"{count}/{maxNumber}";
         }
 
         public void Shutdown()

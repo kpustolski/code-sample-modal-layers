@@ -39,15 +39,19 @@ namespace CodeSampleModalLayer
         public AppData AppDataObject { get { return appDataObject; } }
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
+        private Backpack playerBackpack = default;
         // Global Static Variable
         public static AppManager Instance { get; private set; }
 
         private ItemData itemData = default;
         public ItemData ItemDataList => itemData;
+
         // App Starts here. Ie. the "main" function
         void Start()
         {
             itemData = new ItemData();
+            playerBackpack = new Backpack();
+
             Instance = this;
             GetItemData();
             homeView.Setup();
@@ -66,6 +70,34 @@ namespace CodeSampleModalLayer
             Debug.Log($"File text: {file.text}");
             JsonUtility.FromJsonOverwrite(file.text, itemData);
             Debug.Log($"ItemData: {itemData.data.Count}");
+        }
+
+        public void AddItemToBackpack(Item item)
+        {
+            if (playerBackpack.IsBackpackFull())
+            {
+                Debug.Log("Backpack is full! Can't fit anymore items!");
+                return;
+            }
+
+            playerBackpack.AddItem(item);
+            homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
+        }
+        public void RemoveItemFromBackpack(Item item)
+        {
+            if (playerBackpack.IsBackpackEmpty())
+            {
+                Debug.Log("Bag is empty. Nothing to remove.");
+                return;
+            }
+
+            playerBackpack.RemoveItemById(item.id);
+            homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
+        }
+
+        public int GetTotalItemsInBackpack()
+        {
+            return playerBackpack.GetTotalItemsInBackpack();
         }
 
         public void AddToModalLayerList(IModalLayer layer)
