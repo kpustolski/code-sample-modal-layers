@@ -787,7 +787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &716943486
@@ -1531,6 +1531,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1351208175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7656004860915862922, guid: 3edc034a82a124d3d962a803ef2a168f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185284641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1590147323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,9 +1858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dae1e6f95724a88b24f41d0baf67b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1590147325}
   itemParentRectTransform: {fileID: 716943485}
   buttonParentRectTransform: {fileID: 410787956}
+  backpackCountText: {fileID: 1351208175}
 --- !u!114 &1856768138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2111,7 +2123,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 817907447}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
