@@ -6,11 +6,11 @@ namespace CodeSampleModalLayer
 {
     public class MessageBox : MonoBehaviour
     {
-        public static void CreateInfoModal(string description)
+        public static void CreateInfoModal(Item item)
         {
             var appMan = AppManager.Instance;
             InfoModalTemplate m = Instantiate(appMan.InfoModalTemplatePrefab, appMan.DialogParent);
-            m.Setup(descText: description);
+            m.Setup(item: item);
         }
     }
 }

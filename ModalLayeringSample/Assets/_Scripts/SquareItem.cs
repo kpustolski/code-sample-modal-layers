@@ -39,7 +39,7 @@ namespace CodeSampleModalLayer
         public void OpenInfoPopupCallback()
         {
             //Create an info modal for the item
-            MessageBox.CreateInfoModal(description: mItem.id);
+            MessageBox.CreateInfoModal(item: mItem);
         }
 
         public void Shutdown()

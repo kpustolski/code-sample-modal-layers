@@ -17,14 +17,16 @@ namespace CodeSampleModalLayer
 
         private string modalId = default;
         private AppManager appMan = default;
+        private Item mItem = default;
 
-        public void Setup(string descText)
+        public void Setup(Item item)
         {
             appMan = AppManager.Instance;
+            mItem = item;
             // Add to the modal layer list
             appMan.AddToModalLayerList(this as IModalLayer);
 
-            descriptionText.text = string.Format(descText, modalId);
+            descriptionText.text = string.Format(mItem.id, modalId);
             closeButton.onClick.AddListener(Shutdown);
             addToBagButton.onClick.AddListener(AddToBagCallback);
 
@@ -42,7 +44,7 @@ namespace CodeSampleModalLayer
 
         public void AddToBagCallback()
         {
-            Debug.Log("<color= \"white\">Added to bag!</color>");
+            appMan.AddItemToBackpack(mItem);
             Shutdown();
         }
 

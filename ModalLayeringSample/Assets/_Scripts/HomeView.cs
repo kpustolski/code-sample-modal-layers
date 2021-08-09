@@ -19,7 +19,6 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private TextMeshProUGUI backpackCountText; //TODO: Create backpack button class and put this in there.
 
-
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 

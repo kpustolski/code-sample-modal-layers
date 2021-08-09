@@ -74,6 +74,7 @@ namespace CodeSampleModalLayer
 
         public void AddItemToBackpack(Item item)
         {
+            Debug.Log("Adding item to backpack");
             if (playerBackpack.IsBackpackFull())
             {
                 Debug.Log("Backpack is full! Can't fit anymore items!");
