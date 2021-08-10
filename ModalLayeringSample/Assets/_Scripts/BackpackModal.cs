@@ -12,9 +12,12 @@ namespace CodeSampleModalLayer
         private Button closeButton = default;
         [SerializeField]
         private TextMeshProUGUI descriptionText = default;
+        [SerializeField]
+        private RectTransform itemParentTransform = default;
 
         private string modalId = default;
         private AppManager appMan = default;
+        private List<SquareItem> squareItemsList = new List<SquareItem>();
 
         public void Setup()
         {
@@ -24,15 +27,36 @@ namespace CodeSampleModalLayer
 
             descriptionText.text = "This is a description";
             closeButton.onClick.AddListener(Shutdown);
+            CreateBackpackContents();
         }
 
         public void Shutdown()
         {
             closeButton.onClick.RemoveAllListeners();
 
+            foreach (var i in squareItemsList)
+            {
+                i.Shutdown();
+            }
+            squareItemsList.Clear();
+
             // Remove from modal layer list
             appMan.RemoveFromModalLayerList(this as IModalLayer);
+
             Destroy(gameObject);
+        }
+
+        public void CreateBackpackContents()
+        {
+            foreach (Item i in appMan.PlayerBackpack.ItemList)
+            {
+                if (i.totalOwned != 0)
+                {
+                    SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentTransform);
+                    si.Setup(item: i);
+                    squareItemsList.Add(si);
+                }
+            }
         }
 
 

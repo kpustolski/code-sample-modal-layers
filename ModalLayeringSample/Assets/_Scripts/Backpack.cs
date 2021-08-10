@@ -11,6 +11,7 @@ namespace CodeSampleModalLayer
         // public List<Item> ItemList { get { return itemList; } }
 
         public int MaxTotalItems { get { return maxTotalItems; } }
+        public List<Item> ItemList { get { return itemList; } }
 
         public void AddItem(Item item)
         {

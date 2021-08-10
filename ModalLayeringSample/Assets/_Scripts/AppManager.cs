@@ -43,6 +43,7 @@ namespace CodeSampleModalLayer
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
         private Backpack playerBackpack = default;
+        public Backpack PlayerBackpack { get { return playerBackpack; } }
         // Global Static Variable
         public static AppManager Instance { get; private set; }
 
