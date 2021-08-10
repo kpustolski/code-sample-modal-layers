@@ -13,29 +13,33 @@ namespace CodeSampleModalLayer
         // [SerializeField]
         // private Button button;
         [SerializeField]
-        private RectTransform itemParentRectTransform;
+        private RectTransform itemParentRectTransform = default;
         [SerializeField]
-        private RectTransform buttonParentRectTransform;
+        private RectTransform buttonParentRectTransform = default;
         [SerializeField]
-        private TextMeshProUGUI backpackCountText; //TODO: Create backpack button class and put this in there.
+        private BackpackButton backpackButton = default;
+        [SerializeField]
+        private TextMeshProUGUI viewTitleText = default;
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
         private List<SquareItem> squareItemList = new List<SquareItem>();
         private List<Button> navButtonList = new List<Button>();
+        private const string kViewTitle = "Inventory";
 
         public void Setup()
         {
             appMan = AppManager.Instance;
             scrollBackground = GetComponent<ScrollingBackground>();
+            viewTitleText.text = kViewTitle;
 
             if (scrollBackground != null)
             {
                 scrollBackground.Initialize();
             }
 
-            // button.onClick.AddListener(CreateInfoModal);
+            backpackButton.Setup();
 
             CreateItemGrid();
             CreateNavButtons();
@@ -76,12 +80,11 @@ namespace CodeSampleModalLayer
 
         public void UpdateBackpackItemCount(int count, int maxNumber)
         {
-            backpackCountText.text = $"{count}/{maxNumber}";
+            backpackButton.UpdateCountText(count, maxNumber);
         }
 
         public void Shutdown()
         {
-            //button.onClick.RemoveAllListeners();
             scrollBackground.Shutdown();
 
             foreach (SquareItem i in squareItemList)
@@ -92,7 +95,6 @@ namespace CodeSampleModalLayer
 
             foreach (Button i in navButtonList)
             {
-                // i.Shutdown();
                 Destroy(i.gameObject);
             }
             navButtonList.Clear();

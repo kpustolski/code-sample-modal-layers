@@ -28,11 +28,14 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private InfoModalTemplate infoModalTemplatePrefab = default;
         [SerializeField]
+        private BackpackModal backpackModalPrefab = default;
+        [SerializeField]
         private SquareItem squareItemPrefab = default;
         [SerializeField]
         private Button navButtonPrefab = default;
 
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
+        public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
         public Button NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }

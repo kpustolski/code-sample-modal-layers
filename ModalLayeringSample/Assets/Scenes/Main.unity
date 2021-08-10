@@ -787,7 +787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &716943486
@@ -1459,6 +1459,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1185284645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 830813382363453138, guid: 3edc034a82a124d3d962a803ef2a168f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185284641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185284643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0bbbaa4b7eb48c685b9e019a347808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1224625382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,18 +1543,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1351208175 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7656004860915862922, guid: 3edc034a82a124d3d962a803ef2a168f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1185284641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1590147323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,7 +1860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemParentRectTransform: {fileID: 716943485}
   buttonParentRectTransform: {fileID: 410787956}
-  backpackCountText: {fileID: 1351208175}
+  backpackButton: {fileID: 1185284645}
+  viewTitleText: {fileID: 831526479}
 --- !u!114 &1856768138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,6 +1929,8 @@ MonoBehaviour:
   dialogParent: {fileID: 1952737680}
   appDataObject: {fileID: 11400000, guid: 8b4846abe933c4bf186e287be46e71c5, type: 2}
   infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
+    type: 3}
+  backpackModalPrefab: {fileID: 239822330730002618, guid: a1ae1015665534e2d85b0ce0dc18cf69,
     type: 3}
   squareItemPrefab: {fileID: 8940217089743169231, guid: b47af2a9aa95145eaae23c24919efd6b,
     type: 3}
