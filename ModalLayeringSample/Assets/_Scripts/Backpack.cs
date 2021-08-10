@@ -15,6 +15,7 @@ namespace CodeSampleModalLayer
 
         public void AddItem(Item item)
         {
+            item.IsItemInBackPack = true;
             itemList.Add(item);
             Debug.Log($"Item is added to the backpack. Count: {GetTotalItemsInBackpack()}");
         }

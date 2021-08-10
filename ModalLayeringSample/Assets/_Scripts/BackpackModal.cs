@@ -53,7 +53,7 @@ namespace CodeSampleModalLayer
                 if (i.totalOwned != 0)
                 {
                     SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentTransform);
-                    si.Setup(item: i);
+                    si.Setup(item: i, locationCreated: SquareItem.LocationCreated.backpackModal);
                     squareItemsList.Add(si);
                 }
             }

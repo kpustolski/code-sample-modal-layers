@@ -8,6 +8,12 @@ namespace CodeSampleModalLayer
 {
     public class SquareItem : MonoBehaviour
     {
+        public enum LocationCreated //TODO: Better name?
+        {
+            homeView = 0,
+            backpackModal = 1
+        }
+
         [SerializeField]
         private Button button = default;
         [SerializeField]
@@ -19,11 +25,13 @@ namespace CodeSampleModalLayer
 
         private AppManager appMan = default;
         private Item mItem = default;
+        private LocationCreated mLocationCreated = default;
 
-        public void Setup(Item item)
+        public void Setup(Item item, LocationCreated locationCreated)
         {
             appMan = AppManager.Instance;
             mItem = item;
+            mLocationCreated = locationCreated;
 
             itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 
@@ -39,7 +47,7 @@ namespace CodeSampleModalLayer
         public void OpenInfoPopupCallback()
         {
             //Create an info modal for the item
-            MessageBox.CreateInfoModal(item: mItem);
+            MessageBox.CreateInfoModal(item: mItem, locationCreated: mLocationCreated);
         }
 
         public void Shutdown()

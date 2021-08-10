@@ -7,10 +7,10 @@ namespace CodeSampleModalLayer
     public class MessageBox : MonoBehaviour
     {
         private static AppManager appMan = AppManager.Instance;
-        public static void CreateInfoModal(Item item)
+        public static void CreateInfoModal(Item item, SquareItem.LocationCreated locationCreated)
         {
             InfoModalTemplate m = Instantiate(appMan.InfoModalTemplatePrefab, appMan.DialogParent);
-            m.Setup(item: item);
+            m.Setup(item: item, locationCreated: locationCreated);
         }
 
         public static void CreateBackpackModal()

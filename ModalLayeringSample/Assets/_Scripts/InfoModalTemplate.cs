@@ -13,33 +13,51 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private Button addToBagButton = default;
         [SerializeField]
+        private Button removeFromBagButton = default;
+        [SerializeField]
         private TextMeshProUGUI descriptionText = default;
 
         private string modalId = default;
         private AppManager appMan = default;
         private Item mItem = default;
 
-        public void Setup(Item item)
+
+        public void Setup(Item item, SquareItem.LocationCreated locationCreated)
         {
             appMan = AppManager.Instance;
             mItem = item;
+
+            //TODO: May need to rethink this logic
+            // Add to bag button is enabled when the square item button is selected in the home view
+            addToBagButton.gameObject.SetActive(locationCreated == SquareItem.LocationCreated.homeView);
+            // Thre remove from bag button is enabled when the square item button is selected in the backpack modal 
+            removeFromBagButton.gameObject.SetActive(locationCreated == SquareItem.LocationCreated.backpackModal);
+
             // Add to the modal layer list
             appMan.AddToModalLayerList(this as IModalLayer);
 
             descriptionText.text = string.Format(mItem.id, modalId);
             closeButton.onClick.AddListener(Shutdown);
             addToBagButton.onClick.AddListener(AddToBagCallback);
-
+            removeFromBagButton.onClick.AddListener(RemoveFromBagCallback);
         }
 
         public void Shutdown()
         {
             closeButton.onClick.RemoveAllListeners();
             addToBagButton.onClick.RemoveAllListeners();
+            removeFromBagButton.onClick.RemoveAllListeners();
 
             // Remove from modal layer list
             appMan.RemoveFromModalLayerList(this as IModalLayer);
             Destroy(gameObject);
+        }
+
+        public void RemoveFromBagCallback()
+        {
+            appMan.RemoveItemFromBackpack(mItem);
+            Debug.Log("Item removed from backpack");
+            Shutdown();
         }
 
         public void AddToBagCallback()

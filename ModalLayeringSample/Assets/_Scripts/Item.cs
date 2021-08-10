@@ -12,6 +12,8 @@ namespace CodeSampleModalLayer
         public Utilities.ItemType type;
         public Utilities.InventoryCategories category;
         public int totalOwned;
+        private bool bIsItemInBackPack = default;
+        public bool IsItemInBackPack { get { return bIsItemInBackPack; } set { bIsItemInBackPack = value; } }
 
         public Item(string uniqueId, Utilities.ItemType itemType, Utilities.InventoryCategories inventoryCategory, int numOwned)
         {
