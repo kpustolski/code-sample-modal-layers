@@ -30,15 +30,16 @@ namespace CodeSampleModalLayer
             CreateBackpackContents();
         }
 
+        public void Reset()
+        {
+            ClearSquareItemsList();
+            CreateBackpackContents();
+        }
+
         public void Shutdown()
         {
             closeButton.onClick.RemoveAllListeners();
-
-            foreach (var i in squareItemsList)
-            {
-                i.Shutdown();
-            }
-            squareItemsList.Clear();
+            ClearSquareItemsList();
 
             // Remove from modal layer list
             appMan.RemoveFromModalLayerList(this as IModalLayer);
@@ -59,11 +60,21 @@ namespace CodeSampleModalLayer
             }
         }
 
+        private void ClearSquareItemsList()
+        {
+            foreach (var i in squareItemsList)
+            {
+                i.Shutdown();
+            }
+            squareItemsList.Clear();
+        }
+
 
         #region ModalLayer Functions
 
         public void ShowLayer()
         {
+            Reset();
             this.gameObject.SetActive(true);
         }
         public void HideLayer()

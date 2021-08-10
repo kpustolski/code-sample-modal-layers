@@ -120,7 +120,7 @@ namespace CodeSampleModalLayer
                 modalLayerList[modalLayerList.Count - 1].HideLayer();
             }
 
-            layer.ShowLayer();
+            // layer.ShowLayer();
             if (!modalLayerList.Contains(layer))
             {
                 modalLayerList.Add(layer);
@@ -147,7 +147,7 @@ namespace CodeSampleModalLayer
             }
 
             // Show the next modal in the list (ie. the last element) if there are anymore in the list
-            if (modalLayerList.Count > 1)
+            if (modalLayerList.Count >= 1)
             {
                 modalLayerList[modalLayerList.Count - 1].ShowLayer();
             }
