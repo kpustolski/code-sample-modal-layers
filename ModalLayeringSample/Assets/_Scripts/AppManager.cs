@@ -33,13 +33,17 @@ namespace CodeSampleModalLayer
         private SquareItem squareItemPrefab = default;
         [SerializeField]
         private Button navButtonPrefab = default;
+        [SerializeField]
+        private SquareItemParent squareItemParentPrefab = default;
 
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
+        public SquareItemParent SquareItemParentPrefab { get { return squareItemParentPrefab; } }
         public Button NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
         public AppData AppDataObject { get { return appDataObject; } }
+
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
         private Backpack playerBackpack = default;
