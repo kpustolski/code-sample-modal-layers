@@ -25,7 +25,7 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
-        // TODO: Figure out better name
+        // TODO: Figure out better name. Should I use a dictionary to store the NavButtons and SquareItemParents instead?
         // private Dictionary<NavButton, SquareItemParent> foo = new Dictionary<NavButton, SquareItemParent>();
         private List<SquareItemParent> squareItemParentList = new List<SquareItemParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
@@ -105,18 +105,18 @@ namespace CodeSampleModalLayer
             return sip;
         }
 
-        private NavButton GetNavButtonByCategory(Utilities.InventoryCategories category)
-        {
-            foreach (NavButton btn in navButtonList)
-            {
-                if (btn.Category.Equals(category))
-                {
-                    return btn;
-                }
-            }
-            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No nav button of category {category} found.");
-            return null;
-        }
+        // private NavButton GetNavButtonByCategory(Utilities.InventoryCategories category)
+        // {
+        //     foreach (NavButton btn in navButtonList)
+        //     {
+        //         if (btn.Category.Equals(category))
+        //         {
+        //             return btn;
+        //         }
+        //     }
+        //     Debug.Log($"HomeView.cs GetNavButtonByCategory():: No nav button of category {category} found.");
+        //     return null;
+        // }
 
         private SquareItemParent GetSquareItemParentButtonByCategory(Utilities.InventoryCategories category)
         {
