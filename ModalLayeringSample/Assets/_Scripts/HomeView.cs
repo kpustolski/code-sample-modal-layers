@@ -24,10 +24,9 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
-        private List<SquareItem> squareItemList = new List<SquareItem>();
-        private List<Button> navButtonList = new List<Button>();
+        private List<SquareItemParent> squareItemParentList = new List<SquareItemParent>();
+        private List<NavButton> navButtonList = new List<NavButton>();
         private const string kViewTitle = "Inventory";
-
 
         public void Setup()
         {
@@ -56,7 +55,7 @@ namespace CodeSampleModalLayer
         //         {
         //             SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentRectTransform);
         //             si.Setup(item: i, locationCreated: SquareItem.LocationCreated.homeView);
-        //             squareItemList.Add(si);
+        //             squareItemParentList.Add(si);
         //         }
         //     }
         // }
@@ -73,7 +72,7 @@ namespace CodeSampleModalLayer
                 //     continue;
                 // }
 
-                Button navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
+                NavButton navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
                 // navBtn.Setup() //TODO: Button Callback
                 navButtonList.Add(navBtn);
             }
@@ -88,13 +87,13 @@ namespace CodeSampleModalLayer
         {
             scrollBackground.Shutdown();
 
-            foreach (SquareItem i in squareItemList)
+            foreach (var i in squareItemParentList)
             {
                 i.Shutdown();
             }
-            squareItemList.Clear();
+            squareItemParentList.Clear();
 
-            foreach (Button i in navButtonList)
+            foreach (NavButton i in navButtonList)
             {
                 Destroy(i.gameObject);
             }

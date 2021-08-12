@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5939162898046947448}
   - component: {fileID: 7106780750232335156}
   - component: {fileID: 5861540348499247847}
+  - component: {fileID: 6294539460995107751}
   m_Layer: 5
   m_Name: NavButton
   m_TagString: Untagged
@@ -255,3 +256,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6294539460995107751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406361150610939025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c51779e3a5f24ff099983878a7e4999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: 0
+  labelText: {fileID: 5221038638162264635}
+  buttonScript: {fileID: 0}

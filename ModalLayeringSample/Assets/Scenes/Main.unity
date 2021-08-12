@@ -1936,7 +1936,7 @@ MonoBehaviour:
     type: 3}
   squareItemPrefab: {fileID: 8940217089743169231, guid: b47af2a9aa95145eaae23c24919efd6b,
     type: 3}
-  navButtonPrefab: {fileID: 5861540348499247847, guid: a687c880a74e644a0819cc1f8b02f95a,
+  navButtonPrefab: {fileID: 6294539460995107751, guid: a687c880a74e644a0819cc1f8b02f95a,
     type: 3}
   squareItemParentPrefab: {fileID: 4005646350098817695, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
     type: 3}

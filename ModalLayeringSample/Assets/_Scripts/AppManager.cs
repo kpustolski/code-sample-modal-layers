@@ -32,7 +32,7 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private SquareItem squareItemPrefab = default;
         [SerializeField]
-        private Button navButtonPrefab = default;
+        private NavButton navButtonPrefab = default;
         [SerializeField]
         private SquareItemParent squareItemParentPrefab = default;
 
@@ -40,7 +40,7 @@ namespace CodeSampleModalLayer
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
         public SquareItemParent SquareItemParentPrefab { get { return squareItemParentPrefab; } }
-        public Button NavButtonPrefab { get { return navButtonPrefab; } }
+        public NavButton NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
         public AppData AppDataObject { get { return appDataObject; } }
 
