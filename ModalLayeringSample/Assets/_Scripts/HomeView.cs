@@ -28,6 +28,7 @@ namespace CodeSampleModalLayer
         private List<Button> navButtonList = new List<Button>();
         private const string kViewTitle = "Inventory";
 
+
         public void Setup()
         {
             appMan = AppManager.Instance;
@@ -41,24 +42,24 @@ namespace CodeSampleModalLayer
 
             backpackButton.Setup();
 
-            CreateItemGrid();
+            // CreateItemGrid();
             CreateNavButtons();
         }
 
-        public void CreateItemGrid()
-        {
-            foreach (Item i in appMan.ItemDataList.data)
-            {
-                // Only instantiate an object if there is one owned.
-                //? Could gray out the items that we don't have?
-                if (i.totalOwned != 0)
-                {
-                    SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentRectTransform);
-                    si.Setup(item: i, locationCreated: SquareItem.LocationCreated.homeView);
-                    squareItemList.Add(si);
-                }
-            }
-        }
+        // public void CreateItemGrid()
+        // {
+        //     foreach (Item i in appMan.ItemDataList.data)
+        //     {
+        //         // Only instantiate an object if there is one owned.
+        //         //? Could gray out the items that we don't have?
+        //         if (i.totalOwned != 0)
+        //         {
+        //             SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentRectTransform);
+        //             si.Setup(item: i, locationCreated: SquareItem.LocationCreated.homeView);
+        //             squareItemList.Add(si);
+        //         }
+        //     }
+        // }
 
         public void CreateNavButtons()
         {

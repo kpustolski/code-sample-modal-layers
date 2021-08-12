@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace CodeSampleModalLayer
 {
@@ -47,8 +47,10 @@ namespace CodeSampleModalLayer
         // Global Static Variable
         public static AppManager Instance { get; private set; }
 
+        // Holds unsorted item data
         private ItemData itemData = default;
-        public ItemData ItemDataList => itemData;
+        // Holds sorted item data by category
+        private Dictionary<Utilities.InventoryCategories, List<Item>> sortedItemData = new Dictionary<Utilities.InventoryCategories, List<Item>>();
 
         // App Starts here. Ie. the "main" function
         void Start()
@@ -58,6 +60,7 @@ namespace CodeSampleModalLayer
 
             Instance = this;
             GetItemData();
+            SortItemListByCategory();
             homeView.Setup();
         }
 
@@ -74,6 +77,38 @@ namespace CodeSampleModalLayer
             Debug.Log($"File text: {file.text}");
             JsonUtility.FromJsonOverwrite(file.text, itemData);
             Debug.Log($"ItemData: {itemData.data.Count}");
+        }
+
+        private void SortItemListByCategory()
+        {
+            // Loop through each entry in the Utilities.InventoryCategories enum and sort the items
+            foreach (Utilities.InventoryCategories category in Enum.GetValues(typeof(Utilities.InventoryCategories)))
+            {
+                if (category == Utilities.InventoryCategories.None)
+                {
+                    continue;
+                }
+
+                List<Item> tempList = new List<Item>();
+                foreach (Item i in itemData.data)
+                {
+                    if (i.category != category)
+                    {
+                        continue;
+                    }
+
+                    tempList.Add(i);
+                }
+
+                if (tempList.Count != 0)
+                {
+                    sortedItemData.Add(category, tempList);
+                }
+                else
+                {
+                    Debug.Log($"AppManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
+                }
+            }
         }
 
         public void AddItemToBackpack(Item item)
