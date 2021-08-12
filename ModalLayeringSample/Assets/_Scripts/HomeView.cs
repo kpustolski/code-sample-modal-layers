@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
@@ -13,7 +14,7 @@ namespace CodeSampleModalLayer
         // [SerializeField]
         // private Button button;
         [SerializeField]
-        private RectTransform itemParentRectTransform = default;
+        private RectTransform itemParentRectTransform = default; //TODO: Change name
         [SerializeField]
         private RectTransform buttonParentRectTransform = default;
         [SerializeField]
@@ -24,9 +25,13 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
+        // TODO: Figure out better name
+        // private Dictionary<NavButton, SquareItemParent> foo = new Dictionary<NavButton, SquareItemParent>();
         private List<SquareItemParent> squareItemParentList = new List<SquareItemParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
+
         private const string kViewTitle = "Inventory";
+        private SquareItemParent currentTabOpen = default;
 
         public void Setup()
         {
@@ -40,43 +45,92 @@ namespace CodeSampleModalLayer
             }
 
             backpackButton.Setup();
-
-            // CreateItemGrid();
-            CreateNavButtons();
+            SetupNavigation();
+            SwitchInventoryTabs(GetSquareItemParentButtonByCategory(Utilities.InventoryCategories.All));
         }
 
-        // public void CreateItemGrid()
-        // {
-        //     foreach (Item i in appMan.ItemDataList.data)
-        //     {
-        //         // Only instantiate an object if there is one owned.
-        //         //? Could gray out the items that we don't have?
-        //         if (i.totalOwned != 0)
-        //         {
-        //             SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentRectTransform);
-        //             si.Setup(item: i, locationCreated: SquareItem.LocationCreated.homeView);
-        //             squareItemParentList.Add(si);
-        //         }
-        //     }
-        // }
-
-        public void CreateNavButtons()
+        private void SetupNavigation()
         {
-            //TODO: Add 'All' button
-            //TODO: When a category is selected, store instantiated squares in a parent prefab and enable / disable when the player
-            //TODO: goes back and forth between categories. This way we can avoid continuously destroying and instantiating objects.
-            foreach (Utilities.InventoryCategories category in Enum.GetValues(typeof(Utilities.InventoryCategories)))
+            // Key: Category, Value: ItemList
+            foreach (var data in appMan.sortedItemData)
             {
-                // if (category.Equals(Utilities.InventoryCategories.None))
-                // {
-                //     continue;
-                // }
+                // TODO: Handle if there are no items set to a category. Still show button?
+                SquareItemParent sip = CreateSquareItemParent(category: data.Key, itemList: data.Value);
+                NavButton navButton = CreateNavButton(
+                    category: data.Key,
+                    cbOnClick: () =>
+                    {
+                        SwitchInventoryTabs(sip);
+                    });
 
-                NavButton navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
-                // navBtn.Setup() //TODO: Button Callback
-                navButtonList.Add(navBtn);
+                // Hide the SquareItemParent by default so it doesn't visually conflict with the other tabs.
+                sip.Hide();
+                navButtonList.Add(navButton);
+                squareItemParentList.Add(sip);
             }
         }
+
+        private void SwitchInventoryTabs(SquareItemParent sip)
+        {
+            if (currentTabOpen != null)
+            {
+                currentTabOpen.Hide();
+            }
+            currentTabOpen = sip;
+            currentTabOpen.Show();
+        }
+
+        private NavButton CreateNavButton(Utilities.InventoryCategories category, UnityAction cbOnClick)
+        {
+            NavButton navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
+            navBtn.Setup(
+                label: category.ToString(),
+                inventoryCategory: category,
+                cbOnClick: () =>
+                {
+                    if (cbOnClick != null)
+                    {
+                        cbOnClick();
+                    }
+                }
+            );
+            return navBtn;
+        }
+
+        // TODO: do I need to pass in the category?
+        private SquareItemParent CreateSquareItemParent(Utilities.InventoryCategories category, List<Item> itemList)
+        {
+            SquareItemParent sip = Instantiate(appMan.SquareItemParentPrefab, itemParentRectTransform);
+            sip.Setup(category, itemList);
+            return sip;
+        }
+
+        private NavButton GetNavButtonByCategory(Utilities.InventoryCategories category)
+        {
+            foreach (NavButton btn in navButtonList)
+            {
+                if (btn.Category.Equals(category))
+                {
+                    return btn;
+                }
+            }
+            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No nav button of category {category} found.");
+            return null;
+        }
+
+        private SquareItemParent GetSquareItemParentButtonByCategory(Utilities.InventoryCategories category)
+        {
+            foreach (SquareItemParent sip in squareItemParentList)
+            {
+                if (sip.Category.Equals(category))
+                {
+                    return sip;
+                }
+            }
+            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No SquareItemParent of category {category} found.");
+            return null;
+        }
+
 
         public void UpdateBackpackItemCount(int count, int maxNumber)
         {
@@ -87,17 +141,17 @@ namespace CodeSampleModalLayer
         {
             scrollBackground.Shutdown();
 
-            foreach (var i in squareItemParentList)
-            {
-                i.Shutdown();
-            }
-            squareItemParentList.Clear();
+            // foreach (var i in squareItemParentList)
+            // {
+            //     i.Shutdown();
+            // }
+            // squareItemParentList.Clear();
 
-            foreach (NavButton i in navButtonList)
-            {
-                Destroy(i.gameObject);
-            }
-            navButtonList.Clear();
+            // foreach (NavButton i in navButtonList)
+            // {
+            //     Destroy(i.gameObject);
+            // }
+            // navButtonList.Clear();
         }
     }
 }

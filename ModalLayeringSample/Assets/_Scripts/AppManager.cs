@@ -54,7 +54,7 @@ namespace CodeSampleModalLayer
         // Holds unsorted item data
         private ItemData itemData = default;
         // Holds sorted item data by category
-        private Dictionary<Utilities.InventoryCategories, List<Item>> sortedItemData = new Dictionary<Utilities.InventoryCategories, List<Item>>();
+        public Dictionary<Utilities.InventoryCategories, List<Item>> sortedItemData = new Dictionary<Utilities.InventoryCategories, List<Item>>();
 
         // App Starts here. Ie. the "main" function
         void Start()
@@ -88,20 +88,29 @@ namespace CodeSampleModalLayer
             // Loop through each entry in the Utilities.InventoryCategories enum and sort the items
             foreach (Utilities.InventoryCategories category in Enum.GetValues(typeof(Utilities.InventoryCategories)))
             {
+                Debug.Log($"{category}");
+                List<Item> tempList = new List<Item>();
+
                 if (category == Utilities.InventoryCategories.None)
                 {
                     continue;
                 }
 
-                List<Item> tempList = new List<Item>();
-                foreach (Item i in itemData.data)
+                if (category == Utilities.InventoryCategories.All)
                 {
-                    if (i.category != category)
+                    sortedItemData.Add(category, itemData.data);
+                }
+                else
+                {
+                    foreach (Item i in itemData.data)
                     {
-                        continue;
-                    }
+                        if (i.category != category)
+                        {
+                            continue;
+                        }
 
-                    tempList.Add(i);
+                        tempList.Add(i);
+                    }
                 }
 
                 if (tempList.Count != 0)

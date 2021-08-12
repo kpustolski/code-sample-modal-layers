@@ -8,11 +8,13 @@ namespace CodeSampleModalLayer
     {
         public enum InventoryCategories
         {
-            None = 0,
-            Clothing = 1,
-            Tools = 2,
-            Gear = 3,
-            Other = 4
+            All = 0, // TODO: Is there a way to hide this element in the inspector?
+            None = 1,
+            Clothing = 2,
+            Tools = 3,
+            Gear = 4,
+            Other = 5,
+
         }
 
         public enum ItemType
