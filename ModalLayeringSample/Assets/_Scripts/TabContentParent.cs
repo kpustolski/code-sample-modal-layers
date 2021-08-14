@@ -34,12 +34,12 @@ namespace CodeSampleModalLayer
             squareItemList.Add(si);
         }
 
-        public void UpdateItem(Item item)
+        public void UpdateItem(Item item, bool isBtnInteractable)
         {
             SquareItem sqItem = GetSquareItem(item.id);
             if (sqItem != null)
             {
-                sqItem.UpdateState();
+                sqItem.UpdateState(isBtnInteractable: isBtnInteractable);
             }
         }
 

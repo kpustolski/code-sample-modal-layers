@@ -33,6 +33,12 @@ namespace CodeSampleModalLayer
 
             // Deserialize the JSON from ItemData.JSON and store it in ItemData
             JsonUtility.FromJsonOverwrite(file.text, itemData);
+
+            // Make sure to initialize each item.
+            foreach (var i in itemData.data)
+            {
+                i.Initialize();
+            }
         }
 
         private void SortItemListByCategory()

@@ -123,7 +123,7 @@ namespace CodeSampleModalLayer
         {
             foreach (TabContentParent sip in TabContentParentList)
             {
-                sip.UpdateItem(item: item);
+                sip.UpdateItem(item: item, isBtnInteractable: true);
             }
         }
 

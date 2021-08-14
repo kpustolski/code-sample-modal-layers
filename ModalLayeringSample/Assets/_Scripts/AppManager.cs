@@ -56,7 +56,7 @@ namespace CodeSampleModalLayer
             }
 
             playerBackpack.AddItem(item);
-            item.DecreaseItemAmount(itemAmountDifference);
+            item.IncreaseBackpackItemAmount(itemAmountDifference);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
             homeView.UpdateInventoryItem(item: item);
         }
@@ -69,7 +69,7 @@ namespace CodeSampleModalLayer
             }
 
             playerBackpack.RemoveItemById(item.id);
-            item.IncreaseItemAmount(itemAmountDifference);
+            item.DecreaseBackpackItemAmount(itemAmountDifference);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
             homeView.UpdateInventoryItem(item: item);
         }

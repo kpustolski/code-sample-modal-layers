@@ -11,9 +11,11 @@ namespace CodeSampleModalLayer
         public string id;
         public Utilities.ItemType type;
         public Utilities.InventoryCategories category;
-        public int totalOwned; //TODO: Rename?
-        private bool bIsItemInBackPack = default;
-        public bool IsItemInBackPack { get { return bIsItemInBackPack; } set { bIsItemInBackPack = value; } }
+        public int totalOwned;
+        private int amountInBackpack = default;
+        private int amountInInventory = default;
+        public int AmountInBackpack { get { return amountInBackpack; } set { amountInBackpack = value; } }
+        public int AmountInInventory { get { return amountInInventory; } set { amountInInventory = value; } }
 
         public Item(string uniqueId, Utilities.ItemType itemType, Utilities.InventoryCategories inventoryCategory, int numOwned)
         {
@@ -23,14 +25,24 @@ namespace CodeSampleModalLayer
             totalOwned = numOwned;
         }
 
-        public void DecreaseItemAmount(int subtraheand)
+        public void Initialize()
         {
-            totalOwned -= subtraheand;
+            AmountInBackpack = 0;
+            AmountInInventory = totalOwned;
         }
 
-        public void IncreaseItemAmount(int addend)
+        //TODO: Add tostring override for debugging
+
+        public void DecreaseBackpackItemAmount(int subtraheand)
         {
-            totalOwned += addend;
+            AmountInBackpack -= subtraheand;
+            AmountInInventory += subtraheand;
+        }
+
+        public void IncreaseBackpackItemAmount(int addend)
+        {
+            AmountInBackpack += addend;
+            AmountInInventory -= addend;
         }
 
     }

@@ -48,10 +48,10 @@ namespace CodeSampleModalLayer
             MessageBox.CreateInfoModal(item: mItem, locationCreated: mLocationCreated);
         }
 
-        public void UpdateState()
+        public void UpdateState(bool isBtnInteractable)
         {
             UpdateAmountText();
-            button.interactable = (mItem.totalOwned > 0);
+            button.interactable = isBtnInteractable;
         }
 
         public void UpdateAmountText()
@@ -63,7 +63,7 @@ namespace CodeSampleModalLayer
             else
             {
                 amountPanel.gameObject.SetActive(true);
-                amountText.text = mItem.totalOwned.ToString();
+                amountText.text = mItem.AmountInInventory.ToString();
             }
         }
 

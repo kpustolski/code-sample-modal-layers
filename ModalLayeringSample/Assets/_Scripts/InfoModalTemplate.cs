@@ -15,11 +15,17 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private Button removeFromBagButton = default;
         [SerializeField]
-        private TextMeshProUGUI descriptionText = default;
+        private TextMeshProUGUI titleText = default;
+        [SerializeField]
+        private Image itemImage = default;
+        [SerializeField]
+        private TextMeshProUGUI amountInBackpackText = default;
 
         private string modalId = default;
         private AppManager appMan = default;
         private Item mItem = default;
+        // amount in backback / total amount owned.
+        private string amountTestFormat = "{0}/{1}";
 
 
         public void Setup(Item item, SquareItem.LocationCreated locationCreated)
@@ -36,10 +42,20 @@ namespace CodeSampleModalLayer
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
-            descriptionText.text = string.Format(mItem.id, modalId);
+            titleText.text = mItem.id;
+            itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
+            amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
+
             closeButton.onClick.AddListener(Shutdown);
             addToBagButton.onClick.AddListener(AddToBagCallback);
             removeFromBagButton.onClick.AddListener(RemoveFromBagCallback);
+
+            // Disable the add to bag button if there all of the items are already in the backpack
+            // AKA the mItem.AmountInBackpack == mItem.totalOwned
+            if (mItem.AmountInInventory == 0)
+            {
+                addToBagButton.interactable = false;
+            }
         }
 
         public void Shutdown()
@@ -56,7 +72,6 @@ namespace CodeSampleModalLayer
         public void RemoveFromBagCallback()
         {
             appMan.RemoveItemFromBackpack(mItem);
-            Debug.Log("Item removed from backpack");
             Shutdown();
         }
 
