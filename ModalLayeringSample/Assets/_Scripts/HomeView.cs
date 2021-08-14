@@ -46,7 +46,7 @@ namespace CodeSampleModalLayer
 
             backpackButton.Setup();
             SetupNavigation();
-            SwitchInventoryTabs(GetTabContentParentButton(Utilities.InventoryCategories.All));
+            SwitchInventoryTabs(GetTabContentParent(Utilities.InventoryCategories.All));
         }
 
         private void SetupNavigation()
@@ -105,8 +105,8 @@ namespace CodeSampleModalLayer
             return sip;
         }
 
-        //TODO: Rename?
-        private TabContentParent GetTabContentParentButton(Utilities.InventoryCategories category)
+
+        private TabContentParent GetTabContentParent(Utilities.InventoryCategories category)
         {
             foreach (TabContentParent sip in TabContentParentList)
             {
