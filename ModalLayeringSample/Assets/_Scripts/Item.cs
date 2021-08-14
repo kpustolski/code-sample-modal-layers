@@ -31,7 +31,10 @@ namespace CodeSampleModalLayer
             AmountInInventory = totalOwned;
         }
 
-        //TODO: Add tostring override for debugging
+        public override string ToString()
+        {
+            return $"id: {id} type: {type} category {category} totalOwned {totalOwned} amountInBackpack {amountInBackpack} amountInInventory {amountInInventory}";
+        }
 
         public void DecreaseBackpackItemAmount(int subtraheand)
         {
