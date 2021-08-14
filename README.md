@@ -1,11 +1,13 @@
 # Overview
-*Last Updated: 8.5.2021*
+*Last Updated: 8.14.2021*
 
 Main goal: Create a system that layers modal popups so that only one is seen at a time.
 
 This sample is currently a work in progress.
 
 ## Resources
+* Tiled Trees Background is from [www.subtlepatterns.com ](www.subtlepatterns.com)
+
 The following icons are used in this project. The ones listed here were all found on [www.thenounproject.com](https://thenounproject.com/)
 
 * baseball t-shirt by Kate Maldjian from the Noun Project
@@ -19,6 +21,7 @@ The following icons are used in this project. The ones listed here were all foun
 * first aid kit by Kate Maldjian from the Noun Project
 * Pickaxe by Kate Maldjian from the Noun Project
 * Tent by Kate Maldjian from the Noun Project
+* Backpack by Kate Maldjian from the Noun Project
 
 ### Links
 * [Kate Maldjian's the noun project page](https://thenounproject.com/katemaldjian/)
