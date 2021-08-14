@@ -25,7 +25,7 @@ namespace CodeSampleModalLayer
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
-            descriptionText.text = "This is a description";
+            descriptionText.text = "My Backpack";
             closeButton.onClick.AddListener(Shutdown);
             CreateBackpackContents();
         }
