@@ -21,7 +21,9 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private RectTransform amountPanel = default;
         [SerializeField]
-        private TextMeshProUGUI amountText = default; // Amount owned
+        private TextMeshProUGUI amountText = default;
+        [SerializeField]
+        private RectTransform backpackIconPanel = default;
 
         private AppManager appMan = default;
         private Item mItem = default;
@@ -37,7 +39,7 @@ namespace CodeSampleModalLayer
 
             itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 
-            UpdateAmountText();
+            UpdateState(true);
 
             button.onClick.AddListener(OpenInfoPopupCallback);
         }
@@ -51,6 +53,10 @@ namespace CodeSampleModalLayer
         //TODO: Remove the isBtnInteractive parameter
         public void UpdateState(bool isBtnInteractable)
         {
+            if (mLocationCreated == LocationCreated.homeView)
+            {
+                backpackIconPanel.gameObject.SetActive((mItem.AmountInBackpack > 0));
+            }
             UpdateAmountText();
             button.interactable = isBtnInteractable;
         }
