@@ -1928,18 +1928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homeView: {fileID: 1856768137}
-  dialogParent: {fileID: 1952737680}
   appDataObject: {fileID: 11400000, guid: 8b4846abe933c4bf186e287be46e71c5, type: 2}
-  infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
-    type: 3}
-  backpackModalPrefab: {fileID: 239822330730002618, guid: a1ae1015665534e2d85b0ce0dc18cf69,
-    type: 3}
-  squareItemPrefab: {fileID: 8940217089743169231, guid: b47af2a9aa95145eaae23c24919efd6b,
-    type: 3}
-  navButtonPrefab: {fileID: 6294539460995107751, guid: a687c880a74e644a0819cc1f8b02f95a,
-    type: 3}
-  tabContentParentPrefab: {fileID: 4604738902002230295, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
-    type: 3}
+  uIManager: {fileID: 2033180117}
 --- !u!1 &1952737679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2001,65 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: 0}
   m_SizeDelta: {x: 600, y: 0}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!1 &2033180115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033180116}
+  - component: {fileID: 2033180117}
+  m_Layer: 5
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2033180116
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033180115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2058491458}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2033180117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033180115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c408db7ef3343de90a81cfe87f7f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
+    type: 3}
+  backpackModalPrefab: {fileID: 239822330730002618, guid: a1ae1015665534e2d85b0ce0dc18cf69,
+    type: 3}
+  squareItemPrefab: {fileID: 8940217089743169231, guid: b47af2a9aa95145eaae23c24919efd6b,
+    type: 3}
+  navButtonPrefab: {fileID: 6294539460995107751, guid: a687c880a74e644a0819cc1f8b02f95a,
+    type: 3}
+  tabContentParentPrefab: {fileID: 4604738902002230295, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
+    type: 3}
+  dialogParent: {fileID: 1952737680}
 --- !u!1 &2058491457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2088,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1949006415}
+  - {fileID: 2033180116}
   m_Father: {fileID: 1093527697}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

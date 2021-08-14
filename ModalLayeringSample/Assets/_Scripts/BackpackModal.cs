@@ -23,7 +23,7 @@ namespace CodeSampleModalLayer
         {
             appMan = AppManager.Instance;
             // Add to the modal layer list
-            appMan.AddToModalLayerList(this as IModalLayer);
+            appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
             descriptionText.text = "This is a description";
             closeButton.onClick.AddListener(Shutdown);
@@ -42,7 +42,7 @@ namespace CodeSampleModalLayer
             ClearSquareItemsList();
 
             // Remove from modal layer list
-            appMan.RemoveFromModalLayerList(this as IModalLayer);
+            appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
 
             Destroy(gameObject);
         }
@@ -51,7 +51,7 @@ namespace CodeSampleModalLayer
         {
             foreach (Item i in appMan.PlayerBackpack.ItemList)
             {
-                SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentTransform);
+                SquareItem si = Instantiate(appMan.UIMan.SquareItemPrefab, itemParentTransform);
                 si.Setup(item: i, locationCreated: SquareItem.LocationCreated.backpackModal);
                 squareItemsList.Add(si);
             }

@@ -29,7 +29,7 @@ namespace CodeSampleModalLayer
 
         private void CreateSquareItem(Item item)
         {
-            SquareItem si = Instantiate(appMan.SquareItemPrefab, this.gameObject.transform);
+            SquareItem si = Instantiate(appMan.UIMan.SquareItemPrefab, this.gameObject.transform);
             si.Setup(item: item, locationCreated: SquareItem.LocationCreated.homeView);
             squareItemList.Add(si);
         }

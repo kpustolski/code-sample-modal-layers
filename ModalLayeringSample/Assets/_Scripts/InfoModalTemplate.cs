@@ -30,11 +30,11 @@ namespace CodeSampleModalLayer
             //TODO: May need to rethink this logic
             // Add to bag button is enabled when the square item button is selected in the home view
             addToBagButton.gameObject.SetActive(locationCreated == SquareItem.LocationCreated.homeView);
-            // Thre remove from bag button is enabled when the square item button is selected in the backpack modal 
+            // The remove from bag button is enabled when the square item button is selected in the backpack modal 
             removeFromBagButton.gameObject.SetActive(locationCreated == SquareItem.LocationCreated.backpackModal);
 
             // Add to the modal layer list
-            appMan.AddToModalLayerList(this as IModalLayer);
+            appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
             descriptionText.text = string.Format(mItem.id, modalId);
             closeButton.onClick.AddListener(Shutdown);
@@ -49,7 +49,7 @@ namespace CodeSampleModalLayer
             removeFromBagButton.onClick.RemoveAllListeners();
 
             // Remove from modal layer list
-            appMan.RemoveFromModalLayerList(this as IModalLayer);
+            appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
             Destroy(gameObject);
         }
 

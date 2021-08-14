@@ -82,7 +82,7 @@ namespace CodeSampleModalLayer
 
         private NavButton CreateNavButton(Utilities.InventoryCategories category, UnityAction cbOnClick)
         {
-            NavButton navBtn = Instantiate(appMan.NavButtonPrefab, buttonParentRectTransform);
+            NavButton navBtn = Instantiate(appMan.UIMan.NavButtonPrefab, buttonParentRectTransform);
             navBtn.Setup(
                 label: category.ToString(),
                 inventoryCategory: category,
@@ -100,7 +100,7 @@ namespace CodeSampleModalLayer
         // TODO: do I need to pass in the category?
         private TabContentParent CreateTabContentParent(Utilities.InventoryCategories category, List<Item> itemList)
         {
-            TabContentParent sip = Instantiate(appMan.TabContentParentPrefab, itemParentRectTransform);
+            TabContentParent sip = Instantiate(appMan.UIMan.TabContentParentPrefab, itemParentRectTransform);
             sip.Setup(category, itemList);
             return sip;
         }
