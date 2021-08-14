@@ -25,13 +25,13 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
 
-        // TODO: Figure out better name. Should I use a dictionary to store the NavButtons and SquareItemParents instead?
-        // private Dictionary<NavButton, SquareItemParent> foo = new Dictionary<NavButton, SquareItemParent>();
-        private List<SquareItemParent> squareItemParentList = new List<SquareItemParent>();
+        // TODO: Figure out better name. Should I use a dictionary to store the NavButtons and TabContentParents instead?
+        // private Dictionary<NavButton, TabContentParent> foo = new Dictionary<NavButton, TabContentParent>();
+        private List<TabContentParent> TabContentParentList = new List<TabContentParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
 
         private const string kViewTitle = "Inventory";
-        private SquareItemParent currentTabOpen = default;
+        private TabContentParent currentTabOpen = default;
 
         public void Setup()
         {
@@ -46,7 +46,7 @@ namespace CodeSampleModalLayer
 
             backpackButton.Setup();
             SetupNavigation();
-            SwitchInventoryTabs(GetSquareItemParentButton(Utilities.InventoryCategories.All));
+            SwitchInventoryTabs(GetTabContentParentButton(Utilities.InventoryCategories.All));
         }
 
         private void SetupNavigation()
@@ -55,7 +55,7 @@ namespace CodeSampleModalLayer
             foreach (var data in appMan.sortedItemData)
             {
                 // TODO: Handle if there are no items set to a category. Still show button?
-                SquareItemParent sip = CreateSquareItemParent(category: data.Key, itemList: data.Value);
+                TabContentParent sip = CreateTabContentParent(category: data.Key, itemList: data.Value);
                 NavButton navButton = CreateNavButton(
                     category: data.Key,
                     cbOnClick: () =>
@@ -63,14 +63,14 @@ namespace CodeSampleModalLayer
                         SwitchInventoryTabs(sip);
                     });
 
-                // Hide the SquareItemParent by default so it doesn't visually conflict with the other tabs.
+                // Hide the TabContentParent by default so it doesn't visually conflict with the other tabs.
                 sip.Hide();
                 navButtonList.Add(navButton);
-                squareItemParentList.Add(sip);
+                TabContentParentList.Add(sip);
             }
         }
 
-        private void SwitchInventoryTabs(SquareItemParent sip)
+        private void SwitchInventoryTabs(TabContentParent sip)
         {
             if (currentTabOpen != null)
             {
@@ -98,24 +98,24 @@ namespace CodeSampleModalLayer
         }
 
         // TODO: do I need to pass in the category?
-        private SquareItemParent CreateSquareItemParent(Utilities.InventoryCategories category, List<Item> itemList)
+        private TabContentParent CreateTabContentParent(Utilities.InventoryCategories category, List<Item> itemList)
         {
-            SquareItemParent sip = Instantiate(appMan.SquareItemParentPrefab, itemParentRectTransform);
+            TabContentParent sip = Instantiate(appMan.TabContentParentPrefab, itemParentRectTransform);
             sip.Setup(category, itemList);
             return sip;
         }
 
         //TODO: Rename?
-        private SquareItemParent GetSquareItemParentButton(Utilities.InventoryCategories category)
+        private TabContentParent GetTabContentParentButton(Utilities.InventoryCategories category)
         {
-            foreach (SquareItemParent sip in squareItemParentList)
+            foreach (TabContentParent sip in TabContentParentList)
             {
                 if (sip.Category.Equals(category))
                 {
                     return sip;
                 }
             }
-            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No SquareItemParent of category {category} found.");
+            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No TabContentParent of category {category} found.");
             return null;
         }
 
@@ -127,7 +127,7 @@ namespace CodeSampleModalLayer
 
         public void UpdateInventoryItem(Item item)
         {
-            foreach (SquareItemParent sip in squareItemParentList)
+            foreach (TabContentParent sip in TabContentParentList)
             {
                 sip.UpdateItem(item: item);
             }
@@ -137,11 +137,11 @@ namespace CodeSampleModalLayer
         {
             scrollBackground.Shutdown();
 
-            // foreach (var i in squareItemParentList)
+            // foreach (var i in TabContentParentList)
             // {
             //     i.Shutdown();
             // }
-            // squareItemParentList.Clear();
+            // TabContentParentList.Clear();
 
             // foreach (NavButton i in navButtonList)
             // {

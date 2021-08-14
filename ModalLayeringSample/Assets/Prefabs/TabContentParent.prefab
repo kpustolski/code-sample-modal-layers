@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6981380317894371795}
   - component: {fileID: 8406455571120806086}
-  - component: {fileID: 4005646350098817695}
+  - component: {fileID: 4604738902002230295}
   m_Layer: 5
-  m_Name: SquareItemParent
+  m_Name: TabContentParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Spacing: {x: 16, y: 24}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &4005646350098817695
+--- !u!114 &4604738902002230295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,6 +70,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6838004452394214165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d4e1caf5fc8f4994a60fb8eb8f87101, type: 3}
+  m_Script: {fileID: 11500000, guid: 08e660131af874e238504b42f99a0ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

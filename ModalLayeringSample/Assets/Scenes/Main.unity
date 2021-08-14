@@ -1938,7 +1938,7 @@ MonoBehaviour:
     type: 3}
   navButtonPrefab: {fileID: 6294539460995107751, guid: a687c880a74e644a0819cc1f8b02f95a,
     type: 3}
-  squareItemParentPrefab: {fileID: 4005646350098817695, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
+  tabContentParentPrefab: {fileID: 4604738902002230295, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
     type: 3}
 --- !u!1 &1952737679
 GameObject:
@@ -2129,8 +2129,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 817907448}
   m_HandleRect: {fileID: 817907447}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

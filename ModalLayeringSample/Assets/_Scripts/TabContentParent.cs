@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 namespace CodeSampleModalLayer
 {
-    //TODO: Change name to 'TabContentParent'?
-    public class SquareItemParent : MonoBehaviour
+    public class TabContentParent : MonoBehaviour
     {
         private Utilities.InventoryCategories category = default;
         private AppManager appMan = default;

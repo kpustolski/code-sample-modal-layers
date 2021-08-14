@@ -34,12 +34,12 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private NavButton navButtonPrefab = default;
         [SerializeField]
-        private SquareItemParent squareItemParentPrefab = default;
+        private TabContentParent tabContentParentPrefab = default;
 
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
-        public SquareItemParent SquareItemParentPrefab { get { return squareItemParentPrefab; } }
+        public TabContentParent TabContentParentPrefab { get { return tabContentParentPrefab; } }
         public NavButton NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
         public AppData AppDataObject { get { return appDataObject; } }
