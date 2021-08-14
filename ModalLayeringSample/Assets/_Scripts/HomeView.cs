@@ -52,7 +52,7 @@ namespace CodeSampleModalLayer
         private void SetupNavigation()
         {
             // Key: Category, Value: ItemList
-            foreach (var data in appMan.sortedItemData)
+            foreach (var data in appMan.DataMan.sortedItemData)
             {
                 // TODO: Handle if there are no items set to a category. Still show button?
                 TabContentParent sip = CreateTabContentParent(category: data.Key, itemList: data.Value);
