@@ -48,6 +48,7 @@ namespace CodeSampleModalLayer
             MessageBox.CreateInfoModal(item: mItem, locationCreated: mLocationCreated);
         }
 
+        //TODO: Remove the isBtnInteractive parameter
         public void UpdateState(bool isBtnInteractable)
         {
             UpdateAmountText();
@@ -56,14 +57,19 @@ namespace CodeSampleModalLayer
 
         public void UpdateAmountText()
         {
-            if (mItem.totalOwned <= 1)
+            // Use a specific amount variable based on where the SquareItem was created.
+            // If instantiated in the backpack modal, the amount text represents the number of the item in the backpack
+            // If instantiated in the inventory, the amount text represents the number of the item in the inventory
+            int amountInView = (mLocationCreated == LocationCreated.backpackModal) ? mItem.AmountInBackpack : mItem.AmountInInventory;
+
+            if (amountInView <= 1)
             {
                 amountPanel.gameObject.SetActive(false);
             }
             else
             {
                 amountPanel.gameObject.SetActive(true);
-                amountText.text = mItem.AmountInInventory.ToString();
+                amountText.text = amountInView.ToString();
             }
         }
 
