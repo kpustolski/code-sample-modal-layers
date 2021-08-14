@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dae1e6f95724a88b24f41d0baf67b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemParentRectTransform: {fileID: 716943485}
+  scrollContentRectTransform: {fileID: 716943485}
   buttonParentRectTransform: {fileID: 410787956}
   backpackButton: {fileID: 1185284645}
   viewTitleText: {fileID: 831526479}

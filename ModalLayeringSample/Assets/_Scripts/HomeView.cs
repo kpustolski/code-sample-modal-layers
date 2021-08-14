@@ -11,10 +11,8 @@ namespace CodeSampleModalLayer
     [RequireComponent(typeof(ScrollingBackground))]
     public class HomeView : MonoBehaviour
     {
-        // [SerializeField]
-        // private Button button;
         [SerializeField]
-        private RectTransform itemParentRectTransform = default; //TODO: Change name
+        private RectTransform scrollContentRectTransform = default;
         [SerializeField]
         private RectTransform buttonParentRectTransform = default;
         [SerializeField]
@@ -24,9 +22,6 @@ namespace CodeSampleModalLayer
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
-
-        // TODO: Figure out better name. Should I use a dictionary to store the NavButtons and TabContentParents instead?
-        // private Dictionary<NavButton, TabContentParent> foo = new Dictionary<NavButton, TabContentParent>();
         private List<TabContentParent> TabContentParentList = new List<TabContentParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
 
@@ -97,10 +92,9 @@ namespace CodeSampleModalLayer
             return navBtn;
         }
 
-        // TODO: do I need to pass in the category?
         private TabContentParent CreateTabContentParent(Utilities.InventoryCategories category, List<Item> itemList)
         {
-            TabContentParent sip = Instantiate(appMan.UIMan.TabContentParentPrefab, itemParentRectTransform);
+            TabContentParent sip = Instantiate(appMan.UIMan.TabContentParentPrefab, scrollContentRectTransform);
             sip.Setup(category, itemList);
             return sip;
         }
