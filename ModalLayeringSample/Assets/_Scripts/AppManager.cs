@@ -50,11 +50,12 @@ namespace CodeSampleModalLayer
         public Backpack PlayerBackpack { get { return playerBackpack; } }
         // Global Static Variable
         public static AppManager Instance { get; private set; }
-
         // Holds unsorted item data
         private ItemData itemData = default;
         // Holds sorted item data by category
         public Dictionary<Utilities.InventoryCategories, List<Item>> sortedItemData = new Dictionary<Utilities.InventoryCategories, List<Item>>();
+        // Amount to decrease or increase in the inventory when we add or remove an item to the backpack
+        private const int itemAmountDifference = 1;
 
         // App Starts here. Ie. the "main" function
         void Start()
@@ -88,7 +89,6 @@ namespace CodeSampleModalLayer
             // Loop through each entry in the Utilities.InventoryCategories enum and sort the items
             foreach (Utilities.InventoryCategories category in Enum.GetValues(typeof(Utilities.InventoryCategories)))
             {
-                Debug.Log($"{category}");
                 List<Item> tempList = new List<Item>();
 
                 if (category == Utilities.InventoryCategories.None)
@@ -134,7 +134,9 @@ namespace CodeSampleModalLayer
             }
 
             playerBackpack.AddItem(item);
+            item.DecreaseItemAmount(itemAmountDifference);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
+            homeView.UpdateInventoryItem(item: item);
         }
         public void RemoveItemFromBackpack(Item item)
         {
@@ -145,7 +147,9 @@ namespace CodeSampleModalLayer
             }
 
             playerBackpack.RemoveItemById(item.id);
+            item.IncreaseItemAmount(itemAmountDifference);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
+            homeView.UpdateInventoryItem(item: item);
         }
 
         public int GetTotalItemsInBackpack()

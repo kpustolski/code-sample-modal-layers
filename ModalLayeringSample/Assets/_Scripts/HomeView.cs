@@ -46,7 +46,7 @@ namespace CodeSampleModalLayer
 
             backpackButton.Setup();
             SetupNavigation();
-            SwitchInventoryTabs(GetSquareItemParentButtonByCategory(Utilities.InventoryCategories.All));
+            SwitchInventoryTabs(GetSquareItemParentButton(Utilities.InventoryCategories.All));
         }
 
         private void SetupNavigation()
@@ -105,20 +105,8 @@ namespace CodeSampleModalLayer
             return sip;
         }
 
-        // private NavButton GetNavButtonByCategory(Utilities.InventoryCategories category)
-        // {
-        //     foreach (NavButton btn in navButtonList)
-        //     {
-        //         if (btn.Category.Equals(category))
-        //         {
-        //             return btn;
-        //         }
-        //     }
-        //     Debug.Log($"HomeView.cs GetNavButtonByCategory():: No nav button of category {category} found.");
-        //     return null;
-        // }
-
-        private SquareItemParent GetSquareItemParentButtonByCategory(Utilities.InventoryCategories category)
+        //TODO: Rename?
+        private SquareItemParent GetSquareItemParentButton(Utilities.InventoryCategories category)
         {
             foreach (SquareItemParent sip in squareItemParentList)
             {
@@ -135,6 +123,14 @@ namespace CodeSampleModalLayer
         public void UpdateBackpackItemCount(int count, int maxNumber)
         {
             backpackButton.UpdateCountText(count, maxNumber);
+        }
+
+        public void UpdateInventoryItem(Item item)
+        {
+            foreach (SquareItemParent sip in squareItemParentList)
+            {
+                sip.UpdateItem(item: item);
+            }
         }
 
         public void Shutdown()

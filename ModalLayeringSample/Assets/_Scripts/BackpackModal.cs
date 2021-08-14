@@ -51,12 +51,9 @@ namespace CodeSampleModalLayer
         {
             foreach (Item i in appMan.PlayerBackpack.ItemList)
             {
-                if (i.totalOwned != 0)
-                {
-                    SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentTransform);
-                    si.Setup(item: i, locationCreated: SquareItem.LocationCreated.backpackModal);
-                    squareItemsList.Add(si);
-                }
+                SquareItem si = Instantiate(appMan.SquareItemPrefab, itemParentTransform);
+                si.Setup(item: i, locationCreated: SquareItem.LocationCreated.backpackModal);
+                squareItemsList.Add(si);
             }
         }
 

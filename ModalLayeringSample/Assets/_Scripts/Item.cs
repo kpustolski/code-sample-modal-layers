@@ -11,7 +11,7 @@ namespace CodeSampleModalLayer
         public string id;
         public Utilities.ItemType type;
         public Utilities.InventoryCategories category;
-        public int totalOwned;
+        public int totalOwned; //TODO: Rename?
         private bool bIsItemInBackPack = default;
         public bool IsItemInBackPack { get { return bIsItemInBackPack; } set { bIsItemInBackPack = value; } }
 
@@ -22,6 +22,17 @@ namespace CodeSampleModalLayer
             category = inventoryCategory;
             totalOwned = numOwned;
         }
+
+        public void DecreaseItemAmount(int subtraheand)
+        {
+            totalOwned -= subtraheand;
+        }
+
+        public void IncreaseItemAmount(int addend)
+        {
+            totalOwned += addend;
+        }
+
     }
 
     // This class helps store the deserialized JSON data.

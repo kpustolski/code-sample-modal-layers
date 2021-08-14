@@ -27,6 +27,8 @@ namespace CodeSampleModalLayer
         private Item mItem = default;
         private LocationCreated mLocationCreated = default;
 
+        public Item ItemAssigned { get { return mItem; } }
+
         public void Setup(Item item, LocationCreated locationCreated)
         {
             appMan = AppManager.Instance;
@@ -35,11 +37,7 @@ namespace CodeSampleModalLayer
 
             itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 
-            amountPanel.gameObject.SetActive(mItem.totalOwned > 1);
-            if (amountPanel.gameObject.activeSelf)
-            {
-                amountText.text = mItem.totalOwned.ToString();
-            }
+            UpdateAmountText();
 
             button.onClick.AddListener(OpenInfoPopupCallback);
         }
@@ -48,6 +46,25 @@ namespace CodeSampleModalLayer
         {
             //Create an info modal for the item
             MessageBox.CreateInfoModal(item: mItem, locationCreated: mLocationCreated);
+        }
+
+        public void UpdateState()
+        {
+            UpdateAmountText();
+            button.interactable = (mItem.totalOwned > 0);
+        }
+
+        public void UpdateAmountText()
+        {
+            if (mItem.totalOwned <= 1)
+            {
+                amountPanel.gameObject.SetActive(false);
+            }
+            else
+            {
+                amountPanel.gameObject.SetActive(true);
+                amountText.text = mItem.totalOwned.ToString();
+            }
         }
 
         public void Shutdown()

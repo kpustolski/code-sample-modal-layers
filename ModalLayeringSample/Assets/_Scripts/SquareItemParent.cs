@@ -35,6 +35,27 @@ namespace CodeSampleModalLayer
             squareItemList.Add(si);
         }
 
+        public void UpdateItem(Item item)
+        {
+            SquareItem sqItem = GetSquareItem(item.id);
+            if (sqItem != null)
+            {
+                sqItem.UpdateState();
+            }
+        }
+
+        public SquareItem GetSquareItem(string itemId)
+        {
+            foreach (SquareItem si in squareItemList)
+            {
+                if (si.ItemAssigned.id.Equals(itemId))
+                {
+                    return si;
+                }
+            }
+            return null;
+        }
+
         public void Show()
         {
             this.gameObject.SetActive(true);
