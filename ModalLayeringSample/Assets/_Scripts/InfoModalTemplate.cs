@@ -32,6 +32,7 @@ namespace CodeSampleModalLayer
 		public override void Initialize()
 		{
 			base.Initialize();
+            itemImage.preserveAspect = true;
 		}
 
 		public void Setup(Item item, SquareItem.LocationCreated locationCreated)
