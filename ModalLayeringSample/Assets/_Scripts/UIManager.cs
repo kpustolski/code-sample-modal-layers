@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace CodeSampleModalLayer
 {
@@ -23,6 +24,8 @@ namespace CodeSampleModalLayer
         [Space(5)]
         [SerializeField]
         private RectTransform dialogParent = default;
+        [SerializeField]
+        private CanvasGroup dialogOverlayCanvasGroup = default;
 
         public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
@@ -33,9 +36,14 @@ namespace CodeSampleModalLayer
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
 
+        // Animation Variablea
+        private const float overlayFadeDuration = 0.2f;
+
         public void Initialize()
         {
             // init code here
+            dialogOverlayCanvasGroup.alpha = 0;
+            dialogOverlayCanvasGroup.gameObject.SetActive(false);
         }
 
         public void AddToModalLayerList(IModalLayer layer)
@@ -61,6 +69,10 @@ namespace CodeSampleModalLayer
                 layer.AssignId(layerIndex);
             }
 
+            //Show the dialog overlay
+            dialogOverlayCanvasGroup.gameObject.SetActive(true);
+            dialogOverlayCanvasGroup.DOFade(1f, overlayFadeDuration);
+
             // PrintModalLayerList();
         }
 
@@ -84,6 +96,14 @@ namespace CodeSampleModalLayer
             {
                 modalLayerList[modalLayerList.Count - 1].ShowLayer();
             }
+
+            // Hide the dialog overlay if there are no more modals in the list.
+            if(modalLayerList.Count == 0)
+            {
+                dialogOverlayCanvasGroup.DOFade(0f, overlayFadeDuration);
+                dialogOverlayCanvasGroup.gameObject.SetActive(false);
+            }
+            
 
             // PrintModalLayerList("cyan");
         }

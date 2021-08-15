@@ -15,7 +15,7 @@ MonoBehaviour:
   useSafeMode: 1
   safeModeOptions:
     logBehaviour: 2
-    nestedTweenFailureBehaviour: 0
+    nestedTweenFailureBehaviour: 1
   timeScale: 1
   useSmoothDeltaTime: 0
   maxSmoothUnscaledTime: 0.15
@@ -49,5 +49,5 @@ MonoBehaviour:
     deUnityExtendedEnabled: 0
     epoOutlineEnabled: 0
   createASMDEF: 0
-  showPlayingTweens: 0
-  showPausedTweens: 0
+  showPlayingTweens: 1
+  showPausedTweens: 1

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 namespace CodeSampleModalLayer
 {
-    public class BackpackModal : MonoBehaviour, IModalLayer
+    public class BackpackModal : ModalBase, IModalLayer
     {
+        [Header("BackpackModal variables")]
+        [Space(5)]
         [SerializeField]
         private Button closeButton = default;
         [SerializeField]
@@ -16,12 +18,28 @@ namespace CodeSampleModalLayer
         private RectTransform itemParentTransform = default;
 
         private string modalId = default;
-        private AppManager appMan = default;
         private List<SquareItem> squareItemsList = new List<SquareItem>();
+
+		public override void Initialize()
+		{
+			base.Initialize();
+		}
 
         public void Setup()
         {
-            appMan = AppManager.Instance;
+            Initialize();
+            // ShowAnimated is located in the base class
+            ShowAnimated(cbBeforeAnimationStart: SetupBeforeAnimationCallback);
+        }
+
+        public void Shutdown()
+        {
+            // HideAnimated is located in the base class
+            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+        }
+
+        private void SetupBeforeAnimationCallback()
+        {
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
@@ -30,13 +48,7 @@ namespace CodeSampleModalLayer
             CreateBackpackContents();
         }
 
-        public void Reset()
-        {
-            ClearSquareItemsList();
-            CreateBackpackContents();
-        }
-
-        public void Shutdown()
+        private void ShutdownOnAnimationCompleteCallback()
         {
             closeButton.onClick.RemoveAllListeners();
             ClearSquareItemsList();
@@ -47,7 +59,13 @@ namespace CodeSampleModalLayer
             Destroy(gameObject);
         }
 
-        public void CreateBackpackContents()
+        private void Reset()
+        {
+            ClearSquareItemsList();
+            CreateBackpackContents();
+        }
+
+        private void CreateBackpackContents()
         {
             foreach (Item i in appMan.PlayerBackpack.ItemList)
             {
@@ -67,7 +85,7 @@ namespace CodeSampleModalLayer
         }
 
 
-        #region ModalLayer Functions
+#region ModalLayer Functions
 
         public void ShowLayer()
         {
@@ -88,6 +106,6 @@ namespace CodeSampleModalLayer
             modalId = $"BackpackModal_{layerIndex}";
         }
 
-        #endregion
+ #endregion
     }
 }
