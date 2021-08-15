@@ -36,10 +36,12 @@ namespace CodeSampleModalLayer
             appMan = AppManager.Instance;
             mItem = item;
             mLocationCreated = locationCreated;
+            backpackIconPanel.gameObject.SetActive(false); //Off by default
+            itemImage.preserveAspect = true;
 
             itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 
-            UpdateState(true);
+            UpdateState();
 
             button.onClick.AddListener(OpenInfoPopupCallback);
         }
@@ -50,15 +52,13 @@ namespace CodeSampleModalLayer
             MessageBox.CreateInfoModal(item: mItem, locationCreated: mLocationCreated);
         }
 
-        //TODO: Remove the isBtnInteractive parameter
-        public void UpdateState(bool isBtnInteractable)
+        public void UpdateState()
         {
             if (mLocationCreated == LocationCreated.homeView)
             {
                 backpackIconPanel.gameObject.SetActive((mItem.AmountInBackpack > 0));
             }
             UpdateAmountText();
-            button.interactable = isBtnInteractable;
         }
 
         public void UpdateAmountText()

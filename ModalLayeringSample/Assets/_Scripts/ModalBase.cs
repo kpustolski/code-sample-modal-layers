@@ -16,14 +16,12 @@ namespace CodeSampleModalLayer
         private RectTransform contentPanelRectTransform = default;
 
         protected AppManager appMan = default;
-        private CanvasGroup overlayCanvasGroup = default;
 
         // Animation variables
         private const float contentFadeDuration = 0.2f;
         private const float buttonFadeDuration = 0.2f;
         private Vector3 contentScalePunch = new Vector3(0.1f, 0.1f, 0.1f);
         private const float contentScaleDuration = 0.2f;
-        private Sequence showSequence = default;
 
         public virtual void Initialize()
         {
