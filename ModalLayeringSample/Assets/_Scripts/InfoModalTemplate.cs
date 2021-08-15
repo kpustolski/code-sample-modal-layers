@@ -8,6 +8,8 @@ namespace CodeSampleModalLayer
 {
 	public class InfoModalTemplate : ModalBase, IModalLayer
 	{
+		[Header("InfoModalTemplate Variables")]
+		[Space(5)]
 		[SerializeField]
 		private Button closeButton = default;
 		[SerializeField]
@@ -42,8 +44,9 @@ namespace CodeSampleModalLayer
 		}
 		public void Shutdown()
 		{
-			// HideAnimated is located in the base class
-			HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+            // HideAnimated is located in the base class
+            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+			
 		}
 
 		private void SetupBeforeAnimationCallback()
@@ -76,13 +79,18 @@ namespace CodeSampleModalLayer
 
 		private void ShutdownOnAnimationCompleteCallback()
 		{
+			// Turn off button interactables to avoid double clicks
+			closeButton.interactable = false;
+			addToBagButton.interactable = false;
+			removeFromBagButton.interactable = false;
+
 			closeButton.onClick.RemoveAllListeners();
 			addToBagButton.onClick.RemoveAllListeners();
 			removeFromBagButton.onClick.RemoveAllListeners();
 
 			// Remove from modal layer list
 			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
-			Destroy(this.gameObject);
+			Destroy(gameObject); //TODO: Throws a dotween warning. How can I properly destroy the game object after the sequence is done?
 		}
 
 		private void RemoveFromBagCallback()

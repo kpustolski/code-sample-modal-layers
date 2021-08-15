@@ -55,7 +55,8 @@ namespace CodeSampleModalLayer
             backgroundImage.material = new Material(backgroundImage.material);
             backgroundImage.material.DOOffset(offset, duration)
                 .SetLoops(-1, LoopType.Restart)
-                .SetEase(Ease.Linear);
+                .SetEase(Ease.Linear)
+                .SetId("ScrollingBackground.cs :: DOOffset()"); // For debugging
         }
 
         public (float X, float Y) GetOffsetBasedOnDirection()
