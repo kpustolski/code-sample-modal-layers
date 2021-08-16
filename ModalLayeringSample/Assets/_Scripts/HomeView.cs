@@ -131,17 +131,17 @@ namespace CodeSampleModalLayer
         {
             scrollBackground.Shutdown();
 
-            // foreach (var i in TabContentParentList)
-            // {
-            //     i.Shutdown();
-            // }
-            // TabContentParentList.Clear();
+            foreach (var i in TabContentParentList)
+            {
+                i.Shutdown();
+            }
+            TabContentParentList.Clear();
 
-            // foreach (NavButton i in navButtonList)
-            // {
-            //     Destroy(i.gameObject);
-            // }
-            // navButtonList.Clear();
+            foreach (NavButton i in navButtonList)
+            {
+                Destroy(i.gameObject);
+            }
+            navButtonList.Clear();
         }
     }
 }
