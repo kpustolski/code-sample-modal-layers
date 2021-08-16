@@ -30,6 +30,10 @@ namespace CodeSampleModalLayer
         public void UpdateCountText(int amount, int maxAmount)
         {
             countText.text = string.Format(kCountString, amount, maxAmount);
+            if(amount.Equals(maxAmount))
+            {
+                countText.text = "Full!";
+            }
         }
 
         public void Shutdown()

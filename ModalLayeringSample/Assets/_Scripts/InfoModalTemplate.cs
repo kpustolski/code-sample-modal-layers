@@ -15,6 +15,8 @@ namespace CodeSampleModalLayer
 		[SerializeField]
 		private Button addToBagButton = default;
 		[SerializeField]
+		private TextMeshProUGUI addToBagButtonText = default;
+		[SerializeField]
 		private Button removeFromBagButton = default;
 		[SerializeField]
 		private TextMeshProUGUI titleText = default;
@@ -47,7 +49,6 @@ namespace CodeSampleModalLayer
 		{
             // HideAnimated is located in the base class
             HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
-			
 		}
 
 		private void SetupBeforeAnimationCallback()
@@ -65,15 +66,20 @@ namespace CodeSampleModalLayer
 			titleText.text = mItem.id;
 			itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
+			addToBagButtonText.text = "Add to Bag";// TODO: Make const
 
 			closeButton.onClick.AddListener(Shutdown);
 			addToBagButton.onClick.AddListener(AddToBagCallback);
 			removeFromBagButton.onClick.AddListener(RemoveFromBagCallback);
 
-			// Disable the add to bag button if there all of the items are already in the backpack
+			// Disable the add to bag button if all of the items are already in the backpack
 			// AKA the mItem.AmountInBackpack == mItem.totalOwned
-			if (mItem.AmountInInventory == 0)
+			addToBagButton.interactable = (mItem.AmountInInventory != 0);
+
+			Debug.Log(appMan.PlayerBackpack.IsBackpackFull());
+			if(appMan.PlayerBackpack.IsBackpackFull())
 			{
+				addToBagButtonText.text = "Bag is Full!";
 				addToBagButton.interactable = false;
 			}
 		}
@@ -97,14 +103,26 @@ namespace CodeSampleModalLayer
 		private void RemoveFromBagCallback()
 		{
 			appMan.RemoveItemFromBackpack(mItem);
-			Shutdown();
+			if(mItem.AmountInBackpack == 0)
+			{
+				Shutdown();
+			}
 		}
 
-		private void AddToBagCallback()
-		{
-			appMan.AddItemToBackpack(mItem);
-			Shutdown();
-		}
+        private void AddToBagCallback()
+        {
+            appMan.AddItemToBackpack(mItem);
+
+            //Are all instances of this item in our backpack? If so, disable the add to bag button.
+            addToBagButton.interactable = (mItem.AmountInInventory != 0);
+            amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
+
+            if (appMan.PlayerBackpack.IsBackpackFull())
+            {
+                addToBagButtonText.text = "Bag is Full!";
+                addToBagButton.interactable = false;
+            }
+        }
 
 #region ModalLayer Functions
 
