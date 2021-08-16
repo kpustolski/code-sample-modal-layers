@@ -103,6 +103,7 @@ namespace CodeSampleModalLayer
 		private void RemoveFromBagCallback()
 		{
 			appMan.RemoveItemFromBackpack(mItem);
+            amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 			if(mItem.AmountInBackpack == 0)
 			{
 				Shutdown();
