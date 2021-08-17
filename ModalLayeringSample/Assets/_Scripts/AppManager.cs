@@ -5,6 +5,17 @@ using System;
 
 namespace CodeSampleModalLayer
 {
+    //TODO: Create remove all button on the backpack modal.
+    //TODO: Create highlight state for the tab buttons
+    //TODO: Add a way to show the bag space in the info modals. Add a counter?
+    //TODO: Button press effect on items in the inventory
+    //TODO: Assign a gradient to each item category
+    //TODO: Add an info button for credits
+    //TODO: Create a credits popup
+    //TODO: Write up README documentation
+    //TODO: Alternative design for the scroll bar
+    //TODO: Rename the infoModalTemplate to something like ItemInfoModal
+    //TODO: Cleanup
     public class AppManager : MonoBehaviour
     {
         [Header("Views")]
@@ -27,7 +38,6 @@ namespace CodeSampleModalLayer
         public AppData AppDataObject { get { return appDataObject; } }
         // Global Static Variable
         public static AppManager Instance { get; private set; }
-        public Backpack PlayerBackpack { get { return playerBackpack; } }
 
         private DataManager dataManager = default;
         private Backpack playerBackpack = default;
@@ -73,9 +83,29 @@ namespace CodeSampleModalLayer
             homeView.UpdateInventoryItem(item: item);
         }
 
+#region Backpack Helpers
         public int GetTotalItemsInBackpack()
         {
             return playerBackpack.GetTotalItemsInBackpack();
         }
+
+        public bool IsBackpackFull()
+        {
+            return playerBackpack.IsBackpackFull();
+        }
+        public bool IsBackpackEmpty()
+        {
+            return playerBackpack.IsBackpackEmpty();
+        }
+        public int GetBackpackMaxItemCount()
+        {
+            return playerBackpack.MaxTotalItems;
+        }
+
+        public List<Item> GetBackpackItemList()
+        {
+            return playerBackpack.ItemList;
+        }
+#endregion
     }
 }

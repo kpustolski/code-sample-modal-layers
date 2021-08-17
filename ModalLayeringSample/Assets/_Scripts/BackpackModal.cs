@@ -85,13 +85,13 @@ namespace CodeSampleModalLayer
         
         private void CreateBackpackContents()
         {
-            foreach (Item i in appMan.PlayerBackpack.ItemList)
+            foreach (Item i in appMan.GetBackpackItemList())
             {
                 SquareItem si = Instantiate(appMan.UIMan.SquareItemPrefab, itemParentTransform);
                 si.Setup(item: i, locationCreated: SquareItem.LocationCreated.backpackModal);
                 squareItemsList.Add(si);
             }
-            UpdateCountText(amount: appMan.PlayerBackpack.GetTotalItemsInBackpack(), maxAmount: appMan.PlayerBackpack.MaxTotalItems);
+            UpdateCountText(amount: appMan.GetTotalItemsInBackpack(), maxAmount: appMan.GetBackpackMaxItemCount());
         }
 
         private void ClearSquareItemsList()

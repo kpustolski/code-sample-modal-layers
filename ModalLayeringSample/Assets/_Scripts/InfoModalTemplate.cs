@@ -76,8 +76,7 @@ namespace CodeSampleModalLayer
 			// AKA the mItem.AmountInBackpack == mItem.totalOwned
 			addToBagButton.interactable = (mItem.AmountInInventory != 0);
 
-			Debug.Log(appMan.PlayerBackpack.IsBackpackFull());
-			if(appMan.PlayerBackpack.IsBackpackFull())
+			if(appMan.IsBackpackFull())
 			{
 				addToBagButtonText.text = "Bag is Full!";
 				addToBagButton.interactable = false;
@@ -118,7 +117,7 @@ namespace CodeSampleModalLayer
             addToBagButton.interactable = (mItem.AmountInInventory != 0);
             amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 
-            if (appMan.PlayerBackpack.IsBackpackFull())
+            if (appMan.IsBackpackFull())
             {
                 addToBagButtonText.text = "Bag is Full!";
                 addToBagButton.interactable = false;
