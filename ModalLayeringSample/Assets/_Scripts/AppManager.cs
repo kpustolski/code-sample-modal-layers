@@ -7,13 +7,11 @@ namespace CodeSampleModalLayer
 {
     //TODO: Create remove all button on the backpack modal.
     //TODO: Create highlight state for the tab buttons
-    //TODO: Add a way to show the bag space in the item modals. Add a counter?
     //TODO: Button press effect on items in the inventory
     //TODO: Assign a gradient to each item category
-    //TODO: Add an info button for credits
     //TODO: Create a credits popup
     //TODO: Alternative design for the scroll bar
-    //TODO: Create JSON for strings
+    //TODO: Create JSON for copy in code
     //TODO: Cleanup
     public class AppManager : MonoBehaviour
     {

@@ -65,7 +65,7 @@ namespace CodeSampleModalLayer
 			//AppMan is set in base class
 			appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
-			titleText.text = mItem.id;
+			titleText.text = mItem.name;
 			itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 			addToBagButtonText.text = kAddToBagString;
@@ -98,7 +98,7 @@ namespace CodeSampleModalLayer
 
 			// Remove from modal layer list
 			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
-			Destroy(gameObject); //TODO: Throws a dotween warning. How can I properly destroy the game object after the sequence is done?
+			Destroy(gameObject);
 		}
 
 		private void RemoveFromBagCallback()

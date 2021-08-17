@@ -9,6 +9,7 @@ namespace CodeSampleModalLayer
     public class Item
     {
         public string id;
+        public string name;
         public Utilities.ItemType type;
         public Utilities.InventoryCategories category;
         public int totalOwned;
@@ -17,12 +18,13 @@ namespace CodeSampleModalLayer
         public int AmountInBackpack { get { return amountInBackpack; } set { amountInBackpack = value; } }
         public int AmountInInventory { get { return amountInInventory; } set { amountInInventory = value; } }
 
-        public Item(string uniqueId, Utilities.ItemType itemType, Utilities.InventoryCategories inventoryCategory, int numOwned)
+        public Item(string uniqueId, string nameString, Utilities.ItemType itemType, Utilities.InventoryCategories inventoryCategory, int numOwned)
         {
             id = uniqueId;
             type = itemType;
             category = inventoryCategory;
             totalOwned = numOwned;
+            name = nameString;
         }
 
         public void Initialize()
@@ -33,7 +35,7 @@ namespace CodeSampleModalLayer
 
         public override string ToString()
         {
-            return $"id: {id} type: {type} category {category} totalOwned {totalOwned} amountInBackpack {amountInBackpack} amountInInventory {amountInInventory}";
+            return $"id: {id} name: {name} type: {type} category {category} totalOwned {totalOwned} amountInBackpack {amountInBackpack} amountInInventory {amountInInventory}";
         }
 
         public void DecreaseBackpackItemAmount(int subtraheand)

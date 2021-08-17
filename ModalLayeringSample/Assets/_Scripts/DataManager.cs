@@ -61,6 +61,11 @@ namespace CodeSampleModalLayer
                 {
                     foreach (Item i in itemData.data)
                     {
+                        if(i.category  == Utilities.InventoryCategories.All)
+                        {
+                            Debug.LogError($"DataManager.cs SortItemListByCategory() :: item with id {i.id} should not have its category set to All. Please update.");
+                        }
+                        
                         if (i.category != category)
                         {
                             continue;
