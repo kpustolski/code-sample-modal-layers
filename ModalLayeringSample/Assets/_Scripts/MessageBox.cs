@@ -9,7 +9,7 @@ namespace CodeSampleModalLayer
         private static AppManager appMan = AppManager.Instance;
         public static void CreateInfoModal(Item item, SquareItem.LocationCreated locationCreated)
         {
-            InfoModalTemplate m = Instantiate(appMan.UIMan.InfoModalTemplatePrefab, appMan.UIMan.DialogParent);
+            ItemInfoModal m = Instantiate(appMan.UIMan.ItemInfoModalPrefab, appMan.UIMan.DialogParent);
             m.Setup(item: item, locationCreated: locationCreated);
         }
 

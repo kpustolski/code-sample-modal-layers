@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 800014065883256256, guid: b8316095c21fe4d4a8411054998cd530,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 800014065883256256, guid: b8316095c21fe4d4a8411054998cd530,
         type: 3}
@@ -1071,7 +1071,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1952737680}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1653,7 +1653,7 @@ PrefabInstance:
     - target: {fileID: 800014065883256256, guid: a1ae1015665534e2d85b0ce0dc18cf69,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 800014065883256256, guid: a1ae1015665534e2d85b0ce0dc18cf69,
         type: 3}
@@ -2099,9 +2099,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 827845900}
   - {fileID: 1368750185}
   - {fileID: 1209236505}
-  - {fileID: 827845900}
   m_Father: {fileID: 1093527697}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2194,7 +2194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c408db7ef3343de90a81cfe87f7f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoModalTemplatePrefab: {fileID: 5240141755657366872, guid: b8316095c21fe4d4a8411054998cd530,
+  itemInfoModalPrefab: {fileID: 3481098361487864757, guid: b8316095c21fe4d4a8411054998cd530,
     type: 3}
   backpackModalPrefab: {fileID: 239822330730002618, guid: a1ae1015665534e2d85b0ce0dc18cf69,
     type: 3}
@@ -2205,7 +2205,7 @@ MonoBehaviour:
   tabContentParentPrefab: {fileID: 4604738902002230295, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
     type: 3}
   dialogParent: {fileID: 1952737680}
-  dialogOverlay: {fileID: 827845897}
+  dialogOverlayCanvasGroup: {fileID: 827845897}
 --- !u!1 &2058491457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,8 +2325,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 817907448}
   m_HandleRect: {fileID: 817907447}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

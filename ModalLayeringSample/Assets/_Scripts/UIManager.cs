@@ -10,7 +10,7 @@ namespace CodeSampleModalLayer
         [Header("Prefabs")]
         [Space(5)]
         [SerializeField]
-        private InfoModalTemplate infoModalTemplatePrefab = default;
+        private ItemInfoModal itemInfoModalPrefab = default;
         [SerializeField]
         private BackpackModal backpackModalPrefab = default;
         [SerializeField]
@@ -27,7 +27,7 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private CanvasGroup dialogOverlayCanvasGroup = default;
 
-        public InfoModalTemplate InfoModalTemplatePrefab { get { return infoModalTemplatePrefab; } }
+        public ItemInfoModal ItemInfoModalPrefab { get { return itemInfoModalPrefab; } }
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
         public TabContentParent TabContentParentPrefab { get { return tabContentParentPrefab; } }
