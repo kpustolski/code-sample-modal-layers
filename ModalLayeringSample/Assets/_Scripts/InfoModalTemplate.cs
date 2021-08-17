@@ -29,7 +29,9 @@ namespace CodeSampleModalLayer
 		private Item mItem = default;
 		private SquareItem.LocationCreated mLocationCreated = default;
 		// amount in backback / total amount owned.
-		private string amountTestFormat = "{0}/{1}";
+		private const string amountTestFormat = "{0}/{1}";
+		private const string kAddToBagString = "Add to Bag";		
+		private const string kBagIsFullString = "Bag is Full!";
 
 		public override void Initialize()
 		{
@@ -66,7 +68,7 @@ namespace CodeSampleModalLayer
 			titleText.text = mItem.id;
 			itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
-			addToBagButtonText.text = "Add to Bag";// TODO: Make const
+			addToBagButtonText.text = kAddToBagString;
 
 			closeButton.onClick.AddListener(Shutdown);
 			addToBagButton.onClick.AddListener(AddToBagCallback);
@@ -78,7 +80,7 @@ namespace CodeSampleModalLayer
 
 			if(appMan.IsBackpackFull())
 			{
-				addToBagButtonText.text = "Bag is Full!";
+				addToBagButtonText.text = kBagIsFullString;
 				addToBagButton.interactable = false;
 			}
 		}
@@ -119,7 +121,7 @@ namespace CodeSampleModalLayer
 
             if (appMan.IsBackpackFull())
             {
-                addToBagButtonText.text = "Bag is Full!";
+                addToBagButtonText.text = kBagIsFullString;
                 addToBagButton.interactable = false;
             }
         }
