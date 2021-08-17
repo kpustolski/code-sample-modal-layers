@@ -8,7 +8,7 @@ namespace CodeSampleModalLayer
 {
     public class SquareItem : MonoBehaviour
     {
-        public enum LocationCreated //TODO: Better name?
+        public enum LocationCreated
         {
             homeView = 0,
             backpackModal = 1
