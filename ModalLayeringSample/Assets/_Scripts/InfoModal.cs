@@ -47,7 +47,7 @@ namespace CodeSampleModalLayer
                 Shutdown();
             });
 
-            ShowAnimated(cbBeforeAnimationStart: null);
+            ShowAnimated();
         }
 		public void Shutdown()
 		{
@@ -73,7 +73,7 @@ namespace CodeSampleModalLayer
 
 		public void ShowLayer()
 		{
-			ShowAnimated(cbBeforeAnimationStart: null);
+			ShowAnimated();
 		}
 		public void HideLayer()
 		{

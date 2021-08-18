@@ -44,17 +44,7 @@ namespace CodeSampleModalLayer
 			Initialize();
 			mItem = item;
 			mLocationCreated = locationCreated;
-			// ShowAnimated is located in the base class
-			ShowAnimated(cbBeforeAnimationStart: SetupBeforeAnimationCallback);
-		}
-		public void Shutdown()
-		{
-            // HideAnimated is located in the base class
-            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
-		}
 
-		private void SetupBeforeAnimationCallback()
-		{
 			//TODO: May need to rethink this logic
 			// Add to bag button is enabled when the square item button is selected in the home view
 			addToBagButton.gameObject.SetActive(mLocationCreated == SquareItem.LocationCreated.homeView);
@@ -83,6 +73,14 @@ namespace CodeSampleModalLayer
 				addToBagButtonText.text = kBagIsFullString;
 				addToBagButton.interactable = false;
 			}
+
+			// ShowAnimated is located in the base class
+			ShowAnimated();
+		}
+		public void Shutdown()
+		{
+            // HideAnimated is located in the base class
+            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
 		}
 
 		private void ShutdownOnAnimationCompleteCallback()
@@ -130,7 +128,7 @@ namespace CodeSampleModalLayer
 
 		public void ShowLayer()
 		{
-			ShowAnimated(cbBeforeAnimationStart: null);
+			ShowAnimated();
 		}
 		public void HideLayer()
 		{

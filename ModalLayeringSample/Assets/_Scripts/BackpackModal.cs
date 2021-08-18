@@ -36,18 +36,7 @@ namespace CodeSampleModalLayer
         public void Setup()
         {
             Initialize();
-            // ShowAnimated is located in the base class
-            ShowAnimated(cbBeforeAnimationStart: SetupBeforeAnimationCallback);
-        }
-
-        public void Shutdown()
-        {
-            // HideAnimated is located in the base class
-            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
-        }
-
-        private void SetupBeforeAnimationCallback()
-        {
+            
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
@@ -56,6 +45,15 @@ namespace CodeSampleModalLayer
             clearAllButton.onClick.AddListener(ClearAllItemsCallback);
             currentItemCount = appMan.GetTotalItemsInBackpack();
             CreateBackpackContents();
+
+            // ShowAnimated is located in the base class
+            ShowAnimated();
+        }
+
+        public void Shutdown()
+        {
+            // HideAnimated is located in the base class
+            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
         }
 
         private void ShutdownOnAnimationCompleteCallback()

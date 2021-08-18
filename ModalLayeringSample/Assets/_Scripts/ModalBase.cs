@@ -28,7 +28,7 @@ namespace CodeSampleModalLayer
             appMan = AppManager.Instance;
         }
 
-        protected void ShowAnimated(UnityAction cbBeforeAnimationStart)
+        protected void ShowAnimated()
         {
             contentPanelCanvasGroup.alpha = 0;
 
@@ -37,10 +37,6 @@ namespace CodeSampleModalLayer
             showSequence.AppendCallback(() =>
             {
                 gameObject.SetActive(true);
-                if (cbBeforeAnimationStart != null)
-                {
-                    cbBeforeAnimationStart();
-                }
             })
             .Append(contentPanelCanvasGroup.DOFade(1f, contentFadeDuration).SetId(contentPanelCanvasGroup))
             .Join(contentPanelRectTransform.DOPunchScale(contentScalePunch, contentScaleDuration).SetId(contentPanelRectTransform));
