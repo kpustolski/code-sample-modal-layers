@@ -5,7 +5,6 @@ using System;
 
 namespace CodeSampleModalLayer
 {
-    //TODO: Create remove all button on the backpack modal.
     //TODO: Create highlight state for the tab buttons
     //TODO: Button press effect on items in the inventory
     //TODO: Assign a gradient to each item category

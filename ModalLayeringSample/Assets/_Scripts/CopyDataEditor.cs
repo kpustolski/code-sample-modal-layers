@@ -8,13 +8,13 @@ using System;
 
 namespace CodeSampleModalLayer
 {
-    [CustomEditor(typeof(ItemDataHandler))]
-    public class ItemDataEditor : Editor
+    [CustomEditor(typeof(CopyHandler))]
+    public class CopyDataEditor : Editor
     {
         public bool makeJSONPretty = default;
-        private SerializedProperty itemListProperty = default;
+        private SerializedProperty copyListProperty = default;
         private static GUIStyle titleStyle = default;
-        private const string kFilePath = "Assets/Resources/ItemData.json";
+        private const string kFilePath = "Assets/Resources/CopyData.json";
 
         private GUILayoutOption[] buttonOptions = new GUILayoutOption[] {
             GUILayout.Height(24)
@@ -31,12 +31,12 @@ namespace CodeSampleModalLayer
 
         private void SetupItemList()
         {
-            itemListProperty = serializedObject.FindProperty("data");
+            copyListProperty = serializedObject.FindProperty("data");
         }
 
         public override void OnInspectorGUI()
         {
-            EditorGUILayout.LabelField("<color=white>Item Data</color>", titleStyle);
+            EditorGUILayout.LabelField("<color=white>Copy Data</color>", titleStyle);
             EditorGUILayout.Space();
             GUILayout.Space(20);
 
@@ -44,11 +44,6 @@ namespace CodeSampleModalLayer
             if (GUILayout.Button("Preview JSON In Console", buttonOptions))
             {
                 OnPreviewJSON();
-            }
-
-            if (GUILayout.Button("Validate Data", buttonOptions))
-            {
-                OnValidateData();
             }
 
             if (GUILayout.Button("Update Item Data File", buttonOptions))
@@ -64,8 +59,8 @@ namespace CodeSampleModalLayer
 
         private void OnUpdateData()
         {
-            var animalListData = (ItemDataHandler)itemListProperty.serializedObject.targetObject;
-            var jsonData = animalListData.CreateJsonStringFromData(makeJSONPretty: makeJSONPretty);
+            var copyListData = (CopyHandler)copyListProperty.serializedObject.targetObject;
+            var jsonData = copyListData.CreateJsonStringFromData(makeJSONPretty: makeJSONPretty);
 
             StreamWriter sw = new StreamWriter(kFilePath);
             sw.Write(jsonData);
@@ -73,38 +68,16 @@ namespace CodeSampleModalLayer
 
             EditorUtility.DisplayDialog(
                 "Done!",
-                "Data has been updated in ItemData.json file",
+                "Data has been updated in CopyData.json file",
                 "OK"
             );
             AssetDatabase.Refresh();
         }
 
-        private void OnValidateData()
-        {
-            var itemListData = (ItemDataHandler)itemListProperty.serializedObject.targetObject;
-            var totalErrors = itemListData.ValidateData();
-
-            if (totalErrors > 0)
-            {
-                EditorUtility.DisplayDialog(
-                    "Errors found!",
-                    $"There are some errors found in the data. Check the console for more information.\n Number of errors found: {totalErrors}",
-                    "OK"
-                );
-                return;
-            }
-
-            EditorUtility.DisplayDialog(
-                "Data is valid!",
-                $"Data is good to go. No errors found!",
-                "OK"
-            );
-        }
-
         // Prints the JSON string to the console
         private void OnPreviewJSON()
         {
-            var itemListData = (ItemDataHandler)itemListProperty.serializedObject.targetObject;
+            var itemListData = (CopyHandler)copyListProperty.serializedObject.targetObject;
             var jsonData = itemListData.CreateJsonStringFromData(makeJSONPretty: makeJSONPretty);
             Debug.Log($"{jsonData}");
         }
