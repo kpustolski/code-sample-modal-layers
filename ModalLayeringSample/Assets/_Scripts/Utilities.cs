@@ -15,21 +15,5 @@ namespace CodeSampleModalLayer
             Gear = 4,
             Other = 5,
         }
-
-        public enum ItemType
-        {
-            None = 0,
-            BaseballTShirt = 1,
-            Binoculars = 2,
-            CargoShorts = 3,
-            FirstAidKit = 4,
-            Guitar = 5,
-            Hat = 6,
-            Map = 7,
-            MarshmellowStick = 8,
-            Pickaxe = 9,
-            Rope = 10,
-            Tent = 11
-        }
     }
 }

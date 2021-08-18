@@ -8,7 +8,7 @@ namespace CodeSampleModalLayer
     [Serializable]
     public class ItemIcon
     {
-        public Utilities.ItemType itemName;
+        public string itemId;
         public Sprite iconSprite;
     }
 
@@ -26,17 +26,17 @@ namespace CodeSampleModalLayer
 
         public TextAsset ItemJSONFile { get { return itemJSONFile; } }
 
-        public Sprite GetItemIconByItemType(Utilities.ItemType type)
+        public Sprite GetItemIcon(string id)
         {
             foreach (ItemIcon i in itemIcons)
             {
-                if (i.itemName.Equals(type))
+                if (i.itemId.Equals(id))
                 {
                     return i.iconSprite;
                 }
             }
             // Item not found in the list
-            Debug.LogError($"AppData.cs GetItemIconByItemName() :: Item of type {type} not found in ItemIcons list.");
+            Debug.LogError($"AppData.cs GetItemIconByItemName() :: Item with id {id} not found in ItemIcons list.");
             return null;
         }
     }

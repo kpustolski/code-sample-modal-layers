@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: AppData
   m_EditorClassIdentifier: 
   itemIcons:
-  - itemName: 1
+  - itemId: BaseballTShirt
     iconSprite: {fileID: 21300000, guid: 1b42f2e8e5da843d9b1ab9f5d7ad7e7f, type: 3}
-  - itemName: 2
+  - itemId: Binoculars
     iconSprite: {fileID: 21300000, guid: f82032ccda73a4fbf9fbbc343335426b, type: 3}
-  - itemName: 3
+  - itemId: CargoShorts
     iconSprite: {fileID: 21300000, guid: 78b9654bab29d4d9797a305e7712adef, type: 3}
-  - itemName: 4
+  - itemId: FirstAidKit
     iconSprite: {fileID: 21300000, guid: 49118e4e33423421fb8d0ebe20bc733b, type: 3}
-  - itemName: 5
+  - itemId: Guitar
     iconSprite: {fileID: 21300000, guid: 28b14798d1b7f440ebd7767d75e9215b, type: 3}
-  - itemName: 6
+  - itemId: Hat
     iconSprite: {fileID: 21300000, guid: 6ce94234b2ba1495e9fdf0398ef3de07, type: 3}
-  - itemName: 7
+  - itemId: Map
     iconSprite: {fileID: 21300000, guid: 70eeccb6ab7f4413ebe3e5a122985cbc, type: 3}
-  - itemName: 8
+  - itemId: MarshStick
     iconSprite: {fileID: 21300000, guid: 1ad49b0b2df8b4503b3bdda709ea7131, type: 3}
-  - itemName: 9
+  - itemId: Pickaxe
     iconSprite: {fileID: 21300000, guid: b83787b82a93c450fb66f72673ef47a4, type: 3}
-  - itemName: 10
+  - itemId: Rope
     iconSprite: {fileID: 21300000, guid: d189a011a8ae7468cb004e7ce0dfd474, type: 3}
-  - itemName: 11
+  - itemId: Tent
     iconSprite: {fileID: 21300000, guid: f18cdf78ce0cc46f1b82266165adfe25, type: 3}
   itemJSONFile: {fileID: 4900000, guid: 03f61819b06b54445ba9dda570118b17, type: 3}

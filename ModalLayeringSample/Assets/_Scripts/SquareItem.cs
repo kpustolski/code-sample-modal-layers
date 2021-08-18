@@ -39,7 +39,7 @@ namespace CodeSampleModalLayer
             backpackIconPanel.gameObject.SetActive(false); //Off by default
             itemImage.preserveAspect = true;
 
-            itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
+            itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 
             UpdateState();
 

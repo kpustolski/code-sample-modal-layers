@@ -66,7 +66,7 @@ namespace CodeSampleModalLayer
 			appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
 			titleText.text = mItem.name;
-			itemImage.sprite = appMan.AppDataObject.GetItemIconByItemType(mItem.type);
+			itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 			addToBagButtonText.text = kAddToBagString;
 
