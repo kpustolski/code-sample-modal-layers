@@ -15,6 +15,8 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private Button closeButton = default;
         [SerializeField]
+        private Button clearAllButton = default;
+        [SerializeField]
         private TextMeshProUGUI titleText = default;
         [SerializeField]
         private RectTransform itemParentTransform = default;
@@ -51,6 +53,7 @@ namespace CodeSampleModalLayer
 
             titleText.text = kModalTitle;
             closeButton.onClick.AddListener(Shutdown);
+            clearAllButton.onClick.AddListener(ClearAllItemsCallback);
             currentItemCount = appMan.GetTotalItemsInBackpack();
             CreateBackpackContents();
         }
@@ -101,6 +104,16 @@ namespace CodeSampleModalLayer
                 i.Shutdown();
             }
             squareItemsList.Clear();
+        }
+
+        private void ClearAllItemsCallback()
+        {
+            MessageBox.CreateInfoModal(
+                cbOnActionButtonClick: () =>
+                {
+                    appMan.EmptyBackpack();
+                    Reset();
+                });
         }
 
 

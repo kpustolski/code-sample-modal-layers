@@ -43,6 +43,11 @@ namespace CodeSampleModalLayer
             }
         }
 
+        public void RemoveAllItems()
+        {
+            itemList.Clear();
+        }
+
         public int GetTotalItemsInBackpack()
         {
             if (ItemList.Count == 0)

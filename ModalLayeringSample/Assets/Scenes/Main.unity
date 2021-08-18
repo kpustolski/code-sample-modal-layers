@@ -417,7 +417,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560487943}
   m_HandleRect: {fileID: 560487942}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1892,6 +1892,8 @@ MonoBehaviour:
     type: 3}
   tabContentParentPrefab: {fileID: 4604738902002230295, guid: 356aa7647f2a74e94bd864d4cbd9f19b,
     type: 3}
+  infoModalPrefab: {fileID: 1888948247074750353, guid: 2b5fe5e1a0f294afba499995e1afb6dc,
+    type: 3}
   dialogParent: {fileID: 1952737680}
   dialogOverlayCanvasGroup: {fileID: 827845897}
 --- !u!1 &2058491457
@@ -2014,7 +2016,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 817907447}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

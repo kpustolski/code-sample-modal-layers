@@ -19,6 +19,8 @@ namespace CodeSampleModalLayer
         private NavButton navButtonPrefab = default;
         [SerializeField]
         private TabContentParent tabContentParentPrefab = default;
+        [SerializeField]
+        private InfoModal infoModalPrefab = default;
 
         [Header("RectTransform")]
         [Space(5)]
@@ -28,6 +30,7 @@ namespace CodeSampleModalLayer
         private CanvasGroup dialogOverlayCanvasGroup = default;
 
         public ItemInfoModal ItemInfoModalPrefab { get { return itemInfoModalPrefab; } }
+        public InfoModal InfoModalPrefab { get { return infoModalPrefab; } }
         public BackpackModal BackpackModalPrefab { get { return backpackModalPrefab; } }
         public SquareItem SquareItemPrefab { get { return squareItemPrefab; } }
         public TabContentParent TabContentParentPrefab { get { return tabContentParentPrefab; } }

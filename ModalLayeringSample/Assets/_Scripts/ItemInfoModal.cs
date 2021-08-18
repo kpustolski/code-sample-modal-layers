@@ -103,7 +103,7 @@ namespace CodeSampleModalLayer
 
 		private void RemoveFromBagCallback()
 		{
-			appMan.RemoveItemFromBackpack(mItem);
+			appMan.RemoveItemFromBackpack(item: mItem, itemAmountDifference: 1);
             amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 			if(mItem.AmountInBackpack == 0)
 			{
@@ -113,7 +113,7 @@ namespace CodeSampleModalLayer
 
         private void AddToBagCallback()
         {
-            appMan.AddItemToBackpack(mItem);
+            appMan.AddItemToBackpack(item: mItem, itemAmountDifference: 1);
 
             //Are all instances of this item in our backpack? If so, disable the add to bag button.
             addToBagButton.interactable = (mItem.AmountInInventory != 0);
@@ -143,7 +143,7 @@ namespace CodeSampleModalLayer
 
 		public void AssignId(int layerIndex)
 		{
-			modalId = $"InfoModal_{layerIndex}";
+			modalId = $"ItemInfoModal_{layerIndex}";
 		}
 
 #endregion

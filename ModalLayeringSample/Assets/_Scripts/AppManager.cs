@@ -9,7 +9,6 @@ namespace CodeSampleModalLayer
     //TODO: Create highlight state for the tab buttons
     //TODO: Button press effect on items in the inventory
     //TODO: Assign a gradient to each item category
-    //TODO: Create a credits popup
     //TODO: Alternative design for the scroll bar
     //TODO: Create JSON for copy in code
     //TODO: Cleanup
@@ -38,8 +37,6 @@ namespace CodeSampleModalLayer
 
         private DataManager dataManager = default;
         private Backpack playerBackpack = default;
-        // Amount to decrease or increase in the inventory when we add or remove an item to the backpack
-        private const int itemAmountDifference = 1;
 
         // App Starts here. Ie. the "main" function
         void Start()
@@ -53,7 +50,7 @@ namespace CodeSampleModalLayer
             homeView.Setup();
         }
 
-        public void AddItemToBackpack(Item item)
+        public void AddItemToBackpack(Item item, int itemAmountDifference)
         {
             if (playerBackpack.IsBackpackFull())
             {
@@ -66,7 +63,8 @@ namespace CodeSampleModalLayer
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
             homeView.UpdateInventoryItem(item: item);
         }
-        public void RemoveItemFromBackpack(Item item)
+
+        public void RemoveItemFromBackpack(Item item, int itemAmountDifference)
         {
             if (playerBackpack.IsBackpackEmpty())
             {
@@ -102,6 +100,18 @@ namespace CodeSampleModalLayer
         public List<Item> GetBackpackItemList()
         {
             return playerBackpack.ItemList;
+        }
+
+        public void EmptyBackpack()
+        {
+            foreach(Item i in playerBackpack.ItemList)
+            {
+                i.DecreaseBackpackItemAmount(i.AmountInBackpack);
+                homeView.UpdateInventoryItem(item: i);
+            }
+
+            homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
+            playerBackpack.RemoveAllItems();
         }
 #endregion
     }

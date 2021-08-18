@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
     public class MessageBox : MonoBehaviour
     {
         private static AppManager appMan = AppManager.Instance;
-        public static void CreateInfoModal(Item item, SquareItem.LocationCreated locationCreated)
+        public static void CreateItemInfoModal(Item item, SquareItem.LocationCreated locationCreated)
         {
             ItemInfoModal m = Instantiate(appMan.UIMan.ItemInfoModalPrefab, appMan.UIMan.DialogParent);
             m.Setup(item: item, locationCreated: locationCreated);
@@ -18,6 +19,13 @@ namespace CodeSampleModalLayer
             var appMan = AppManager.Instance;
             BackpackModal m = Instantiate(appMan.UIMan.BackpackModalPrefab, appMan.UIMan.DialogParent);
             m.Setup();
+        }
+
+        public static void CreateInfoModal(UnityAction cbOnActionButtonClick)
+        {
+            var appMan = AppManager.Instance;
+            InfoModal m = Instantiate(appMan.UIMan.InfoModalPrefab, appMan.UIMan.DialogParent);
+            m.Setup(cbOnActionButtonClick: cbOnActionButtonClick);
         }
     }
 }
