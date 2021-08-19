@@ -19,6 +19,8 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private TextMeshProUGUI titleText = default;
         [SerializeField]
+        private TextMeshProUGUI emptyText = default;
+        [SerializeField]
         private RectTransform itemParentTransform = default;
 
         private string modalId = default;
@@ -39,10 +41,14 @@ namespace CodeSampleModalLayer
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
             titleText.text = appMan.DataMan.GetCopyText("backpackmodal.title");
+            emptyText.text = appMan.DataMan.GetCopyText("backpackmodal.isempty");
             closeButton.onClick.AddListener(Shutdown);
             clearAllButton.onClick.AddListener(ClearAllItemsCallback);
             currentItemCount = appMan.GetTotalItemsInBackpack();
             CreateBackpackContents();
+
+            // Empty text appears if there is nothing inside the backpack.
+            emptyText.gameObject.SetActive(currentItemCount == 0);
 
             // ShowAnimated is located in the base class
             ShowAnimated();
@@ -70,9 +76,9 @@ namespace CodeSampleModalLayer
             ClearSquareItemsList();
             CreateBackpackContents();
             currentItemCount = appMan.GetTotalItemsInBackpack();
+            emptyText.gameObject.SetActive(currentItemCount == 0);
         }
         
-        //TODO: This is also used on the backpack button. Should I make the count text its own prefab and class?
         public void UpdateCountText(int amount, int maxAmount)
         {
             countText.text = string.Format(appMan.DataMan.GetCopyText("backpackmodal.itemcount"), amount, maxAmount);
