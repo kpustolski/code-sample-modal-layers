@@ -73,7 +73,6 @@ namespace CodeSampleModalLayer
 			removeFromBagButton.onClick.AddListener(RemoveFromBagCallback);
 
 			// Disable the add to bag button if all of the items are already in the backpack
-			// AKA the mItem.AmountInBackpack == mItem.totalOwned
 			addToBagButton.interactable = (mItem.AmountInInventory != 0);
 
 			if(appMan.IsBackpackFull())

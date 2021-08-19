@@ -7,9 +7,6 @@ namespace CodeSampleModalLayer
 {
     //TODO: Create highlight state for the tab buttons
     //TODO: Button press effect on items in the inventory
-    //TODO: Assign a gradient to each item category
-    //TODO: Alternative design for the scroll bar
-    //TODO: Create JSON for copy in code
     //TODO: Cleanup
     public class AppManager : MonoBehaviour
     {
