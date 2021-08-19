@@ -19,6 +19,8 @@ namespace CodeSampleModalLayer
         private BackpackButton backpackButton = default;
         [SerializeField]
         private TextMeshProUGUI viewTitleText = default;
+        [SerializeField]
+        private ScrollRect scrollRect = default;
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
@@ -65,6 +67,8 @@ namespace CodeSampleModalLayer
 
         private void SwitchInventoryTabs(TabContentParent sip)
         {
+            // Reset the scrollRect to the top of the list
+            scrollRect.verticalNormalizedPosition = 1;
             if (currentTabOpen != null)
             {
                 currentTabOpen.Hide();
