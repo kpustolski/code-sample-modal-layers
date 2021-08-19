@@ -46,7 +46,7 @@ namespace CodeSampleModalLayer
                 OnPreviewJSON();
             }
 
-            if (GUILayout.Button("Update Item Data File", buttonOptions))
+            if (GUILayout.Button("Update Copy Data File", buttonOptions))
             {
                 OnUpdateData();
             }
@@ -54,7 +54,7 @@ namespace CodeSampleModalLayer
             GUILayout.Space(20);
             serializedObject.Update();
             base.OnInspectorGUI();
-            serializedObject.ApplyModifiedProperties();
+            copyListProperty.serializedObject.ApplyModifiedProperties();
         }
 
         private void OnUpdateData()

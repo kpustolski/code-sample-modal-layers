@@ -23,8 +23,10 @@ namespace CodeSampleModalLayer
         [Header("JSON Files")]
         [SerializeField]
         private TextAsset itemJSONFile = default;
-
+        [SerializeField]
+        private TextAsset copyJSONFile = default;
         public TextAsset ItemJSONFile { get { return itemJSONFile; } }
+        public TextAsset CopyJSONFile { get { return copyJSONFile; } }
 
         public Sprite GetItemIcon(string id)
         {

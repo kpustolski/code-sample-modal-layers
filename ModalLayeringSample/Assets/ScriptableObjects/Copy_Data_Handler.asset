@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55eedcc6b2a624f7d995703fbcfe80ca, type: 3}
   m_Name: Copy_Data_Handler
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - copyKey: inventory.title
+    copyValue: Inventory
+  - copyKey: backpackmodal.title
+    copyValue: Backpack
+  - copyKey: backpack.full
+    copyValue: Backpack is Full
+  - copyKey: itemcount
+    copyValue: '{0}/{1}'
+  - copyKey: backpackmodal.itemcount
+    copyValue: 'Space: {0}/{1}'
+  - copyKey: action.addtobag
+    copyValue: Add
+  - copyKey: action.removefrombag
+    copyValue: Remove
+  - copyKey: action.empty
+    copyValue: Empty Backpack
+  - copyKey: infomodal.title.areyousure
+    copyValue: Are you sure?
+  - copyKey: infomodal.clearbackpack.desc
+    copyValue: All items currently in your backpack will be deleted.

@@ -15,17 +15,4 @@ namespace CodeSampleModalLayer
             return JsonUtility.ToJson(this, makeJSONPretty);
         }
     }
-
-    // Made a class for copy related Key Value pairs to easily serialize to a JSON file.
-    [Serializable]
-    public class Copy
-    {
-        public string copyKey;
-        public string copyValue;
-
-        public override string ToString()
-        {
-            return $"copyKey: {copyKey} copyValue: {copyValue}";
-        }
-    }
 }

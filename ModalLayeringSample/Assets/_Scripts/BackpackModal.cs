@@ -23,8 +23,6 @@ namespace CodeSampleModalLayer
 
         private string modalId = default;
         private List<SquareItem> squareItemsList = new List<SquareItem>();
-        private const string kModalTitle = "My Backpack";
-        private const string kCountString = "Space Left: {0}/{1}";
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
         private int currentItemCount = default;
 
@@ -40,7 +38,7 @@ namespace CodeSampleModalLayer
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
-            titleText.text = kModalTitle;
+            titleText.text = appMan.DataMan.GetCopyText("backpackmodal.title");
             closeButton.onClick.AddListener(Shutdown);
             clearAllButton.onClick.AddListener(ClearAllItemsCallback);
             currentItemCount = appMan.GetTotalItemsInBackpack();
@@ -77,10 +75,10 @@ namespace CodeSampleModalLayer
         //TODO: This is also used on the backpack button. Should I make the count text its own prefab and class?
         public void UpdateCountText(int amount, int maxAmount)
         {
-            countText.text = string.Format(kCountString, amount, maxAmount);
+            countText.text = string.Format(appMan.DataMan.GetCopyText("backpackmodal.itemcount"), amount, maxAmount);
             if(amount.Equals(maxAmount))
             {
-                countText.text = "Full!";
+                countText.text = appMan.DataMan.GetCopyText("backpack.full");
             }
         }
         
@@ -107,6 +105,8 @@ namespace CodeSampleModalLayer
         private void ClearAllItemsCallback()
         {
             MessageBox.CreateInfoModal(
+                title: appMan.DataMan.GetCopyText("infomodal.title.areyousure"),
+                description: appMan.DataMan.GetCopyText("infomodal.clearbackpack.desc"),
                 cbOnActionButtonClick: () =>
                 {
                     appMan.EmptyBackpack();

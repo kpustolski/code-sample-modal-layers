@@ -24,15 +24,13 @@ namespace CodeSampleModalLayer
         private ScrollingBackground scrollBackground = default;
         private List<TabContentParent> TabContentParentList = new List<TabContentParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
-
-        private const string kViewTitle = "Inventory";
         private TabContentParent currentTabOpen = default;
 
         public void Setup()
         {
             appMan = AppManager.Instance;
             scrollBackground = GetComponent<ScrollingBackground>();
-            viewTitleText.text = kViewTitle;
+            viewTitleText.text = appMan.DataMan.GetCopyText("inventory.title");
 
             if (scrollBackground != null)
             {

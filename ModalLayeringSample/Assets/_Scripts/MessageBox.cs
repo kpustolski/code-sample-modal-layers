@@ -21,11 +21,11 @@ namespace CodeSampleModalLayer
             m.Setup();
         }
 
-        public static void CreateInfoModal(UnityAction cbOnActionButtonClick)
+        public static void CreateInfoModal(string title, string description, UnityAction cbOnActionButtonClick)
         {
             var appMan = AppManager.Instance;
             InfoModal m = Instantiate(appMan.UIMan.InfoModalPrefab, appMan.UIMan.DialogParent);
-            m.Setup(cbOnActionButtonClick: cbOnActionButtonClick);
+            m.Setup(title: title, description: description, cbOnActionButtonClick: cbOnActionButtonClick);
         }
     }
 }

@@ -11,27 +11,52 @@ namespace CodeSampleModalLayer
         private ItemData itemData = default;
         // Holds sorted item data by category
         public Dictionary<Utilities.InventoryCategories, List<Item>> sortedItemData = new Dictionary<Utilities.InventoryCategories, List<Item>>();
-        private TextAsset mDataFile = default;
+        // Holds copy data
+        private CopyData copyData = default;
 
-        public void Initialize(TextAsset jsonFile)
+        public void Initialize()
         {
+            copyData = new CopyData();
             itemData = new ItemData();
-            mDataFile = jsonFile;
 
             GetItemData();
+            GetCopyData();
             SortItemListByCategory();
         }
 
-        public void GetItemData()
+        public string GetCopyText(string copyId)
         {
-            TextAsset file = mDataFile;
+            foreach(Copy c in copyData.data)
+            {
+                if(c.copyKey.Equals(copyId))
+                {
+                    return c.copyValue;
+                }
+            }
+            return "[Missing Copy Value]";
+        }
+
+        private void GetCopyData()
+        {
+            TextAsset file = AppManager.Instance.AppDataObject.CopyJSONFile;
             if (file == null)
             {
-                Debug.LogError($"AppManager.cs GetItemData() :: Unable to load the Item Data File.");
+                Debug.LogError($"DataManager.cs GetCopyData() :: Unable to load the Copy Data File.");
                 return;
             }
 
-            // Deserialize the JSON from ItemData.JSON and store it in ItemData
+            JsonUtility.FromJsonOverwrite(file.text, copyData);
+        }
+
+        private void GetItemData()
+        {
+            TextAsset file = AppManager.Instance.AppDataObject.ItemJSONFile;
+            if (file == null)
+            {
+                Debug.LogError($"DataManager.cs GetItemData() :: Unable to load the Item Data File.");
+                return;
+            }
+
             JsonUtility.FromJsonOverwrite(file.text, itemData);
 
             // Make sure to initialize each item.
@@ -81,7 +106,7 @@ namespace CodeSampleModalLayer
                 }
                 else
                 {
-                    Debug.Log($"AppManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
+                    Debug.Log($"DataManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
                 }
             }
         }

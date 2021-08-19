@@ -21,15 +21,12 @@ namespace CodeSampleModalLayer
         [SerializeField]
 		private TextMeshProUGUI descriptionText = default;
 
-        private const string title ="Are you sure?";
-        private const string description = "Your backpack will be cleared";
-
         public override void Initialize()
         {
             base.Initialize();
         }
 
-        public void Setup(UnityAction cbOnActionButtonClick)
+        public void Setup(string title, string description, UnityAction cbOnActionButtonClick)
         {
             Initialize();
             

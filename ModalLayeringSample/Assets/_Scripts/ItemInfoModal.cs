@@ -29,9 +29,8 @@ namespace CodeSampleModalLayer
 		private Item mItem = default;
 		private SquareItem.LocationCreated mLocationCreated = default;
 		// amount in backback / total amount owned.
-		private const string amountTestFormat = "{0}/{1}";
-		private const string kAddToBagString = "Add to Bag";		
-		private const string kBagIsFullString = "Bag is Full!";
+		private string amountTestFormat = default;
+		private string bagIsFullString = default;
 
 		public override void Initialize()
 		{
@@ -44,6 +43,8 @@ namespace CodeSampleModalLayer
 			Initialize();
 			mItem = item;
 			mLocationCreated = locationCreated;
+			amountTestFormat = appMan.DataMan.GetCopyText("itemcount");
+			bagIsFullString = appMan.DataMan.GetCopyText("backpack.full");
 
 			//TODO: May need to rethink this logic
 			// Add to bag button is enabled when the square item button is selected in the home view
@@ -58,7 +59,7 @@ namespace CodeSampleModalLayer
 			titleText.text = mItem.name;
 			itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
-			addToBagButtonText.text = kAddToBagString;
+			addToBagButtonText.text = appMan.DataMan.GetCopyText("action.addtobag");
 
 			closeButton.onClick.AddListener(Shutdown);
 			addToBagButton.onClick.AddListener(AddToBagCallback);
@@ -70,7 +71,7 @@ namespace CodeSampleModalLayer
 
 			if(appMan.IsBackpackFull())
 			{
-				addToBagButtonText.text = kBagIsFullString;
+				addToBagButtonText.text = bagIsFullString;
 				addToBagButton.interactable = false;
 			}
 
@@ -119,7 +120,7 @@ namespace CodeSampleModalLayer
 
             if (appMan.IsBackpackFull())
             {
-                addToBagButtonText.text = kBagIsFullString;
+                addToBagButtonText.text = bagIsFullString;
                 addToBagButton.interactable = false;
             }
         }

@@ -40,12 +40,12 @@ namespace CodeSampleModalLayer
         // App Starts here. Ie. the "main" function
         void Start()
         {
+            Instance = this;
             DataMan = new DataManager();
             playerBackpack = new Backpack();
             UIMan.Initialize();
-            DataMan.Initialize(jsonFile: AppDataObject.ItemJSONFile);
+            DataMan.Initialize();
 
-            Instance = this;
             homeView.Setup();
         }
 

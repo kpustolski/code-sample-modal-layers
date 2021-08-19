@@ -14,10 +14,11 @@ namespace CodeSampleModalLayer
 
         private Button button = default;
 
-        private const string kCountString = "{0}/{1}";
+        private AppManager appMan = default;
 
         public void Setup()
         {
+            appMan = AppManager.Instance;
             button = GetComponent<Button>();
             button.onClick.AddListener(OpenBackpackModal);
         }
@@ -29,10 +30,10 @@ namespace CodeSampleModalLayer
 
         public void UpdateCountText(int amount, int maxAmount)
         {
-            countText.text = string.Format(kCountString, amount, maxAmount);
+            countText.text = string.Format(appMan.DataMan.GetCopyText("itemcount"), amount, maxAmount);
             if(amount.Equals(maxAmount))
             {
-                countText.text = "Full!";
+                countText.text = appMan.DataMan.GetCopyText("backpack.full");
             }
         }
 
