@@ -12,6 +12,13 @@ namespace CodeSampleModalLayer
         public Sprite iconSprite;
     }
 
+    [Serializable]
+    public class CategoryGradient
+    {
+        public Utilities.InventoryCategories category;
+        public Gradient gradient;
+    }
+
     [CreateAssetMenu(fileName = "AppData", menuName = "ScriptableObjects/AppData", order = 1)]
     public class AppData : ScriptableObject
     {
@@ -19,6 +26,11 @@ namespace CodeSampleModalLayer
         [Space(5)]
         [SerializeField]
         private ItemIcon[] itemIcons = default;
+
+        [Header("Category Gradients")]
+        [Space(5)]
+        [SerializeField]
+        private CategoryGradient[] categoryGradients = default;
 
         [Header("JSON Files")]
         [SerializeField]
@@ -39,6 +51,20 @@ namespace CodeSampleModalLayer
             }
             // Item not found in the list
             Debug.LogError($"AppData.cs GetItemIconByItemName() :: Item with id {id} not found in ItemIcons list.");
+            return null;
+        }
+
+        public Gradient GetCategoryGradient(Utilities.InventoryCategories category)
+        {
+            foreach (CategoryGradient cg in categoryGradients)
+            {
+                if (cg.category.Equals(category))
+                {
+                    return cg.gradient;
+                }
+            }
+            // Item not found in the list
+            Debug.LogError($"AppData.cs GetCategoryGradient() :: CategoryGradient with category {category} not found in categoryGradients list.");
             return null;
         }
     }

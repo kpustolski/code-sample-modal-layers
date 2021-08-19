@@ -24,10 +24,13 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI amountText = default;
         [SerializeField]
         private RectTransform backpackIconPanel = default;
+        [SerializeField]
+        private UnityEngine.UI.Extensions.Gradient2 gradientScript = default;
 
         private AppManager appMan = default;
         private Item mItem = default;
         private LocationCreated mLocationCreated = default;
+
 
         public Item ItemAssigned { get { return mItem; } }
 
@@ -38,6 +41,11 @@ namespace CodeSampleModalLayer
             mLocationCreated = locationCreated;
             backpackIconPanel.gameObject.SetActive(false); //Off by default
             itemImage.preserveAspect = true;
+
+            if(gradientScript != null)
+            {
+                gradientScript.EffectGradient = appMan.AppDataObject.GetCategoryGradient(item.category);
+            }
 
             itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 

@@ -286,6 +286,7 @@ MonoBehaviour:
   amountPanel: {fileID: 5789740648000581214}
   amountText: {fileID: 3280238231961309698}
   backpackIconPanel: {fileID: 7946563576335403789}
+  gradientScript: {fileID: 5749561090188781576}
 --- !u!114 &3495493909267699370
 MonoBehaviour:
   m_ObjectHideFlags: 0

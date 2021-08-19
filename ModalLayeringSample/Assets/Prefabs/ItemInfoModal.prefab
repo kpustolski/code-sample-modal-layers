@@ -267,6 +267,7 @@ MonoBehaviour:
   titleText: {fileID: 800014065193654515}
   itemImage: {fileID: 7047210890931797227}
   amountInBackpackText: {fileID: 7749835211275460810}
+  gradientScript: {fileID: 2574789923034556379}
 --- !u!1 &800014066060446961
 GameObject:
   m_ObjectHideFlags: 0

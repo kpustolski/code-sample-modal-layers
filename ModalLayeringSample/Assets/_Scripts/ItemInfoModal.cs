@@ -24,6 +24,8 @@ namespace CodeSampleModalLayer
 		private Image itemImage = default;
 		[SerializeField]
 		private TextMeshProUGUI amountInBackpackText = default;
+		[SerializeField]
+        private UnityEngine.UI.Extensions.Gradient2 gradientScript = default;
 
 		private string modalId = default;
 		private Item mItem = default;
@@ -60,6 +62,11 @@ namespace CodeSampleModalLayer
 			itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 			amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 			addToBagButtonText.text = appMan.DataMan.GetCopyText("action.addtobag");
+
+			if(gradientScript != null)
+            {
+                gradientScript.EffectGradient = appMan.AppDataObject.GetCategoryGradient(item.category);
+            }
 
 			closeButton.onClick.AddListener(Shutdown);
 			addToBagButton.onClick.AddListener(AddToBagCallback);
