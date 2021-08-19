@@ -125,11 +125,11 @@ namespace CodeSampleModalLayer
             {
                 Reset();
             }
-            this.gameObject.SetActive(true);
+            ShowAnimated();
         }
         public void HideLayer()
         {
-            this.gameObject.SetActive(false);
+            HideAnimated(cbOnAnimationComplete: null);
         }
         public string GetId()
         {
