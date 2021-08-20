@@ -79,7 +79,7 @@ namespace CodeSampleModalLayer
             emptyText.gameObject.SetActive(currentItemCount == 0);
         }
         
-        public void UpdateCountText(int amount, int maxAmount)
+        private void UpdateCountText(int amount, int maxAmount)
         {
             countText.text = string.Format(appMan.DataMan.GetCopyText("backpackmodal.itemcount"), amount, maxAmount);
             if(amount.Equals(maxAmount))
