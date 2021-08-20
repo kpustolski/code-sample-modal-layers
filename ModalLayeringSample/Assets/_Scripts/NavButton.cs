@@ -47,7 +47,7 @@ namespace CodeSampleModalLayer
             else
             {
                 labelText.color = greenColor;
-                buttonScript.image.color = default;
+                buttonScript.image.color = defaultColor;
             }
         }
 
