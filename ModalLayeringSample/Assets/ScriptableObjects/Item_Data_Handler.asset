@@ -15,56 +15,45 @@ MonoBehaviour:
   data:
   - id: BaseballTShirt
     name: Baseball T-shirt
-    type: 1
     category: 2
     totalOwned: 1
   - id: Binoculars
     name: Binoculars
-    type: 2
     category: 3
     totalOwned: 2
   - id: CargoShorts
     name: Cargo Shorts
-    type: 3
     category: 2
     totalOwned: 1
   - id: FirstAidKit
     name: First Aid Kit
-    type: 4
     category: 4
     totalOwned: 1
   - id: Guitar
     name: Guitar
-    type: 5
     category: 5
     totalOwned: 1
   - id: Hat
     name: Hat
-    type: 6
     category: 2
     totalOwned: 1
   - id: Map
     name: Map
-    type: 7
     category: 4
     totalOwned: 1
   - id: MarshStick
     name: Marshmellow on a Stick
-    type: 8
     category: 5
     totalOwned: 1
   - id: Pickaxe
     name: Pickaxe
-    type: 9
     category: 3
     totalOwned: 1
   - id: Rope
     name: Rope
-    type: 10
     category: 3
     totalOwned: 2
   - id: Tent
     name: Tent
-    type: 11
     category: 3
     totalOwned: 1

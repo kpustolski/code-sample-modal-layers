@@ -35,3 +35,5 @@ MonoBehaviour:
     copyValue: Are you sure?
   - copyKey: infomodal.clearbackpack.desc
     copyValue: All items currently in your backpack will be deleted.
+  - copyKey: tabcontent.isempty
+    copyValue: There's nothing here
