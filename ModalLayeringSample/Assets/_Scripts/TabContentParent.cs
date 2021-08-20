@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace CodeSampleModalLayer
 {
@@ -11,19 +12,17 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         public Utilities.InventoryCategories Category { get { return category; } private set { category = value; } }
         private List<SquareItem> squareItemList = new List<SquareItem>();
+        private RectTransform EmptyTabPanel = default;
 
-        public void Setup(Utilities.InventoryCategories inventoryCategory, List<Item> itemList)
+        public void Setup(Utilities.InventoryCategories inventoryCategory, List<Item> itemList, RectTransform emptyTabPanel)
         {
             appMan = AppManager.Instance;
             Category = inventoryCategory;
+            EmptyTabPanel = emptyTabPanel;
 
             foreach (var i in itemList)
             {
-                // Don't create an item if we don't own any
-                if (i.totalOwned != 0)
-                {
-                    CreateSquareItem(item: i);
-                }
+                CreateSquareItem(item: i);
             }
         }
 
@@ -57,6 +56,7 @@ namespace CodeSampleModalLayer
 
         public void Show()
         {
+            EmptyTabPanel.gameObject.SetActive(squareItemList.Count == 0);
             this.gameObject.SetActive(true);
         }
 

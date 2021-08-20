@@ -73,11 +73,6 @@ namespace CodeSampleModalLayer
             {
                 List<Item> tempList = new List<Item>();
 
-                if (category == Utilities.InventoryCategories.None)
-                {
-                    continue;
-                }
-
                 if (category == Utilities.InventoryCategories.All)
                 {
                     sortedItemData.Add(category, itemData.data);
@@ -86,7 +81,13 @@ namespace CodeSampleModalLayer
                 {
                     foreach (Item i in itemData.data)
                     {
-                        if(i.category  == Utilities.InventoryCategories.All)
+                        // Items marked as None should be placed in the 'other' category
+                        if (i.category.Equals(Utilities.InventoryCategories.None))
+                        {
+                            i.category = Utilities.InventoryCategories.Other;
+                        }
+
+                        if(i.category == Utilities.InventoryCategories.All)
                         {
                             Debug.LogError($"DataManager.cs SortItemListByCategory() :: item with id {i.id} should not have its category set to All. Please update.");
                         }
@@ -99,14 +100,7 @@ namespace CodeSampleModalLayer
                         tempList.Add(i);
                     }
 
-                    if (tempList.Count != 0)
-                    {
-                        sortedItemData.Add(category, tempList);
-                    }
-                    else
-                    {
-                        Debug.Log($"DataManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
-                    }
+                    sortedItemData.Add(category, tempList);
                 }
             }
         }

@@ -21,6 +21,10 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI viewTitleText = default;
         [SerializeField]
         private ScrollRect scrollRect = default;
+        [SerializeField]
+        private TextMeshProUGUI emptyText = default;
+        [SerializeField]
+        private RectTransform emptyTextPanel = default;
 
         private AppManager appMan = default;
         private ScrollingBackground scrollBackground = default;
@@ -33,6 +37,7 @@ namespace CodeSampleModalLayer
             appMan = AppManager.Instance;
             scrollBackground = GetComponent<ScrollingBackground>();
             viewTitleText.text = appMan.DataMan.GetCopyText("inventory.title");
+            emptyText.text = appMan.DataMan.GetCopyText("tabcontent.isempty");
 
             if (scrollBackground != null)
             {
@@ -49,7 +54,12 @@ namespace CodeSampleModalLayer
             // Key: Category, Value: ItemList
             foreach (var data in appMan.DataMan.sortedItemData)
             {
-                // TODO: Handle if there are no items set to a category. Still show button?
+                // the None category does not get a nav button.
+                if(data.Key.Equals(Utilities.InventoryCategories.None))
+                {
+                    continue;
+                }
+
                 TabContentParent tcp = CreateTabContentParent(category: data.Key, itemList: data.Value);
                 NavButton navButton = CreateNavButton(category: data.Key, tabContentParent: tcp);
 
@@ -82,7 +92,6 @@ namespace CodeSampleModalLayer
                 tabContentParent: tabContentParent,
                 cbOnClick: () =>
                 {
-                    Debug.Log($"nav button is null: {(navBtn == null)}");
                     SwitchInventoryTabs(navBtn);
                 }
             );
@@ -92,7 +101,7 @@ namespace CodeSampleModalLayer
         private TabContentParent CreateTabContentParent(Utilities.InventoryCategories category, List<Item> itemList)
         {
             TabContentParent tcp = Instantiate(appMan.UIMan.TabContentParentPrefab, scrollContentRectTransform);
-            tcp.Setup(category, itemList);
+            tcp.Setup(category, itemList, emptyTextPanel);
             return tcp;
         }
 
