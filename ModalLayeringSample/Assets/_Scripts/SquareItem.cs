@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 namespace CodeSampleModalLayer
 {
-    public class SquareItem : MonoBehaviour
+    public class SquareItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         public enum LocationCreated
         {
@@ -21,6 +22,8 @@ namespace CodeSampleModalLayer
         [SerializeField]
         private RectTransform amountPanel = default;
         [SerializeField]
+        private RectTransform selectOutline = default;
+        [SerializeField]
         private TextMeshProUGUI amountText = default;
         [SerializeField]
         private RectTransform backpackIconPanel = default;
@@ -30,7 +33,6 @@ namespace CodeSampleModalLayer
         private AppManager appMan = default;
         private Item mItem = default;
         private LocationCreated mLocationCreated = default;
-
 
         public Item ItemAssigned { get { return mItem; } }
 
@@ -50,8 +52,9 @@ namespace CodeSampleModalLayer
             itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
 
             UpdateState();
-
-            button.onClick.AddListener(OpenInfoPopupCallback);
+            selectOutline.gameObject.SetActive(false);
+            //button.onClick.AddListener(OpenInfoPopupCallback);
+        
         }
 
         public void OpenInfoPopupCallback()
@@ -85,6 +88,16 @@ namespace CodeSampleModalLayer
                 amountPanel.gameObject.SetActive(true);
                 amountText.text = amountInView.ToString();
             }
+        }
+
+        public void OnPointerDown(PointerEventData pointerEventData)
+        {
+            OpenInfoPopupCallback();
+            selectOutline.gameObject.SetActive(true);
+        }
+        public void OnPointerUp(PointerEventData pointerEventData)
+        {
+            selectOutline.gameObject.SetActive(false);
         }
 
         public void Shutdown()
