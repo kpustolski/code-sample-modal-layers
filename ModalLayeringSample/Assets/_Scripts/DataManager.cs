@@ -98,15 +98,15 @@ namespace CodeSampleModalLayer
 
                         tempList.Add(i);
                     }
-                }
 
-                if (tempList.Count != 0)
-                {
-                    sortedItemData.Add(category, tempList);
-                }
-                else
-                {
-                    Debug.Log($"DataManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
+                    if (tempList.Count != 0)
+                    {
+                        sortedItemData.Add(category, tempList);
+                    }
+                    else
+                    {
+                        Debug.Log($"DataManager.cs SortItemListByCategory() :: No item of category {category} found. Did not add new object to sortedItemData.");
+                    }
                 }
             }
         }
