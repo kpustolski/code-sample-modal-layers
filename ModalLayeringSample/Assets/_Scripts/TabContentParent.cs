@@ -72,6 +72,7 @@ namespace CodeSampleModalLayer
                 si.Shutdown();
             }
             squareItemList.Clear();
+            Destroy(gameObject);
         }
     }
 }

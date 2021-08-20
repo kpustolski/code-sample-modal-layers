@@ -26,7 +26,7 @@ namespace CodeSampleModalLayer
         private ScrollingBackground scrollBackground = default;
         private List<TabContentParent> TabContentParentList = new List<TabContentParent>();
         private List<NavButton> navButtonList = new List<NavButton>();
-        private TabContentParent currentTabOpen = default;
+        private NavButton currentSelectedNavButton = default;
 
         public void Setup()
         {
@@ -41,7 +41,7 @@ namespace CodeSampleModalLayer
 
             backpackButton.Setup();
             SetupNavigation();
-            SwitchInventoryTabs(GetTabContentParent(Utilities.InventoryCategories.All));
+            SwitchInventoryTabs(GetNavButton(Utilities.InventoryCategories.All));
         }
 
         private void SetupNavigation()
@@ -50,45 +50,40 @@ namespace CodeSampleModalLayer
             foreach (var data in appMan.DataMan.sortedItemData)
             {
                 // TODO: Handle if there are no items set to a category. Still show button?
-                TabContentParent sip = CreateTabContentParent(category: data.Key, itemList: data.Value);
-                NavButton navButton = CreateNavButton(
-                    category: data.Key,
-                    cbOnClick: () =>
-                    {
-                        SwitchInventoryTabs(sip);
-                    });
+                TabContentParent tcp = CreateTabContentParent(category: data.Key, itemList: data.Value);
+                NavButton navButton = CreateNavButton(category: data.Key, tabContentParent: tcp);
 
                 // Hide the TabContentParent by default so it doesn't visually conflict with the other tabs.
-                sip.Hide();
+                tcp.Hide();
                 navButtonList.Add(navButton);
-                TabContentParentList.Add(sip);
             }
         }
 
-        private void SwitchInventoryTabs(TabContentParent sip)
+        private void SwitchInventoryTabs(NavButton nb)
         {
             // Reset the scrollRect to the top of the list
             scrollRect.verticalNormalizedPosition = 1;
-            if (currentTabOpen != null)
+            nb.ChangeState(isSelected: true);
+            if (currentSelectedNavButton != null)
             {
-                currentTabOpen.Hide();
+                currentSelectedNavButton.ChangeState(isSelected: false);
+                currentSelectedNavButton.TabContent.Hide();
             }
-            currentTabOpen = sip;
-            currentTabOpen.Show();
+            currentSelectedNavButton = nb;
+            currentSelectedNavButton.TabContent.Show();
         }
 
-        private NavButton CreateNavButton(Utilities.InventoryCategories category, UnityAction cbOnClick)
+        private NavButton CreateNavButton(Utilities.InventoryCategories category, TabContentParent tabContentParent)
         {
             NavButton navBtn = Instantiate(appMan.UIMan.NavButtonPrefab, buttonParentRectTransform);
             navBtn.Setup(
                 label: category.ToString(),
                 inventoryCategory: category,
+                tabContentParent: tabContentParent,
                 cbOnClick: () =>
                 {
-                    if (cbOnClick != null)
-                    {
-                        cbOnClick();
-                    }
+                    Debug.Log($"nav button is null: {(navBtn == null)}");
+                    SwitchInventoryTabs(navBtn);
                 }
             );
             return navBtn;
@@ -96,22 +91,22 @@ namespace CodeSampleModalLayer
 
         private TabContentParent CreateTabContentParent(Utilities.InventoryCategories category, List<Item> itemList)
         {
-            TabContentParent sip = Instantiate(appMan.UIMan.TabContentParentPrefab, scrollContentRectTransform);
-            sip.Setup(category, itemList);
-            return sip;
+            TabContentParent tcp = Instantiate(appMan.UIMan.TabContentParentPrefab, scrollContentRectTransform);
+            tcp.Setup(category, itemList);
+            return tcp;
         }
 
 
-        private TabContentParent GetTabContentParent(Utilities.InventoryCategories category)
+        private NavButton GetNavButton(Utilities.InventoryCategories category)
         {
-            foreach (TabContentParent sip in TabContentParentList)
+            foreach (NavButton nb in navButtonList)
             {
-                if (sip.Category.Equals(category))
+                if (nb.Category.Equals(category))
                 {
-                    return sip;
+                    return nb;
                 }
             }
-            Debug.Log($"HomeView.cs GetNavButtonByCategory():: No TabContentParent of category {category} found.");
+            Debug.Log($"HomeView.cs GetNavButton():: No nav button of category {category} found.");
             return null;
         }
 
@@ -123,9 +118,9 @@ namespace CodeSampleModalLayer
 
         public void UpdateInventoryItem(Item item)
         {
-            foreach (TabContentParent sip in TabContentParentList)
+            foreach (NavButton nb in navButtonList)
             {
-                sip.UpdateItem(item: item);
+                nb.TabContent.UpdateItem(item: item);
             }
         }
 
@@ -133,15 +128,9 @@ namespace CodeSampleModalLayer
         {
             scrollBackground.Shutdown();
 
-            foreach (var i in TabContentParentList)
-            {
-                i.Shutdown();
-            }
-            TabContentParentList.Clear();
-
             foreach (NavButton i in navButtonList)
             {
-                Destroy(i.gameObject);
+                i.Shutdown();
             }
             navButtonList.Clear();
         }
