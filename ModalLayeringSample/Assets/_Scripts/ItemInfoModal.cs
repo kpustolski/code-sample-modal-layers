@@ -48,7 +48,6 @@ namespace CodeSampleModalLayer
 			amountTestFormat = appMan.DataMan.GetCopyText("itemcount");
 			bagIsFullString = appMan.DataMan.GetCopyText("backpack.full");
 
-			//TODO: May need to rethink this logic
 			// Add to bag button is enabled when the square item button is selected in the home view
 			addToBagButton.gameObject.SetActive(mLocationCreated == SquareItem.LocationCreated.homeView);
 			// The remove from bag button is enabled when the square item button is selected in the backpack modal 
