@@ -5,9 +5,6 @@ using System;
 
 namespace CodeSampleModalLayer
 {
-    //TODO: Create highlight state for the tab buttons
-    //TODO: Button press effect on items in the inventory
-    //TODO: Cleanup
     public class AppManager : MonoBehaviour
     {
         [Header("Views")]

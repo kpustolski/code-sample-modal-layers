@@ -30,8 +30,34 @@ namespace CodeSampleModalLayer
 
         public bool IsItemValid(Item item)
         {
-            // TODO: Fill with validation cases
+            if (string.IsNullOrEmpty(item.id))
+            {
+                Debug.LogError($"ItemDataHandler.cs IsItemValid() :: Item with name: {item.name} has a missing or null unique id.");
+                return false;
+            }
+
+            if (DoesItemIdAlreadyExist(item.id))
+            {
+                Debug.LogError($"ItemDataHandler.cs IsItemValid() :: Item object of id {item.id} already exists. Check object with the name: {item.name}. Make sure the id is unique for each object.");
+                return false;
+            }
+
             return true;
+        }
+        
+        // Helper to see if there are duplicate item objects in the list based on its id.
+        // The id for each item should be unique.
+        private bool DoesItemIdAlreadyExist(string id)
+        {
+            int copies = 0;
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (data[i].id.Equals(id))
+                {
+                    copies++;
+                }
+            }
+            return copies > 1;
         }
     }
 }
