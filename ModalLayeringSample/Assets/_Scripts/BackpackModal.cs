@@ -49,6 +49,8 @@ namespace CodeSampleModalLayer
 
             // Empty text appears if there is nothing inside the backpack.
             emptyText.gameObject.SetActive(currentItemCount == 0);
+            //Disable the clearAllButton if nothing is in the backpack
+            clearAllButton.interactable = (currentItemCount != 0);
 
             // ShowAnimated is located in the base class
             ShowAnimated();
@@ -77,6 +79,8 @@ namespace CodeSampleModalLayer
             CreateBackpackContents();
             currentItemCount = appMan.GetTotalItemsInBackpack();
             emptyText.gameObject.SetActive(currentItemCount == 0);
+            //Disable the clearAllButton if nothing is in the backpack
+            clearAllButton.interactable = (currentItemCount != 0);
         }
         
         private void UpdateCountText(int amount, int maxAmount)
