@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +7,6 @@ namespace CodeSampleModalLayer
     {
         private const int maxTotalItems = 10;
         private List<Item> itemList = new List<Item>();
-        // public List<Item> ItemList { get { return itemList; } }
-
         public int MaxTotalItems { get { return maxTotalItems; } }
         public List<Item> ItemList { get { return itemList; } }
 

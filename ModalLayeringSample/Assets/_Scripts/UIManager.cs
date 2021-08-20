@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -44,7 +43,6 @@ namespace CodeSampleModalLayer
 
         public void Initialize()
         {
-            // init code here
             dialogOverlayCanvasGroup.alpha = 0;
             dialogOverlayCanvasGroup.gameObject.SetActive(false);
         }
@@ -64,7 +62,6 @@ namespace CodeSampleModalLayer
                 modalLayerList[modalLayerList.Count - 1].HideLayer();
             }
 
-            // layer.ShowLayer();
             if (!modalLayerList.Contains(layer))
             {
                 modalLayerList.Add(layer);
@@ -75,8 +72,6 @@ namespace CodeSampleModalLayer
             //Show the dialog overlay
             dialogOverlayCanvasGroup.gameObject.SetActive(true);
             dialogOverlayCanvasGroup.DOFade(1f, overlayFadeDuration);
-
-            // PrintModalLayerList();
         }
 
         public void RemoveFromModalLayerList(IModalLayer layer)
@@ -106,20 +101,15 @@ namespace CodeSampleModalLayer
                 dialogOverlayCanvasGroup.DOFade(0f, overlayFadeDuration);
                 dialogOverlayCanvasGroup.gameObject.SetActive(false);
             }
-            
-
-            // PrintModalLayerList("cyan");
         }
 
-        #region Debug Methods
+#region Debug Methods
         private void PrintModalLayerList(string color = "red")
         {
-            Debug.Log("------");
             for (int i = 0; i < modalLayerList.Count; i++)
             {
                 Debug.Log($"<color={color}>{modalLayerList[i].GetId()}_{i}</color>");
             }
-            Debug.Log("------");
         }
 
         private IModalLayer GetModalLayerById(string id)

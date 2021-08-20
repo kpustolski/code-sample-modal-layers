@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 
@@ -13,7 +10,6 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI countText = default;
 
         private Button button = default;
-
         private AppManager appMan = default;
 
         public void Setup()
