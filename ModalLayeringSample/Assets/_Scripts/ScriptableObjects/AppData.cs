@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -63,7 +61,7 @@ namespace CodeSampleModalLayer
                     return cg.gradient;
                 }
             }
-            // Item not found in the list
+
             Debug.LogError($"AppData.cs GetCategoryGradient() :: CategoryGradient with category {category} not found in categoryGradients list.");
             return null;
         }
