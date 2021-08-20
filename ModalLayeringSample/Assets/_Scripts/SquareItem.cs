@@ -16,8 +16,6 @@ namespace CodeSampleModalLayer
         }
 
         [SerializeField]
-        private Button button = default;
-        [SerializeField]
         private Image itemImage = default;
         [SerializeField]
         private RectTransform amountPanel = default;
@@ -53,7 +51,6 @@ namespace CodeSampleModalLayer
 
             UpdateState();
             selectOutline.gameObject.SetActive(false);
-            //button.onClick.AddListener(OpenInfoPopupCallback);
         
         }
 
@@ -102,7 +99,6 @@ namespace CodeSampleModalLayer
 
         public void Shutdown()
         {
-            button.onClick.RemoveAllListeners();
             Destroy(gameObject);
         }
     }
