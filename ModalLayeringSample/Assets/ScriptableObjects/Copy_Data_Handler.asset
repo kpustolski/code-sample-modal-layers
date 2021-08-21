@@ -22,7 +22,7 @@ MonoBehaviour:
   - copyKey: backpackmodal.itemcount
     copyValue: 'Space: {0}/{1}'
   - copyKey: backpack.full
-    copyValue: Backpack is Full
+    copyValue: Full!
   - copyKey: itemcount
     copyValue: '{0}/{1}'
   - copyKey: action.addtobag
@@ -34,6 +34,6 @@ MonoBehaviour:
   - copyKey: infomodal.title.areyousure
     copyValue: Are you sure?
   - copyKey: infomodal.clearbackpack.desc
-    copyValue: All items currently in your backpack will be deleted.
+    copyValue: All items currently in your backpack will be removed.
   - copyKey: tabcontent.isempty
     copyValue: There's nothing here
