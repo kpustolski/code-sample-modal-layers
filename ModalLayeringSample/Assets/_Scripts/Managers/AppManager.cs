@@ -53,6 +53,8 @@ namespace CodeSampleModalLayer
             item.IncreaseBackpackItemAmount(itemAmountDifference);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
             homeView.UpdateInventoryItem(item: item);
+            
+            Debug.Log($"{item.name} has been added to the backpack. Total items in backpack: {GetTotalItemsInBackpack()}");
         }
 
         public void RemoveItemFromBackpack(Item item, int itemAmountDifference)
@@ -67,6 +69,8 @@ namespace CodeSampleModalLayer
             playerBackpack.RemoveItem(item: item);
             homeView.UpdateBackpackItemCount(count: playerBackpack.GetTotalItemsInBackpack(), maxNumber: playerBackpack.MaxTotalItems);
             homeView.UpdateInventoryItem(item: item);
+
+            Debug.Log($"{item.name} has been removed from the backpack. Total items in backpack: {GetTotalItemsInBackpack()}");
         }
 
 #region Backpack Helpers

@@ -19,7 +19,6 @@ namespace CodeSampleModalLayer
             }
 
             itemList.Add(item);
-            Debug.Log($"Item is added to the backpack. Count: {GetTotalItemsInBackpack()}");
         }
 
         public void RemoveItem(Item item)
