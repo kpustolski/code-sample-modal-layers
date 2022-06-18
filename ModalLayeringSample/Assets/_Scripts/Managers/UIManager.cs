@@ -39,7 +39,7 @@ namespace CodeSampleModalLayer
 
         private List<IModalLayer> modalLayerList = new List<IModalLayer>();
 
-        // Animation Variablea
+        // Animation Variables
         private const float overlayFadeDuration = 0.2f;
 
         public void Initialize()
@@ -85,7 +85,7 @@ namespace CodeSampleModalLayer
             }
 
             layer.HideLayer(cbOnHideLayer: cbOnRemovalFromList);
-            
+
             if (modalLayerList.Contains(layer))
             {
                 modalLayerList.Remove(layer);
