@@ -16,10 +16,13 @@ namespace CodeSampleModalLayer
         protected AppManager appMan = default;
 
         // Animation variables
-        private const float contentFadeDuration = 0.2f;
-        private const float buttonFadeDuration = 0.2f;
         private Vector3 contentScalePunch = new Vector3(0.1f, 0.1f, 0.1f);
+        private Sequence hideSequence = default;
+        private Sequence showSequence = default;
+
+        private const float contentFadeDuration = 0.2f;
         private const float contentScaleDuration = 0.2f;
+
 
         public virtual void Initialize()
         {
@@ -30,22 +33,24 @@ namespace CodeSampleModalLayer
         {
             contentPanelCanvasGroup.alpha = 0;
 
-            Sequence showSequence = DOTween.Sequence();
-            showSequence.stringId = "ModalBase.cs :: ShowSequence"; // for debugging
+            ResetSequence(showSequence);
+            showSequence = DOTween.Sequence();
+            
             showSequence.AppendCallback(() =>
             {
                 gameObject.SetActive(true);
             })
-            .Append(contentPanelCanvasGroup.DOFade(1f, contentFadeDuration).SetId(contentPanelCanvasGroup))
-            .Join(contentPanelRectTransform.DOPunchScale(contentScalePunch, contentScaleDuration).SetId(contentPanelRectTransform));
+            .Append(contentPanelCanvasGroup.DOFade(1f, contentFadeDuration))
+            .Join(contentPanelRectTransform.DOPunchScale(contentScalePunch, contentScaleDuration));
         }
 
         protected void HideAnimated(UnityAction cbOnAnimationComplete)
         {
-            Sequence hideSequence = DOTween.Sequence();
-            hideSequence.stringId = "ModalBase.cs :: hideSequence"; // For debugging
-            hideSequence.Append(contentPanelCanvasGroup.DOFade(0f, contentFadeDuration).SetId(contentPanelCanvasGroup))
-                .Join(contentPanelRectTransform.DOPunchScale(contentScalePunch, contentScaleDuration).SetId(contentPanelRectTransform))
+            ResetSequence(hideSequence);
+            hideSequence = DOTween.Sequence();
+
+            hideSequence.Append(contentPanelCanvasGroup.DOFade(0f, contentFadeDuration))
+                .Join(contentPanelRectTransform.DOPunchScale(contentScalePunch, contentScaleDuration))
                 .OnComplete(() =>
                 {
                     gameObject.SetActive(false);
@@ -54,6 +59,15 @@ namespace CodeSampleModalLayer
                         cbOnAnimationComplete();
                     }
                 });
+        }
+
+        private void ResetSequence(Sequence seq)
+        {
+            if(seq != null)
+            {
+                seq.Kill(false);
+                seq = null;
+            }
         }
     }
 }

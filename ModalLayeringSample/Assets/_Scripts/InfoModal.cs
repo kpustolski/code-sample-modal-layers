@@ -46,13 +46,13 @@ namespace CodeSampleModalLayer
 
             ShowAnimated();
         }
+
 		public void Shutdown()
 		{
-            // HideAnimated is located in the base class
-            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
 		}
 
-		private void ShutdownOnAnimationCompleteCallback()
+		private void OnRemovalFromList()
 		{
 			// Turn off button interactables to avoid double clicks
 			closeButton.interactable = false;
@@ -61,8 +61,7 @@ namespace CodeSampleModalLayer
 			closeButton.onClick.RemoveAllListeners();
 			actionButton.onClick.RemoveAllListeners();
 
-			// Remove from modal layer list
-			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
+			 Destroy(gameObject);
 		}
 
 #region ModalLayer Functions
@@ -71,9 +70,9 @@ namespace CodeSampleModalLayer
 		{
 			ShowAnimated();
 		}
-		public void HideLayer()
+		public void HideLayer(UnityAction OnHideLayerCallback)
 		{
-			HideAnimated(cbOnAnimationComplete: null);
+			HideAnimated(cbOnAnimationComplete: OnHideLayerCallback);
 		}
 		public string GetId()
 		{

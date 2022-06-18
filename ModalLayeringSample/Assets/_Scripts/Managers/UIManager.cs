@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
@@ -59,7 +60,7 @@ namespace CodeSampleModalLayer
             // If a modal is already in the list, hide that one before showing the new one.
             if (modalLayerList.Count >= 1)
             {
-                modalLayerList[modalLayerList.Count - 1].HideLayer();
+                modalLayerList[modalLayerList.Count - 1].HideLayer(cbOnHideLayer: null);
             }
 
             if (!modalLayerList.Contains(layer))
@@ -74,7 +75,7 @@ namespace CodeSampleModalLayer
             dialogOverlayCanvasGroup.DOFade(1f, overlayFadeDuration);
         }
 
-        public void RemoveFromModalLayerList(IModalLayer layer)
+        public void RemoveFromModalLayerList(IModalLayer layer, UnityAction cbOnRemovalFromList = null)
         {
             if (layer == null)
             {
@@ -83,7 +84,8 @@ namespace CodeSampleModalLayer
                 return;
             }
 
-            layer.HideLayer();
+            layer.HideLayer(cbOnHideLayer: cbOnRemovalFromList);
+            
             if (modalLayerList.Contains(layer))
             {
                 modalLayerList.Remove(layer);

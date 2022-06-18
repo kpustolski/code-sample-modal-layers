@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
@@ -57,17 +58,15 @@ namespace CodeSampleModalLayer
 
         public void Shutdown()
         {
-            // HideAnimated is located in the base class
-            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
         }
 
-        private void ShutdownOnAnimationCompleteCallback()
+        private void OnRemovalFromList()
         {
             closeButton.onClick.RemoveAllListeners();
             ClearSquareItemsList();
 
-            // Remove from modal layer list
-            appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
+            Destroy(gameObject);
         }
 
         private void Reset()
@@ -134,10 +133,12 @@ namespace CodeSampleModalLayer
             }
             ShowAnimated();
         }
-        public void HideLayer()
+
+        public void HideLayer(UnityAction cbOnHideLayer)
         {
-            HideAnimated(cbOnAnimationComplete: null);
+            HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
         }
+
         public string GetId()
         {
             return modalId;

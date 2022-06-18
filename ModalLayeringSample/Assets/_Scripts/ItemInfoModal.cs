@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
@@ -86,11 +87,11 @@ namespace CodeSampleModalLayer
 		}
 		public void Shutdown()
 		{
-            // HideAnimated is located in the base class
-            HideAnimated(cbOnAnimationComplete: ShutdownOnAnimationCompleteCallback);
+			// Remove from modal layer list
+			appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
 		}
 
-		private void ShutdownOnAnimationCompleteCallback()
+		public void OnRemovalFromList()
 		{
 			// Turn off button interactables to avoid double clicks
 			closeButton.interactable = false;
@@ -101,8 +102,7 @@ namespace CodeSampleModalLayer
 			addToBagButton.onClick.RemoveAllListeners();
 			removeFromBagButton.onClick.RemoveAllListeners();
 
-			// Remove from modal layer list
-			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
+			Destroy(gameObject);
 		}
 
 		private void RemoveFromBagCallback()
@@ -136,10 +136,12 @@ namespace CodeSampleModalLayer
 		{
 			ShowAnimated();
 		}
-		public void HideLayer()
+
+		public void HideLayer(UnityAction cbOnHideLayer = null)
 		{
-			HideAnimated(cbOnAnimationComplete: null);
+			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
 		}
+
 		public string GetId()
 		{
 			return modalId;
