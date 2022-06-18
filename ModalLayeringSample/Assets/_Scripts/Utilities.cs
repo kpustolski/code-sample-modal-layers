@@ -1,4 +1,7 @@
 
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace CodeSampleModalLayer
 {
     public static class Utilities
@@ -11,6 +14,12 @@ namespace CodeSampleModalLayer
             Tools = 3,
             Gear = 4,
             Other = 5,
+        }
+
+        // For debugging
+        public static void PrintColor(string message, string color = "red")
+        {
+            Debug.Log($"<color='{color}'>{message}</color>");
         }
     }
 }
