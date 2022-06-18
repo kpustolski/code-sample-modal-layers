@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 556049923998833549}
   - component: {fileID: 3619480683584102395}
   m_Layer: 5
-  m_Name: AmountBackground
+  m_Name: BackpackBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.2, y: -30.5}
+  m_AnchoredPosition: {x: 5, y: -28}
   m_SizeDelta: {x: 33, y: 33}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &556049923998833549
@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0efba9f29ff4ec88f6fd25359ae2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 737353359198335238}
   itemImage: {fileID: 8997645316733491500}
   amountPanel: {fileID: 5789740648000581214}
   selectOutline: {fileID: 6213716290539739438}
@@ -367,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 5, y: -0}
+  m_AnchoredPosition: {x: 5, y: -5}
   m_SizeDelta: {x: 48.7544, y: 29.5504}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2767810635226262790
