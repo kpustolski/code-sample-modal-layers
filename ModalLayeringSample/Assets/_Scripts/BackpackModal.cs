@@ -68,8 +68,6 @@ namespace CodeSampleModalLayer
 
             // Remove from modal layer list
             appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
-
-            Destroy(gameObject);
         }
 
         private void Reset()

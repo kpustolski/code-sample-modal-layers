@@ -22,6 +22,8 @@ namespace CodeSampleModalLayer
         public override void Initialize()
         {
             base.Initialize();
+			closeButton.interactable = true;
+			actionButton.interactable = true;
         }
 
         public void Setup(string title, string description, UnityAction cbOnActionButtonClick)
@@ -61,7 +63,6 @@ namespace CodeSampleModalLayer
 
 			// Remove from modal layer list
 			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
-			Destroy(gameObject);
 		}
 
 #region ModalLayer Functions

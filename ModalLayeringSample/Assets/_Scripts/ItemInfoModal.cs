@@ -36,6 +36,9 @@ namespace CodeSampleModalLayer
 		{
 			base.Initialize();
             itemImage.preserveAspect = true;
+			closeButton.interactable = true;
+			addToBagButton.interactable = true;
+			removeFromBagButton.interactable = true;
 		}
 
 		public void Setup(Item item, SquareItem.LocationCreated locationCreated)
@@ -100,7 +103,6 @@ namespace CodeSampleModalLayer
 
 			// Remove from modal layer list
 			appMan.UIMan.RemoveFromModalLayerList(this as IModalLayer);
-			Destroy(gameObject);
 		}
 
 		private void RemoveFromBagCallback()
