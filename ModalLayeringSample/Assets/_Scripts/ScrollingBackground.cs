@@ -25,7 +25,6 @@ namespace CodeSampleModalLayer
         // Control what direction the scrolling background should take
         [SerializeField]
         private ScrollDirection scrollDirection;
-        // [SerializeField]
         private RectTransform backgroundContainer = default;
 
         [Tooltip("In milliseconds")]
@@ -42,7 +41,6 @@ namespace CodeSampleModalLayer
                 // We don't want the background to scroll
                 return;
             }
-
 
             // Offset is determined by the width/height of the background container
             var offsetValues = GetOffsetBasedOnDirection();
