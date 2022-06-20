@@ -7,10 +7,10 @@
   - [Images used](#images-used)
   
 # Overview
-*Last Updated: 8.20.2021*
+*Last Updated: 6.20.2022*
 
 * Unity version: 2020.3.14f1
-* **Technical goal:** Create a system that layers modal popups so that only one is seen at a time.
+* **Design goal:** Create a system that layers modal popups so that only one is seen at a time. Keep it simple.
 * **Experience goal:** Choose which 10 items you want to pack in your backpack for a camping trip.
 * The `Start()` function is located in [AppManager.cs](https://github.com/moose15/code-sample-modal-layers/blob/main/ModalLayeringSample/Assets/_Scripts/Managers/AppManager.cs).
 * This project is intended to be viewed in the 16:9 aspect ratio.
