@@ -87,11 +87,11 @@ namespace CodeSampleModalLayer
 
         public void OnPointerDown(PointerEventData pointerEventData)
         {
-            OpenInfoPopupCallback();
             selectOutline.gameObject.SetActive(true);
         }
         public void OnPointerUp(PointerEventData pointerEventData)
         {
+            OpenInfoPopupCallback();
             selectOutline.gameObject.SetActive(false);
         }
 
