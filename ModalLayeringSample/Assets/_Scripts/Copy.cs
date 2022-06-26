@@ -12,7 +12,7 @@ namespace CodeSampleModalLayer
 
         public override string ToString()
         {
-            return $"copyKey: {copyKey} copyValue: {copyValue}";
+            return $"copyKey: {copyKey} | copyValue: {copyValue}";
         }
     }
 
@@ -24,11 +24,12 @@ namespace CodeSampleModalLayer
 
         public override string ToString()
         {
+            string returnString = string.Empty;
             foreach (var d in data)
             {
-                return $"{d.ToString()}";
+                returnString += $"{d.ToString()}\n";
             }
-            return "";
+            return returnString;
         }
     }
 }

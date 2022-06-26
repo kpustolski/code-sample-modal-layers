@@ -31,7 +31,7 @@ namespace CodeSampleModalLayer
 
         public override string ToString()
         {
-            return $"id: {id} name: {name} category {category} totalOwned {totalOwned} amountInBackpack {amountInBackpack} amountInInventory {amountInInventory}";
+            return $"id: {id} | name: {name} | category: {category} | totalOwned: {totalOwned} | amountInBackpack: {amountInBackpack} | amountInInventory: {amountInInventory}";
         }
 
         public void DecreaseBackpackItemAmount(int subtraheand)
@@ -56,11 +56,12 @@ namespace CodeSampleModalLayer
 
         public override string ToString()
         {
+            string returnString = string.Empty;
             foreach (var d in data)
             {
-                return $"{d.ToString()}";
+                returnString += $"{d.ToString()}\n";
             }
-            return "";
+            return returnString;
         }
     }
 }
