@@ -4,14 +4,14 @@ using System;
 namespace CodeSampleModalLayer
 {
     [Serializable]
-    public class ItemIcon
+    public struct ItemIcon
     {
         public string itemId;
         public Sprite iconSprite;
     }
 
     [Serializable]
-    public class CategoryGradient
+    public struct CategoryGradient
     {
         public Utilities.InventoryCategories category;
         public Gradient gradient;
