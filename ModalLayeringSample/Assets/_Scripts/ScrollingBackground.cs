@@ -29,7 +29,7 @@ namespace CodeSampleModalLayer
 
         [Tooltip("In milliseconds")]
         [SerializeField]
-        private float duration = default; // in milliseconds
+        private float duration = default;
 
         public void Initialize()
         {
