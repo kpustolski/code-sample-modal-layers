@@ -7,15 +7,15 @@
   - [Images used](#images-used)
   
 # Overview
-*Last Updated: 6.26.2022*
+*Last Updated: 6.27.2022*
 
 * Unity version: 2020.3.14f1
-* **Design goal:** Create a system that layers modal popups so that only one is seen at a time. Keep overall project simple.
+* **Design goal:** Create a system that layers modal popups so that only one is seen at a time. Keep the overall project simple.
 * **Experience goal:** Choose which 10 items you want to pack in your backpack for a camping trip.
 * The `Start()` function is located in [AppManager.cs](https://github.com/moose15/code-sample-modal-layers/blob/main/ModalLayeringSample/Assets/_Scripts/Managers/AppManager.cs).
 * This project is intended to be viewed in the 16:9 aspect ratio.
 
-In this example, you can choose which 10 items from your inventory that you would like to bring with you on a camping trip. There are a total of 11 different types of items and there can be more than one item available in the inventory. As far as interactions go, you can:
+In this example, you can choose which 10 items from your inventory that you would like to bring with you on a camping trip. There are a total of 11 different types of items and there can be multiples of an item available in the inventory. As far as interactions go, you can:
 * Tap through the tab navigation to filter items by category
 * Tap on items for more information and to add them to your bag
 * You can remove one item or all items from your backpack
