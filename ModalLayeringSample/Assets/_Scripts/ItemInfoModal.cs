@@ -56,7 +56,7 @@ namespace CodeSampleModalLayer
 			removeFromBagButton.gameObject.SetActive(mLocationCreated == SquareItem.LocationCreated.backpackModal);
 
 			// Add to the modal layer list
-			//AppMan is set in base class
+			// AppMan is set in base class
 			appMan.UIMan.AddToModalLayerList(this as IModalLayer);
 
 			titleText.text = mItem.name;
@@ -88,21 +88,7 @@ namespace CodeSampleModalLayer
 		public void Shutdown()
 		{
 			// Remove from modal layer list
-			appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
-		}
-
-		public void OnRemovalFromList()
-		{
-			// Turn off button interactables to avoid double clicks
-			closeButton.interactable = false;
-			addToBagButton.interactable = false;
-			removeFromBagButton.interactable = false;
-
-			closeButton.onClick.RemoveAllListeners();
-			addToBagButton.onClick.RemoveAllListeners();
-			removeFromBagButton.onClick.RemoveAllListeners();
-
-			Destroy(gameObject);
+			appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
 		}
 
 		private void RemoveFromBagCallback()
@@ -119,7 +105,7 @@ namespace CodeSampleModalLayer
         {
             appMan.AddItemToBackpack(item: mItem, itemAmountDifference: 1);
 
-            //Are all instances of this item in our backpack? If so, disable the add to bag button.
+            // Are all instances of this item in our backpack? If so, disable the add to bag button.
             addToBagButton.interactable = (mItem.AmountInInventory != 0);
             amountInBackpackText.text = string.Format(amountTestFormat, mItem.AmountInBackpack, mItem.totalOwned);
 
@@ -137,9 +123,23 @@ namespace CodeSampleModalLayer
 			ShowAnimated();
 		}
 
-		public void HideLayer(UnityAction cbOnHideLayer = null)
+		public void HideLayer(UnityAction cbOnHideLayer)
 		{
 			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
+		}
+		
+		public void OnRemovalFromLayerList()
+		{
+			// Turn off button interactables to avoid double clicks
+			closeButton.interactable = false;
+			addToBagButton.interactable = false;
+			removeFromBagButton.interactable = false;
+
+			closeButton.onClick.RemoveAllListeners();
+			addToBagButton.onClick.RemoveAllListeners();
+			removeFromBagButton.onClick.RemoveAllListeners();
+
+			Destroy(gameObject);
 		}
 
 		public string GetId()

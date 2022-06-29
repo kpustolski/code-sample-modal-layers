@@ -19,10 +19,9 @@ namespace CodeSampleModalLayer
         private Vector3 contentScalePunch = new Vector3(0.1f, 0.1f, 0.1f);
         private Sequence hideSequence = default;
         private Sequence showSequence = default;
-
+        
         private const float contentFadeDuration = 0.2f;
         private const float contentScaleDuration = 0.2f;
-
 
         public virtual void Initialize()
         {

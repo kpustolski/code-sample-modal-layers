@@ -14,6 +14,7 @@ namespace CodeSampleModalLayer
     {
         public void ShowLayer();
         public void HideLayer(UnityAction cbOnHideLayer);
+        public void OnRemovalFromLayerList();
         public string GetId();
         public void AssignId(int layerIndex);
     }

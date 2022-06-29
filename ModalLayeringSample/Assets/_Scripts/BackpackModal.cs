@@ -22,11 +22,14 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI emptyText = default;
         [SerializeField]
         private RectTransform itemParentTransform = default;
-
+        
         private string modalId = default;
         private List<SquareItem> squareItemsList = new List<SquareItem>();
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
         private int currentItemCount = default;
+        // Helps determine when we should show/hide the modal in the modal layer stack.
+        // For the BackpackModal, we want to make sure it's still seen in the background.
+        private bool bDoHideModal = false;
 
 		public override void Initialize()
 		{
@@ -58,15 +61,9 @@ namespace CodeSampleModalLayer
 
         public void Shutdown()
         {
-            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
-        }
-
-        private void OnRemovalFromList()
-        {
-            closeButton.onClick.RemoveAllListeners();
-            ClearSquareItemsList();
-
-            Destroy(gameObject);
+            // We want to make sure the modal animates when we shut it down.
+            bDoHideModal = true;
+            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
         }
 
         private void Reset()
@@ -75,7 +72,7 @@ namespace CodeSampleModalLayer
             CreateBackpackContents();
             currentItemCount = appMan.GetTotalItemsInBackpack();
             emptyText.gameObject.SetActive(currentItemCount == 0);
-            //Disable the clearAllButton if nothing is in the backpack
+            // Disable the clearAllButton if nothing is in the backpack
             clearAllButton.interactable = (currentItemCount != 0);
         }
         
@@ -131,12 +128,37 @@ namespace CodeSampleModalLayer
             {
                 Reset();
             }
-            ShowAnimated();
+            
+            if(bDoHideModal)
+            {
+                ShowAnimated();
+            }
         }
 
         public void HideLayer(UnityAction cbOnHideLayer)
         {
-            HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
+            // The Backpack modal is special case where we want it to stay visible behind 
+            // other modals in the list. We use the bDoHideModal to help determine
+            // when we want the animation to occur.
+            if(bDoHideModal)
+            {
+                HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
+            }
+            else
+            {
+                if(cbOnHideLayer != null)
+                {
+                    cbOnHideLayer();
+                }
+            }
+        }
+
+        public void OnRemovalFromLayerList()
+        {
+            closeButton.onClick.RemoveAllListeners();
+            ClearSquareItemsList();
+
+            Destroy(gameObject);
         }
 
         public string GetId()

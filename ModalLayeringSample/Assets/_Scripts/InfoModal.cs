@@ -49,19 +49,7 @@ namespace CodeSampleModalLayer
 
 		public void Shutdown()
 		{
-            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer, cbOnRemovalFromList: OnRemovalFromList);
-		}
-
-		private void OnRemovalFromList()
-		{
-			// Turn off button interactables to avoid double clicks
-			closeButton.interactable = false;
-			actionButton.interactable = false;
-
-			closeButton.onClick.RemoveAllListeners();
-			actionButton.onClick.RemoveAllListeners();
-
-			 Destroy(gameObject);
+            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
 		}
 
 #region ModalLayer Functions
@@ -70,10 +58,25 @@ namespace CodeSampleModalLayer
 		{
 			ShowAnimated();
 		}
-		public void HideLayer(UnityAction OnHideLayerCallback)
+
+		public void HideLayer(UnityAction cbOnHideLayer) 
 		{
-			HideAnimated(cbOnAnimationComplete: OnHideLayerCallback);
+			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
 		}
+
+		public void OnRemovalFromLayerList()
+		{
+			// Turn off button interactables to avoid double clicks
+			closeButton.interactable = false;
+			actionButton.interactable = false;
+
+			closeButton.onClick.RemoveAllListeners();
+			actionButton.onClick.RemoveAllListeners();
+
+			Destroy(gameObject);
+		}
+
+
 		public string GetId()
 		{
 			return modalId;

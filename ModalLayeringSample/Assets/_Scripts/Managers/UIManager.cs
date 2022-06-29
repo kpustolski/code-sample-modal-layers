@@ -60,7 +60,8 @@ namespace CodeSampleModalLayer
             // If a modal is already in the list, hide that one before showing the new one.
             if (modalLayerList.Count >= 1)
             {
-                modalLayerList[modalLayerList.Count - 1].HideLayer(cbOnHideLayer: null);
+                IModalLayer lastModalInList = modalLayerList[modalLayerList.Count - 1];
+                lastModalInList.HideLayer(cbOnHideLayer: null);
             }
 
             if (!modalLayerList.Contains(layer))
@@ -75,7 +76,7 @@ namespace CodeSampleModalLayer
             dialogOverlayCanvasGroup.DOFade(1f, overlayFadeDuration);
         }
 
-        public void RemoveFromModalLayerList(IModalLayer layer, UnityAction cbOnRemovalFromList = null)
+        public void RemoveFromModalLayerList(IModalLayer layer)
         {
             if (layer == null)
             {
@@ -83,26 +84,30 @@ namespace CodeSampleModalLayer
                 Debug.Log("UIManager.cs AddToModalLayerList():: Layer passed in is null");
                 return;
             }
+            
+            layer.HideLayer(cbOnHideLayer: ()=>{
 
-            layer.HideLayer(cbOnHideLayer: cbOnRemovalFromList);
+                if (modalLayerList.Contains(layer))
+                {
+                    modalLayerList.Remove(layer);
+                }
 
-            if (modalLayerList.Contains(layer))
-            {
-                modalLayerList.Remove(layer);
-            }
+                layer.OnRemovalFromLayerList();
 
-            // Show the next modal in the list (ie. the last element) if there are anymore in the list
-            if (modalLayerList.Count >= 1)
-            {
-                modalLayerList[modalLayerList.Count - 1].ShowLayer();
-            }
+                // Show the next modal in the list (ie. the last element) if there are anymore in the list
+                if (modalLayerList.Count >= 1)
+                {
+                    IModalLayer lastModalInList = modalLayerList[modalLayerList.Count - 1];
+                    lastModalInList.ShowLayer();
+                }
 
-            // Hide the dialog overlay if there are no more modals in the list.
-            if(modalLayerList.Count == 0)
-            {
-                dialogOverlayCanvasGroup.DOFade(0f, overlayFadeDuration);
-                dialogOverlayCanvasGroup.gameObject.SetActive(false);
-            }
+                // Hide the dialog overlay if there are no more modals in the list.
+                if (modalLayerList.Count == 0)
+                {
+                    dialogOverlayCanvasGroup.DOFade(0f, overlayFadeDuration);
+                    dialogOverlayCanvasGroup.gameObject.SetActive(false);
+                }
+            });
         }
 
 #region Debug Methods
