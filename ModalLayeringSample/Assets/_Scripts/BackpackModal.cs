@@ -39,7 +39,7 @@ namespace CodeSampleModalLayer
             // The Backpack modal is special case where we want it to stay visible behind 
             // other modals in the list. We use the bDoHideModal from ModalBase to help determine
             // when we want the animation to occur.
-            bDoHideModal = false;
+            //bDoHideModal = false;
 
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(layer: this);
@@ -63,7 +63,7 @@ namespace CodeSampleModalLayer
         public void Shutdown()
         {
             // We want to make sure the modal animates when we shut it down.
-            bDoHideModal = true;
+            // bDoHideModal = true;
             appMan.UIMan.RemoveFromModalLayerList(layer: this);
         }
 
