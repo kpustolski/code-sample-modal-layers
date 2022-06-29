@@ -13,7 +13,6 @@ namespace CodeSampleModalLayer
 		private Button closeButton = default;
 		[SerializeField]
 		private Button actionButton = default;
-		private string modalId = default;
         [SerializeField]
 		private TextMeshProUGUI titleText = default;
         [SerializeField]
@@ -74,12 +73,6 @@ namespace CodeSampleModalLayer
 			actionButton.onClick.RemoveAllListeners();
 
 			Destroy(gameObject);
-		}
-
-
-		public override string GetId()
-		{
-			return modalId;
 		}
 
 		public override void AssignId(int layerIndex)

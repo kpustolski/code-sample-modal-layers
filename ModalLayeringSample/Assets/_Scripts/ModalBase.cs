@@ -14,6 +14,7 @@ namespace CodeSampleModalLayer
         private RectTransform contentPanelRectTransform = default;
 
         protected AppManager appMan = default;
+        protected string modalId = default;
 
         // Animation variables
         private Vector3 contentScalePunch = new Vector3(0.1f, 0.1f, 0.1f);
@@ -74,8 +75,8 @@ namespace CodeSampleModalLayer
         public virtual void ShowLayer() { }
         public virtual void  HideLayer(UnityAction cbOnHideLayer) { }
         public virtual void  OnRemovalFromLayerList() { }
-        public virtual string  GetId() { return ""; }
         public virtual void  AssignId(int layerIndex) { }
+        public string GetId() { return modalId; }
         
 #endregion
 

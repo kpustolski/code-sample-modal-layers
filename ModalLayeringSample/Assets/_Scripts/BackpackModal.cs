@@ -22,8 +22,7 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI emptyText = default;
         [SerializeField]
         private RectTransform itemParentTransform = default;
-
-        private string modalId = default;
+        
         private List<SquareItem> squareItemsList = new List<SquareItem>();
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
         private int currentItemCount = default;
@@ -118,7 +117,7 @@ namespace CodeSampleModalLayer
         }
 
 
-#region ModalLayer Functions
+#region Modal Layer Functions
 
         public override void ShowLayer()
         {
@@ -159,11 +158,6 @@ namespace CodeSampleModalLayer
             ClearSquareItemsList();
 
             Destroy(gameObject);
-        }
-
-        public override string GetId()
-        {
-            return modalId;
         }
 
         public override void AssignId(int layerIndex)

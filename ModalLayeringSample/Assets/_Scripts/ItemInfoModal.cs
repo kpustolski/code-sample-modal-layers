@@ -26,7 +26,6 @@ namespace CodeSampleModalLayer
 		[SerializeField]
         private UnityEngine.UI.Extensions.Gradient2 gradientScript = default;
 
-		private string modalId = default;
 		private Item mItem = default;
 		private SquareItem.LocationCreated mLocationCreated = default;
 		// amount in backback / total amount owned.
@@ -116,7 +115,7 @@ namespace CodeSampleModalLayer
             }
         }
 
-#region ModalLayer Functions
+#region Modal Layer Functions
 
 		public override void ShowLayer()
 		{
@@ -140,11 +139,6 @@ namespace CodeSampleModalLayer
 			removeFromBagButton.onClick.RemoveAllListeners();
 
 			Destroy(gameObject);
-		}
-
-		public override string GetId()
-		{
-			return modalId;
 		}
 
 		public override void AssignId(int layerIndex)
