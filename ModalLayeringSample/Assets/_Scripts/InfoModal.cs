@@ -53,16 +53,6 @@ namespace CodeSampleModalLayer
 
 #region Modal Layer Functions
 
-		public override void ShowLayer()
-		{
-			ShowAnimated();
-		}
-
-		public override void HideLayer(UnityAction cbOnHideLayer) 
-		{
-			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
-		}
-
 		public override void OnRemovalFromLayerList()
 		{
 			// Turn off button interactables to avoid double clicks

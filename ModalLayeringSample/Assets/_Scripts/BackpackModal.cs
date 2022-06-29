@@ -22,13 +22,10 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI emptyText = default;
         [SerializeField]
         private RectTransform itemParentTransform = default;
-        
+
         private List<SquareItem> squareItemsList = new List<SquareItem>();
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
         private int currentItemCount = default;
-        // Helps determine when we should show/hide the modal in the modal layer stack.
-        // For the BackpackModal, we want to make sure it's still seen in the background.
-        private bool bDoHideModal = false;
 
 		public override void Initialize()
 		{
@@ -39,6 +36,11 @@ namespace CodeSampleModalLayer
         {
             Initialize();
             
+            // The Backpack modal is special case where we want it to stay visible behind 
+            // other modals in the list. We use the bDoHideModal from ModalBase to help determine
+            // when we want the animation to occur.
+            bDoHideModal = false;
+
             // Add to the modal layer list
             appMan.UIMan.AddToModalLayerList(layer: this);
 
@@ -127,29 +129,8 @@ namespace CodeSampleModalLayer
             {
                 Reset();
             }
-            
-            if(bDoHideModal)
-            {
-                ShowAnimated();
-            }
-        }
 
-        public override void HideLayer(UnityAction cbOnHideLayer)
-        {
-            // The Backpack modal is special case where we want it to stay visible behind 
-            // other modals in the list. We use the bDoHideModal to help determine
-            // when we want the animation to occur.
-            if(bDoHideModal)
-            {
-                HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
-            }
-            else
-            {
-                if(cbOnHideLayer != null)
-                {
-                    cbOnHideLayer();
-                }
-            }
+            base.ShowLayer();
         }
 
         public override void OnRemovalFromLayerList()
@@ -157,7 +138,7 @@ namespace CodeSampleModalLayer
             closeButton.onClick.RemoveAllListeners();
             ClearSquareItemsList();
 
-            Destroy(gameObject);
+            base.OnRemovalFromLayerList();
         }
 
         public override void AssignId(int layerIndex)

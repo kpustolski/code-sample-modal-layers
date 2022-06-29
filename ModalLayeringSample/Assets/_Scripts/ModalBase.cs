@@ -23,6 +23,10 @@ namespace CodeSampleModalLayer
         
         private const float contentFadeDuration = 0.2f;
         private const float contentScaleDuration = 0.2f;
+        
+        // Helps determine when we should show/hide the modal in the modal layer list.
+        // Example: For the BackpackModal, we want to make sure it's still seen in the background.
+        protected bool bDoHideModal = true;
 
         public virtual void Initialize()
         {
@@ -72,9 +76,36 @@ namespace CodeSampleModalLayer
 
 #region Modal Layer Functions
 
-        public virtual void ShowLayer() { }
-        public virtual void  HideLayer(UnityAction cbOnHideLayer) { }
-        public virtual void  OnRemovalFromLayerList() { }
+        public virtual void ShowLayer() 
+        { 
+            if(bDoHideModal)
+            {
+                ShowAnimated();
+            }
+        }
+
+        public virtual void HideLayer(UnityAction cbOnHideLayer) 
+        {
+            // Hide the modal with animation
+            if(bDoHideModal)
+            {
+                HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
+            }
+            else
+            {
+                // We aren't hiding the modal, but the callback still needs to be called.
+                if(cbOnHideLayer != null)
+                {
+                    cbOnHideLayer();
+                }
+            }
+         }
+
+        public virtual void OnRemovalFromLayerList()
+        {
+            Destroy(gameObject);
+        }
+
         public virtual void  AssignId(int layerIndex) { }
         public string GetId() { return modalId; }
         

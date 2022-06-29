@@ -117,16 +117,6 @@ namespace CodeSampleModalLayer
 
 #region Modal Layer Functions
 
-		public override void ShowLayer()
-		{
-			ShowAnimated();
-		}
-
-		public override void HideLayer(UnityAction cbOnHideLayer)
-		{
-			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
-		}
-		
 		public override void OnRemovalFromLayerList()
 		{
 			// Turn off button interactables to avoid double clicks
@@ -138,7 +128,7 @@ namespace CodeSampleModalLayer
 			addToBagButton.onClick.RemoveAllListeners();
 			removeFromBagButton.onClick.RemoveAllListeners();
 
-			Destroy(gameObject);
+			base.OnRemovalFromLayerList();
 		}
 
 		public override void AssignId(int layerIndex)
