@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
-    public class BackpackModal : ModalBase, IModalLayer
+    public class BackpackModal : ModalBase
     {
         [Header("BackpackModal variables")]
         [Space(5)]
@@ -22,7 +22,7 @@ namespace CodeSampleModalLayer
         private TextMeshProUGUI emptyText = default;
         [SerializeField]
         private RectTransform itemParentTransform = default;
-        
+
         private string modalId = default;
         private List<SquareItem> squareItemsList = new List<SquareItem>();
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
@@ -41,7 +41,7 @@ namespace CodeSampleModalLayer
             Initialize();
             
             // Add to the modal layer list
-            appMan.UIMan.AddToModalLayerList(this as IModalLayer);
+            appMan.UIMan.AddToModalLayerList(layer: this);
 
             titleText.text = appMan.DataMan.GetCopyText("backpackmodal.title");
             emptyText.text = appMan.DataMan.GetCopyText("backpackmodal.isempty");
@@ -63,7 +63,7 @@ namespace CodeSampleModalLayer
         {
             // We want to make sure the modal animates when we shut it down.
             bDoHideModal = true;
-            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
+            appMan.UIMan.RemoveFromModalLayerList(layer: this);
         }
 
         private void Reset()
@@ -120,7 +120,7 @@ namespace CodeSampleModalLayer
 
 #region ModalLayer Functions
 
-        public void ShowLayer()
+        public override void ShowLayer()
         {
             // If the currentItemCount variable does not match the current number of items in the backpack,
             // then we know that the player removed an item. We need to update the UI to reflect the change.
@@ -135,7 +135,7 @@ namespace CodeSampleModalLayer
             }
         }
 
-        public void HideLayer(UnityAction cbOnHideLayer)
+        public override void HideLayer(UnityAction cbOnHideLayer)
         {
             // The Backpack modal is special case where we want it to stay visible behind 
             // other modals in the list. We use the bDoHideModal to help determine
@@ -153,7 +153,7 @@ namespace CodeSampleModalLayer
             }
         }
 
-        public void OnRemovalFromLayerList()
+        public override void OnRemovalFromLayerList()
         {
             closeButton.onClick.RemoveAllListeners();
             ClearSquareItemsList();
@@ -161,12 +161,12 @@ namespace CodeSampleModalLayer
             Destroy(gameObject);
         }
 
-        public string GetId()
+        public override string GetId()
         {
             return modalId;
         }
 
-        public void AssignId(int layerIndex)
+        public override void AssignId(int layerIndex)
         {
             modalId = $"BackpackModal_{layerIndex}";
         }

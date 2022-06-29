@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
-	public class ItemInfoModal : ModalBase, IModalLayer
+	public class ItemInfoModal : ModalBase
 	{
 		[Header("InfoModalTemplate Variables")]
 		[Space(5)]
@@ -57,7 +57,7 @@ namespace CodeSampleModalLayer
 
 			// Add to the modal layer list
 			// AppMan is set in base class
-			appMan.UIMan.AddToModalLayerList(this as IModalLayer);
+			appMan.UIMan.AddToModalLayerList(layer: this);
 
 			titleText.text = mItem.name;
 			itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
@@ -88,7 +88,7 @@ namespace CodeSampleModalLayer
 		public void Shutdown()
 		{
 			// Remove from modal layer list
-			appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
+			appMan.UIMan.RemoveFromModalLayerList(layer: this);
 		}
 
 		private void RemoveFromBagCallback()
@@ -118,17 +118,17 @@ namespace CodeSampleModalLayer
 
 #region ModalLayer Functions
 
-		public void ShowLayer()
+		public override void ShowLayer()
 		{
 			ShowAnimated();
 		}
 
-		public void HideLayer(UnityAction cbOnHideLayer)
+		public override void HideLayer(UnityAction cbOnHideLayer)
 		{
 			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
 		}
 		
-		public void OnRemovalFromLayerList()
+		public override void OnRemovalFromLayerList()
 		{
 			// Turn off button interactables to avoid double clicks
 			closeButton.interactable = false;
@@ -142,12 +142,12 @@ namespace CodeSampleModalLayer
 			Destroy(gameObject);
 		}
 
-		public string GetId()
+		public override string GetId()
 		{
 			return modalId;
 		}
 
-		public void AssignId(int layerIndex)
+		public override void AssignId(int layerIndex)
 		{
 			modalId = $"ItemInfoModal_{layerIndex}";
 		}

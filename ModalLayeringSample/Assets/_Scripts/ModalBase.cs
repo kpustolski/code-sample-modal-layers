@@ -68,5 +68,16 @@ namespace CodeSampleModalLayer
                 seq = null;
             }
         }
+
+#region Modal Layer Functions
+
+        public virtual void ShowLayer() { }
+        public virtual void  HideLayer(UnityAction cbOnHideLayer) { }
+        public virtual void  OnRemovalFromLayerList() { }
+        public virtual string  GetId() { return ""; }
+        public virtual void  AssignId(int layerIndex) { }
+        
+#endregion
+
     }
 }

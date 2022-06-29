@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace CodeSampleModalLayer
 {
-    public class InfoModal : ModalBase, IModalLayer
+    public class InfoModal : ModalBase
     {
         [Header("InfoModal Variables")]
 		[Space(5)]
@@ -33,7 +33,7 @@ namespace CodeSampleModalLayer
             titleText.text = title;
             descriptionText.text = description;
             
-            appMan.UIMan.AddToModalLayerList(this as IModalLayer);
+            appMan.UIMan.AddToModalLayerList(layer: this);
             closeButton.onClick.AddListener(Shutdown);
             actionButton.onClick.AddListener(() =>
             {
@@ -49,22 +49,22 @@ namespace CodeSampleModalLayer
 
 		public void Shutdown()
 		{
-            appMan.UIMan.RemoveFromModalLayerList(layer: this as IModalLayer);
+            appMan.UIMan.RemoveFromModalLayerList(layer: this);
 		}
 
-#region ModalLayer Functions
+#region Modal Layer Functions
 
-		public void ShowLayer()
+		public override void ShowLayer()
 		{
 			ShowAnimated();
 		}
 
-		public void HideLayer(UnityAction cbOnHideLayer) 
+		public override void HideLayer(UnityAction cbOnHideLayer) 
 		{
 			HideAnimated(cbOnAnimationComplete: cbOnHideLayer);
 		}
 
-		public void OnRemovalFromLayerList()
+		public override void OnRemovalFromLayerList()
 		{
 			// Turn off button interactables to avoid double clicks
 			closeButton.interactable = false;
@@ -77,12 +77,12 @@ namespace CodeSampleModalLayer
 		}
 
 
-		public string GetId()
+		public override string GetId()
 		{
 			return modalId;
 		}
 
-		public void AssignId(int layerIndex)
+		public override void AssignId(int layerIndex)
 		{
 			modalId = $"InfoModal_{layerIndex}";
 		}

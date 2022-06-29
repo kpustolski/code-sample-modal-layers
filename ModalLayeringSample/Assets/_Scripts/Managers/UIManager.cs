@@ -37,7 +37,7 @@ namespace CodeSampleModalLayer
         public NavButton NavButtonPrefab { get { return navButtonPrefab; } }
         public RectTransform DialogParent { get { return dialogParent; } }
 
-        private List<IModalLayer> modalLayerList = new List<IModalLayer>();
+        private List<ModalBase> modalLayerList = new List<ModalBase>();
 
         // Animation Variables
         private const float overlayFadeDuration = 0.2f;
@@ -48,7 +48,7 @@ namespace CodeSampleModalLayer
             dialogOverlayCanvasGroup.gameObject.SetActive(false);
         }
 
-        public void AddToModalLayerList(IModalLayer layer)
+        public void AddToModalLayerList(ModalBase layer)
         {
             if (layer == null)
             {
@@ -60,7 +60,7 @@ namespace CodeSampleModalLayer
             // If a modal is already in the list, hide that one before showing the new one.
             if (modalLayerList.Count >= 1)
             {
-                IModalLayer lastModalInList = modalLayerList[modalLayerList.Count - 1];
+                ModalBase lastModalInList = modalLayerList[modalLayerList.Count - 1];
                 lastModalInList.HideLayer(cbOnHideLayer: null);
             }
 
@@ -76,7 +76,7 @@ namespace CodeSampleModalLayer
             dialogOverlayCanvasGroup.DOFade(1f, overlayFadeDuration);
         }
 
-        public void RemoveFromModalLayerList(IModalLayer layer)
+        public void RemoveFromModalLayerList(ModalBase layer)
         {
             if (layer == null)
             {
@@ -97,7 +97,7 @@ namespace CodeSampleModalLayer
                 // Show the next modal in the list (ie. the last element) if there are anymore in the list
                 if (modalLayerList.Count >= 1)
                 {
-                    IModalLayer lastModalInList = modalLayerList[modalLayerList.Count - 1];
+                    ModalBase lastModalInList = modalLayerList[modalLayerList.Count - 1];
                     lastModalInList.ShowLayer();
                 }
 
@@ -119,9 +119,9 @@ namespace CodeSampleModalLayer
             }
         }
 
-        private IModalLayer GetModalLayerById(string id)
+        private ModalBase GetModalLayerById(string id)
         {
-            foreach (IModalLayer modal in modalLayerList)
+            foreach (ModalBase modal in modalLayerList)
             {
                 if (modal.GetId().Equals(id))
                 {
