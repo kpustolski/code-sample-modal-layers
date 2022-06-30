@@ -18,16 +18,13 @@ namespace CodeSampleModalLayer
         [SerializeField]
 		private TextMeshProUGUI descriptionText = default;
 
-        public override void Initialize()
-        {
-            base.Initialize();
-			closeButton.interactable = true;
-			actionButton.interactable = true;
-        }
-
         public void Setup(string title, string description, UnityAction cbOnActionButtonClick)
         {
+            // Call base class Initialize()
             Initialize();
+
+            closeButton.interactable = true;
+			actionButton.interactable = true;
             
             titleText.text = title;
             descriptionText.text = description;

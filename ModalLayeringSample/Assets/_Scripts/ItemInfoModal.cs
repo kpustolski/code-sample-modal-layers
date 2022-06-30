@@ -32,18 +32,16 @@ namespace CodeSampleModalLayer
 		private string amountTestFormat = default;
 		private string bagIsFullString = default;
 
-		public override void Initialize()
+		public void Setup(Item item, SquareItem.LocationCreated locationCreated)
 		{
-			base.Initialize();
-            itemImage.preserveAspect = true;
+			// Call base class Initialize()
+			Initialize();
+
+			itemImage.preserveAspect = true;
 			closeButton.interactable = true;
 			addToBagButton.interactable = true;
 			removeFromBagButton.interactable = true;
-		}
 
-		public void Setup(Item item, SquareItem.LocationCreated locationCreated)
-		{
-			Initialize();
 			mItem = item;
 			mLocationCreated = locationCreated;
 			amountTestFormat = appMan.DataMan.GetCopyText("itemcount");

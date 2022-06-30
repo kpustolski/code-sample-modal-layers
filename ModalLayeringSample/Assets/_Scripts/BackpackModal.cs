@@ -29,6 +29,7 @@ namespace CodeSampleModalLayer
 
         public void Setup()
         {
+            // Call base class Initialize()
             Initialize();
             
             // The Backpack modal is special case where we want it to stay visible behind 
