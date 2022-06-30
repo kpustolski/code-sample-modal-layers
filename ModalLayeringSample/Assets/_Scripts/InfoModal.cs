@@ -32,7 +32,6 @@ namespace CodeSampleModalLayer
             titleText.text = title;
             descriptionText.text = description;
             
-            appMan.UIMan.AddToModalLayerList(layer: this);
             closeButton.onClick.AddListener(Shutdown);
             actionButton.onClick.AddListener(() =>
             {
@@ -45,11 +44,6 @@ namespace CodeSampleModalLayer
 
             ShowAnimated();
         }
-
-		public void Shutdown()
-		{
-            appMan.UIMan.RemoveFromModalLayerList(layer: this);
-		}
 
 #region Modal Layer Functions
 

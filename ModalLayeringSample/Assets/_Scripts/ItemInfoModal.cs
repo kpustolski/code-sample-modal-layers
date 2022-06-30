@@ -51,12 +51,8 @@ namespace CodeSampleModalLayer
 
 			// Add to bag button is enabled when the square item button is selected in the home view
 			addToBagButton.gameObject.SetActive(mLocationCreated == SquareItem.LocationCreated.homeView);
-			// The remove from bag button is enabled when the square item button is selected in the backpack modal 
+			// The 'remove from bag' button is enabled when the square item button is selected in the backpack modal 
 			removeFromBagButton.gameObject.SetActive(mLocationCreated == SquareItem.LocationCreated.backpackModal);
-
-			// Add to the modal layer list
-			// AppMan is set in base class
-			appMan.UIMan.AddToModalLayerList(layer: this);
 
 			titleText.text = mItem.name;
 			itemImage.sprite = appMan.AppDataObject.GetItemIcon(mItem.id);
@@ -83,11 +79,6 @@ namespace CodeSampleModalLayer
 
 			// ShowAnimated is located in the base class
 			ShowAnimated();
-		}
-		public void Shutdown()
-		{
-			// Remove from modal layer list
-			appMan.UIMan.RemoveFromModalLayerList(layer: this);
 		}
 
 		private void RemoveFromBagCallback()

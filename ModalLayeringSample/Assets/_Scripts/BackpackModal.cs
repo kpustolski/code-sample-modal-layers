@@ -27,11 +27,6 @@ namespace CodeSampleModalLayer
         // Stores the number of items in the backpack. It helps determine if we need to reset the modal UI.
         private int currentItemCount = default;
 
-		public override void Initialize()
-		{
-			base.Initialize();
-		}
-
         public void Setup()
         {
             Initialize();
@@ -39,10 +34,7 @@ namespace CodeSampleModalLayer
             // The Backpack modal is special case where we want it to stay visible behind 
             // other modals in the list. We use the bDoHideModal from ModalBase to help determine
             // when we want the animation to occur.
-            //bDoHideModal = false;
-
-            // Add to the modal layer list
-            appMan.UIMan.AddToModalLayerList(layer: this);
+            // bDoHideModal = false;
 
             titleText.text = appMan.DataMan.GetCopyText("backpackmodal.title");
             emptyText.text = appMan.DataMan.GetCopyText("backpackmodal.isempty");
@@ -53,18 +45,18 @@ namespace CodeSampleModalLayer
 
             // Empty text appears if there is nothing inside the backpack.
             emptyText.gameObject.SetActive(currentItemCount == 0);
-            //Disable the clearAllButton if nothing is in the backpack
+            // Disable the clearAllButton if nothing is in the backpack
             clearAllButton.interactable = (currentItemCount != 0);
 
             // ShowAnimated is located in the base class
             ShowAnimated();
         }
 
-        public void Shutdown()
+        public override void Shutdown()
         {
             // We want to make sure the modal animates when we shut it down.
             // bDoHideModal = true;
-            appMan.UIMan.RemoveFromModalLayerList(layer: this);
+            base.Shutdown();
         }
 
         private void Reset()

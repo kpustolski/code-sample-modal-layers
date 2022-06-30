@@ -31,6 +31,9 @@ namespace CodeSampleModalLayer
         public virtual void Initialize()
         {
             appMan = AppManager.Instance;
+            
+            // Add to the modal layer list
+            appMan.UIMan.AddToModalLayerList(layer: this);
         }
 
         protected void ShowAnimated()
@@ -63,6 +66,12 @@ namespace CodeSampleModalLayer
                         cbOnAnimationComplete();
                     }
                 });
+        }
+
+        public virtual void Shutdown()
+        {
+            // Remove from modal layer list
+            appMan.UIMan.RemoveFromModalLayerList(layer: this);
         }
 
         private void ResetSequence(Sequence seq)
